@@ -92,6 +92,19 @@ if (fs.existsSync(distProductsDir)) {
   app.use('/products', express.static(publicProductsDir));
 }
 
+const publicCategoriesDir = path.join(__dirname, '../public/categories');
+const distCategoriesDir = path.join(__dirname, '../dist/categories');
+if (fs.existsSync(distCategoriesDir)) {
+  app.use('/categories', express.static(distCategoriesDir));
+} else if (fs.existsSync(publicCategoriesDir)) {
+  app.use('/categories', express.static(publicCategoriesDir));
+}
+
+const publicDir = path.join(__dirname, '../public');
+if (fs.existsSync(publicDir)) {
+  app.use(express.static(publicDir));
+}
+
 // Admin Dashboard static files
 app.use('/admin', express.static(path.join(__dirname, '../admin')));
 
@@ -115,7 +128,7 @@ if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
 
   app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api') || req.path.startsWith('/admin') || req.path.startsWith('/uploads') || req.path.startsWith('/products')) {
+    if (req.path.startsWith('/api') || req.path.startsWith('/admin') || req.path.startsWith('/uploads') || req.path.startsWith('/products') || req.path.startsWith('/categories')) {
       return next();
     }
     if (req.path === '/cart' || req.path === '/cart.html') {
