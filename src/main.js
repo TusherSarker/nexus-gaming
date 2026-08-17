@@ -137,6 +137,58 @@ function initHeroCharacters() {
   startAutoHeroRotation();
 }
 
+// ===== PUBG 3-LOGO CYCLING & TOGGLE =====
+const PUBG_LOGOS = [
+  { name: 'Level 3 Helmet', src: '/categories/pubg-logo-1.png' },
+  { name: 'White Box Emblem', src: '/categories/pubg-logo-2.png' },
+  { name: 'Official Yellow Logo', src: '/categories/pubg-logo-3.png' }
+];
+let currentPubgLogoIndex = 0;
+let pubgLogoCycleInterval = null;
+
+window.togglePubgLogo = function(targetIdx = null) {
+  if (targetIdx !== null) {
+    currentPubgLogoIndex = targetIdx % PUBG_LOGOS.length;
+  } else {
+    currentPubgLogoIndex = (currentPubgLogoIndex + 1) % PUBG_LOGOS.length;
+  }
+  updateAllPubgLogosUI();
+};
+
+function updateAllPubgLogosUI() {
+  const pubgImgs = document.querySelectorAll('.pubg-dynamic-logo-img');
+  const pubgDots = document.querySelectorAll('.pubg-logo-dot');
+  const activeLogo = PUBG_LOGOS[currentPubgLogoIndex];
+
+  pubgImgs.forEach(img => {
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.85) rotateY(90deg)';
+    setTimeout(() => {
+      img.src = activeLogo.src;
+      img.alt = `PUBG Mobile - ${activeLogo.name}`;
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1) rotateY(0deg)';
+    }, 150);
+  });
+
+  pubgDots.forEach(dot => {
+    const dotIdx = parseInt(dot.dataset.dotIdx, 10);
+    if (dotIdx === currentPubgLogoIndex) {
+      dot.className = 'pubg-logo-dot w-1.5 h-1.5 rounded-full bg-cyan-accent scale-125 transition-all shadow-glow-cyan-sm';
+    } else {
+      dot.className = 'pubg-logo-dot w-1.5 h-1.5 rounded-full bg-white/30 hover:bg-white/70 transition-all';
+    }
+  });
+}
+
+function initPubgLogoCycle() {
+  if (pubgLogoCycleInterval) clearInterval(pubgLogoCycleInterval);
+  pubgLogoCycleInterval = setInterval(() => {
+    currentPubgLogoIndex = (currentPubgLogoIndex + 1) % PUBG_LOGOS.length;
+    updateAllPubgLogosUI();
+  }, 3500);
+}
+
 // ===== CATEGORY STATE & TOGGLE (1 Row initially, expandable to 20 Games) =====
 let allLiveCategories = [];
 let isCategoriesExpanded = false;
@@ -154,7 +206,29 @@ function renderCategoryGrid() {
   const visibleCategories = isCategoriesExpanded ? allLiveCategories : allLiveCategories.slice(0, 5);
 
   grid.innerHTML = visibleCategories.map(cat => {
-    const logoImg = cat.image || `/categories/${cat.slug}.svg`;
+    const isPubg = cat.slug === 'pubg-mobile' || cat.name.toLowerCase().includes('pubg');
+    const logoImg = isPubg ? PUBG_LOGOS[currentPubgLogoIndex].src : (cat.image || `/categories/${cat.slug}.svg`);
+
+    if (isPubg) {
+      return `
+        <a href="#products" data-filter-game="${cat.name}" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all animate-fade-in relative" title="Click icon to switch PUBG logos">
+          <div class="relative w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo();" title="Click to Toggle PUBG Logo (3 Variants)">
+            <img src="${logoImg}" alt="${cat.name}" class="pubg-dynamic-logo-img w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all duration-300" onerror="this.onerror=null; this.src='/categories/pubg-mobile.svg'">
+            <!-- 3-Dot Logo Indicator / Switcher -->
+            <div class="absolute bottom-0.5 inset-x-0 flex items-center justify-center gap-1 z-20 py-0.5 bg-nexus-950/70 backdrop-blur-xs rounded-full">
+              <span data-dot-idx="0" class="pubg-logo-dot w-1.5 h-1.5 rounded-full ${currentPubgLogoIndex === 0 ? 'bg-cyan-accent scale-125' : 'bg-white/30'}" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo(0);"></span>
+              <span data-dot-idx="1" class="pubg-logo-dot w-1.5 h-1.5 rounded-full ${currentPubgLogoIndex === 1 ? 'bg-cyan-accent scale-125' : 'bg-white/30'}" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo(1);"></span>
+              <span data-dot-idx="2" class="pubg-logo-dot w-1.5 h-1.5 rounded-full ${currentPubgLogoIndex === 2 ? 'bg-cyan-accent scale-125' : 'bg-white/30'}" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo(2);"></span>
+            </div>
+          </div>
+          <div>
+            <span class="font-heading font-bold text-sm text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[130px]">${cat.name}</span>
+            <span class="text-[10px] text-cyan-accent font-mono block truncate max-w-[130px] font-semibold">3 Logos ↻</span>
+          </div>
+        </a>
+      `;
+    }
+
     return `
       <a href="#products" data-filter-game="${cat.name}" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all animate-fade-in">
         <div class="w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden">
@@ -167,6 +241,8 @@ function renderCategoryGrid() {
       </a>
     `;
   }).join('');
+
+  initPubgLogoCycle();
 
   if (toggleBtn && toggleText) {
     if (isCategoriesExpanded) {
