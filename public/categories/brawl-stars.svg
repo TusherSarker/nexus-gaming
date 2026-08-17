@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="bs-star" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <filter id="bs-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#FDE047" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#bs-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#bs-star)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Brawl Stars Iconic Star Badge -->
+  <g filter="url(#bs-glow)">
+    <!-- Star Body -->
+    <polygon points="100,32 118,72 162,72 126,98 140,140 100,114 60,140 74,98 38,72 82,72" fill="url(#bs-star)" stroke="#78350f" stroke-width="3"/>
+    <!-- Cartoon Skull Center -->
+    <circle cx="100" cy="88" r="22" fill="#FFFFFF" stroke="#1c1917" stroke-width="2"/>
+    <circle cx="92" cy="84" r="5" fill="#1c1917"/>
+    <circle cx="108" cy="84" r="5" fill="#1c1917"/>
+    <polygon points="100,90 97,98 103,98" fill="#1c1917"/>
+    <rect x="94" y="102" width="4" height="6" rx="1" fill="#1c1917"/>
+    <rect x="102" y="102" width="4" height="6" rx="1" fill="#1c1917"/>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#1e3a8a" stroke="url(#bs-star)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="12" letter-spacing="1.5">BRAWL STARS</text>
+  </g>
+</svg>

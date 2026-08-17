@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Nexus Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nexus': { 900: '#0a0e17', 800: '#111827', 700: '#1a2035', 600: '#2a3148', 950: '#060a12' },
+            'cyan-accent': '#00f0ff',
+            'magenta-accent': '#ff2d78',
+            'gold-accent': '#ffd700',
+            'success': '#22c55e',
+            'warning': '#f59e0b',
+            'danger': '#ef4444',
+          },
+          fontFamily: {
+            heading: ['Rajdhani', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0a0e17; color: white; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Rajdhani', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-nexus-900 text-white">
+
+  <main class="p-6 max-w-7xl mx-auto space-y-6">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-3xl font-bold font-heading tracking-wider">DASHBOARD OVERVIEW</h1>
+        <p class="text-gray-400 mt-1">Live metrics from your Nexus Gaming database</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="/" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-nexus-800 hover:bg-nexus-700 border border-white/10 text-cyan-accent rounded-lg transition text-sm font-medium">
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+          View Storefront
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-6 opacity-10">
+          <i data-lucide="dollar-sign" class="w-16 h-16 text-cyan-accent"></i>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm font-medium text-gray-400 mb-1">Total Revenue</p>
+          <h3 id="statRevenue" class="text-3xl font-bold font-mono text-cyan-accent">$0.00</h3>
+          <p class="text-sm text-success flex items-center gap-1 mt-2">
+            <i data-lucide="trending-up" class="w-4 h-4"></i> Live store data
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-6 opacity-10">
+          <i data-lucide="package" class="w-16 h-16 text-magenta-accent"></i>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm font-medium text-gray-400 mb-1">Total Orders</p>
+          <h3 id="statOrders" class="text-3xl font-bold font-mono text-white">0</h3>
+          <p class="text-sm text-gray-400 flex items-center gap-1 mt-2">
+            Processed in store
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-6 opacity-10">
+          <i data-lucide="users" class="w-16 h-16 text-gold-accent"></i>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm font-medium text-gray-400 mb-1">Total Users</p>
+          <h3 id="statUsers" class="text-3xl font-bold font-mono text-white">0</h3>
+          <p class="text-sm text-gray-400 flex items-center gap-1 mt-2">
+            Registered accounts
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-6 opacity-10">
+          <i data-lucide="box" class="w-16 h-16 text-success"></i>
+        </div>
+        <div class="relative z-10">
+          <p class="text-sm font-medium text-gray-400 mb-1">Total Products</p>
+          <h3 id="statProducts" class="text-3xl font-bold font-mono text-white">0</h3>
+          <p class="text-sm text-gray-400 flex items-center gap-1 mt-2">
+            In inventory
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts & Lists -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Recent Orders Table -->
+      <div class="lg:col-span-2 bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-bold font-heading">Recent Orders</h2>
+          <a href="/admin/orders.html" class="text-sm text-cyan-accent hover:underline flex items-center gap-1">
+            View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="text-gray-400 text-sm border-b border-white/10">
+                <th class="pb-3 font-medium">Order ID</th>
+                <th class="pb-3 font-medium">Customer</th>
+                <th class="pb-3 font-medium">Date</th>
+                <th class="pb-3 font-medium">Status</th>
+                <th class="pb-3 font-medium text-right">Total</th>
+              </tr>
+            </thead>
+            <tbody id="recentOrdersTable" class="text-sm">
+              <tr>
+                <td colspan="5" class="py-8 text-center text-gray-500">Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Top Products -->
+      <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl p-6">
+        <h2 class="text-xl font-bold font-heading mb-6">Top Selling Items</h2>
+        <div class="space-y-4" id="topProductsList">
+          <div class="text-center text-gray-500 py-4">Loading products...</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuth();
+      if (window.lucide) lucide.createIcons();
+      loadDashboardData();
+    });
+
+    const statusColors = {
+      pending: 'bg-warning/20 text-warning border-warning/30',
+      processing: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+      shipped: 'bg-cyan-accent/20 text-cyan-accent border-cyan-accent/30',
+      delivered: 'bg-success/20 text-success border-success/30',
+      cancelled: 'bg-danger/20 text-danger border-danger/30'
+    };
+
+    async function loadDashboardData() {
+      try {
+        const res = await api.get('/dashboard/stats');
+        const data = res.data;
+
+        document.getElementById('statRevenue').textContent = `$${Math.round(data.totalRevenue || 0).toLocaleString()}`;
+        document.getElementById('statOrders').textContent = (data.totalOrders || 0).toLocaleString();
+        document.getElementById('statUsers').textContent = (data.totalUsers || 0).toLocaleString();
+        document.getElementById('statProducts').textContent = (data.totalProducts || 0).toLocaleString();
+
+        const ordersTbody = document.getElementById('recentOrdersTable');
+        if (data.recentOrders && data.recentOrders.length > 0) {
+          ordersTbody.innerHTML = data.recentOrders.map(o => {
+            const customer = o.customerName || (o.user && o.user.name) || o.customerEmail || 'Guest';
+            const dateStr = new Date(o.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            return `
+              <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <td class="py-3 font-mono text-cyan-accent">#${o.orderNumber || o._id.substring(18)}</td>
+                <td class="py-3">${customer}</td>
+                <td class="py-3 text-gray-400">${dateStr}</td>
+                <td class="py-3">
+                  <span class="px-2 py-1 text-xs font-medium rounded-md border ${statusColors[o.status] || statusColors.pending} uppercase">
+                    ${o.status}
+                  </span>
+                </td>
+                <td class="py-3 text-right font-mono font-medium text-white">$${Math.round(o.total || 0)}</td>
+              </tr>
+            `;
+          }).join('');
+        } else {
+          ordersTbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500">No orders recorded yet.</td></tr>`;
+        }
+
+        const topContainer = document.getElementById('topProductsList');
+        if (data.topProducts && data.topProducts.length > 0) {
+          topContainer.innerHTML = data.topProducts.map(p => `
+            <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/5">
+              <div class="w-10 h-10 rounded-lg bg-nexus-700 flex items-center justify-center text-cyan-accent font-bold">
+                <i data-lucide="package" class="w-5 h-5"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h4 class="font-medium text-sm text-white truncate">${p.name || 'Product'}</h4>
+                <p class="text-xs text-gray-400 mt-0.5">${p.count} units sold</p>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          topContainer.innerHTML = `<div class="text-center text-gray-500 py-4">No sales data yet.</div>`;
+        }
+
+        if (window.lucide) lucide.createIcons();
+      } catch (err) {
+        console.error('Error loading dashboard:', err);
+        showToast('Connected to dashboard. Seed database if empty.', 'info');
+      }
+    }
+  </script>
+</body>
+</html>

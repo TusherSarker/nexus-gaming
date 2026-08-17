@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Specifications — Nexus Gaming</title>
+  <meta name="description" content="Explore full specifications, deep dive features, and high-res imagery for premium Nexus Gaming gear." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card" style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-lg bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm">
+            <span class="font-heading font-bold text-nexus-900 text-xl">N</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">NEXUS<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">All Gear</a>
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Hardware</a>
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Accessories</a>
+          <a href="/#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Subscriptions</a>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-4">
+          <!-- Cart -->
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+
+          <!-- Dynamic User Profile / Login -->
+          <div id="navbarUserContainer" class="flex items-center">
+            <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all flex items-center gap-1.5">
+              <i data-lucide="user" class="w-3.5 h-3.5"></i> Sign In
+            </button>
+          </div>
+
+          <a href="/" class="hidden sm:flex p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Home">
+            <i data-lucide="home" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PRODUCT DETAILS CONTENT ===== -->
+  <main class="pt-28 pb-24 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-sm text-text-muted" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-cyan-accent transition-colors">Home</a>
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        <a href="/#products" id="breadcrumbCategory" class="hover:text-cyan-accent transition-colors">Gaming Gear</a>
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        <span id="breadcrumbTitle" class="text-text-primary font-medium truncate max-w-xs sm:max-w-md">Product Details</span>
+      </nav>
+
+      <!-- Main Product Showcase (2 Columns) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+        <!-- Left Column: Big Interactive 3D Floating Hero Studio (Cols 1-6) -->
+        <div class="lg:col-span-6 space-y-6">
+          <!-- Main Showcase Image Container with 3D Tilt Physics & Light Sheen -->
+          <div id="mainImageContainer" class="relative glass-card rounded-3xl p-8 sm:p-12 border border-white/10 flex items-center justify-center aspect-square overflow-hidden group cursor-zoom-in shadow-2xl transition-all duration-300" style="perspective: 1000px;">
+            <!-- Ambient Cyber Aura -->
+            <div class="absolute inset-0 bg-cyan-accent/10 rounded-3xl blur-[80px] group-hover:bg-cyan-accent/20 transition-all duration-700"></div>
+
+            <!-- Dynamic Metallic Sheen Beam Overlay -->
+            <div id="heroLightSheen" class="absolute -inset-full bg-gradient-to-r from-transparent via-white/10 to-transparent rotate-45 transform pointer-events-none transition-transform duration-700"></div>
+
+            <!-- Badge -->
+            <span id="productBadgeTag" class="badge-hot absolute top-6 left-6 z-10 hidden">Best Seller</span>
+
+            <!-- Zoom Hint Badge -->
+            <div class="absolute top-6 right-6 z-10 px-3.5 py-1.5 rounded-full bg-nexus-900/90 border border-white/15 backdrop-blur-md text-xs font-semibold text-cyan-accent flex items-center gap-2 opacity-90 group-hover:opacity-100 group-hover:border-cyan-accent/50 transition-all shadow-xl">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+              <span>High-Res Lightbox</span>
+            </div>
+
+            <!-- 3D Floating Image with Physics -->
+            <div id="hero3DWrapper" class="relative w-full h-full flex items-center justify-center transition-transform duration-200 ease-out will-change-transform">
+              <img id="productMainImg" src="/products/gaming_headset.jpg" alt="Product Image" class="max-h-[90%] max-w-[90%] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.8)] select-none pointer-events-none" />
+            </div>
+
+            <!-- Bottom Interactive Hint -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 px-4 py-1 rounded-full bg-nexus-950/70 border border-white/10 backdrop-blur-md text-[10px] font-mono text-gray-400 opacity-60 group-hover:opacity-100 transition-opacity">
+              Move cursor for 3D perspective • Scroll down for cinematic deep dive
+            </div>
+          </div>
+
+          <!-- Trust / Assurance Badges -->
+          <div class="grid grid-cols-3 gap-3 pt-2 text-center">
+            <div class="p-3.5 rounded-2xl bg-nexus-800/50 border border-white/5 backdrop-blur-md hover:border-cyan-accent/30 transition-colors">
+              <i data-lucide="shield-check" class="w-5 h-5 text-cyan-accent mx-auto mb-1.5"></i>
+              <span class="text-xs font-bold text-white block">2-Year Warranty</span>
+              <span class="text-[10px] text-gray-400">Direct Replacement</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-nexus-800/50 border border-white/5 backdrop-blur-md hover:border-cyan-accent/30 transition-colors">
+              <i data-lucide="truck" class="w-5 h-5 text-cyan-accent mx-auto mb-1.5"></i>
+              <span class="text-xs font-bold text-white block">Fast Dispatch</span>
+              <span class="text-[10px] text-gray-400">Within 24 Hours</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-nexus-800/50 border border-white/5 backdrop-blur-md hover:border-cyan-accent/30 transition-colors">
+              <i data-lucide="rotate-ccw" class="w-5 h-5 text-cyan-accent mx-auto mb-1.5"></i>
+              <span class="text-xs font-bold text-white block">30-Day Returns</span>
+              <span class="text-[10px] text-gray-400">100% Money Back</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Product Info & Purchase Options (Cols 7-12) -->
+        <div class="lg:col-span-6 space-y-6">
+
+          <!-- Category & Stock Status -->
+          <div class="flex items-center justify-between">
+            <span id="productCategoryTag" class="text-xs font-mono font-bold text-cyan-accent uppercase tracking-widest px-3 py-1 rounded-full bg-cyan-accent/10 border border-cyan-accent/30">
+              Audio Gear
+            </span>
+            <span id="productStockBadge" class="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              In Stock — Dispatches Tomorrow
+            </span>
+          </div>
+
+          <!-- Product Title -->
+          <h1 id="productTitle" class="text-3xl sm:text-4xl font-heading font-bold text-white leading-tight">
+            Aurora Pro Wireless Headset
+          </h1>
+
+          <!-- Reviews Rating Summary -->
+          <div class="flex items-center gap-3">
+            <div class="flex text-gold-accent text-base" id="productStars">
+              ★★★★★
+            </div>
+            <span id="productReviewCount" class="text-xs text-text-muted font-medium">(128 verified customer reviews)</span>
+          </div>
+
+          <!-- Price & Transparency Breakdown Banner -->
+          <div class="p-5 rounded-2xl bg-nexus-800/90 border border-cyan-accent/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="flex items-baseline gap-3">
+                  <span id="productPrice" class="font-mono font-bold text-4xl text-cyan-accent">$16</span>
+                  <span id="productComparePrice" class="font-mono text-base text-gray-400">Official Base: $10</span>
+                </div>
+                <p class="text-[11px] text-gray-300 mt-0.5">100% All-Inclusive • Zero extra charges at checkout.</p>
+              </div>
+              <div class="px-3 py-1.5 rounded-xl bg-cyan-accent/15 text-cyan-accent border border-cyan-accent/30 text-xs font-mono font-bold text-center">
+                🛡️ All-Inclusive
+              </div>
+            </div>
+
+            <!-- Transparent Breakdown Pill -->
+            <div class="pt-2.5 border-t border-white/10 text-xs space-y-2">
+              <div class="flex items-center justify-between text-gray-400 font-mono text-[11px]">
+                <span>✓ Dual-Currency Card & Bank FX Fee</span>
+                <span class="text-gray-300">Included</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-400 font-mono text-[11px]">
+                <span>✓ Government VAT & Digital Goods Tax</span>
+                <span class="text-gray-300">Included</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-400 font-mono text-[11px]">
+                <span>✓ Cloud Server Infrastructure & Anti-DDoS</span>
+                <span class="text-gray-300">Included</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-400 font-mono text-[11px]">
+                <span>✓ Support Team Fair Living Wages & Rapid Delivery</span>
+                <span class="text-gray-300">Included</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <h3 class="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold mb-2">Description & Battle Advantage</h3>
+            <p id="productDescription" class="text-text-secondary text-sm leading-relaxed">
+              Instant direct player ID delivery. 100% legal, ban-proof, all fees & taxes included.
+            </p>
+          </div>
+
+          <!-- Quick Highlight Specs -->
+          <div class="grid grid-cols-2 gap-3" id="quickSpecsGrid">
+            <div class="p-3 rounded-xl bg-nexus-800/40 border border-white/5 space-y-1">
+              <span class="text-[10px] text-gray-400 uppercase font-mono block">Delivery Speed</span>
+              <span class="text-xs font-bold text-cyan-accent">&lt; 5 Mins (Instant Delivery)</span>
+            </div>
+            <div class="p-3 rounded-xl bg-nexus-800/40 border border-white/5 space-y-1">
+              <span class="text-[10px] text-gray-400 uppercase font-mono block">Account Safety</span>
+              <span class="text-xs font-bold text-emerald-400">100% Ban-Free Legal Top-Up</span>
+            </div>
+            <div class="p-3 rounded-xl bg-nexus-800/40 border border-white/5 space-y-1">
+              <span class="text-[10px] text-gray-400 uppercase font-mono block">Server Region</span>
+              <span class="text-xs font-bold text-white">Global / All Regions</span>
+            </div>
+            <div class="p-3 rounded-xl bg-nexus-800/40 border border-white/5 space-y-1">
+              <span class="text-[10px] text-gray-400 uppercase font-mono block">Required Info</span>
+              <span class="text-xs font-bold text-gold-accent">Player ID / UID Only (No Password)</span>
+            </div>
+          </div>
+
+          <hr class="border-white/10" />
+
+          <!-- Purchase Controls (Qty + Add to Cart + Buy Now) -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <!-- Quantity Stepper -->
+              <div class="flex items-center bg-nexus-800 border border-white/10 rounded-2xl overflow-hidden p-1">
+                <button id="qtyMinusBtn" class="p-3 text-text-secondary hover:text-cyan-accent hover:bg-nexus-700 rounded-xl transition-colors" aria-label="Decrease Quantity">
+                  <i data-lucide="minus" class="w-4 h-4"></i>
+                </button>
+                <span id="qtyDisplay" class="font-mono font-bold text-base px-5 text-white min-w-[3rem] text-center">1</span>
+                <button id="qtyPlusBtn" class="p-3 text-text-secondary hover:text-cyan-accent hover:bg-nexus-700 rounded-xl transition-colors" aria-label="Increase Quantity">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Add to Loadout Button -->
+              <button id="addToLoadoutBtn" class="flex-1 py-4 px-6 bg-cyan-accent hover:bg-cyan-400 text-nexus-950 font-heading font-bold text-base tracking-wide rounded-2xl transition-all shadow-glow-cyan-sm flex items-center justify-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                <span>Add to Loadout</span>
+              </button>
+            </div>
+
+            <!-- Instant Buy Now Button -->
+            <button id="buyNowBtn" class="w-full py-3.5 px-6 bg-gradient-to-r from-magenta-accent to-pink-600 hover:from-pink-500 hover:to-rose-600 text-white font-heading font-bold text-base tracking-wide rounded-2xl transition-all shadow-lg shadow-magenta-accent/20 flex items-center justify-center gap-2">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+              <span>Instant Deploy (Buy Now)</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== APPLE / SAMSUNG STYLE GIANT METRIC HIGHLIGHTS ===== -->
+      <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+        <div class="glass-card rounded-2xl p-5 border border-white/5 backdrop-blur-xl text-center space-y-1 group hover:border-cyan-accent/40 transition-all">
+          <span class="text-3xl sm:text-4xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-cyan-accent to-blue-400">&lt; 5m</span>
+          <p class="text-xs font-mono font-bold text-white uppercase tracking-wider">Instant Delivery</p>
+          <span class="text-[10px] text-gray-400 block">Direct In-Game Inbox Sync</span>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border border-white/5 backdrop-blur-xl text-center space-y-1 group hover:border-emerald-400/40 transition-all">
+          <span class="text-3xl sm:text-4xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">100%</span>
+          <p class="text-xs font-mono font-bold text-white uppercase tracking-wider">Ban-Proof Legal</p>
+          <span class="text-[10px] text-gray-400 block">Official Publisher API Handshake</span>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border border-white/5 backdrop-blur-xl text-center space-y-1 group hover:border-magenta-accent/40 transition-all">
+          <span class="text-3xl sm:text-4xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-magenta-accent to-pink-500">24/7</span>
+          <p class="text-xs font-mono font-bold text-white uppercase tracking-wider">Human Support</p>
+          <span class="text-[10px] text-gray-400 block">Live Manual Verification Team</span>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border border-white/5 backdrop-blur-xl text-center space-y-1 group hover:border-gold-accent/40 transition-all">
+          <span class="text-3xl sm:text-4xl font-extrabold font-heading text-transparent bg-clip-text bg-gradient-to-r from-gold-accent to-amber-400">0 Pass</span>
+          <p class="text-xs font-mono font-bold text-white uppercase tracking-wider">Player ID Only</p>
+          <span class="text-[10px] text-gray-400 block">Zero Password Sharing Required</span>
+        </div>
+      </section>
+
+      <!-- ===== APPLE / SAMSUNG CINEMATIC 3D SCROLL EXPERIENCE ===== -->
+      <section id="cinematicShowcaseSection" class="relative w-full py-8" style="min-height: 420vh;">
+        
+        <!-- Sticky Viewport Stage Frame -->
+        <div id="stickyShowcaseStage" class="sticky top-24 h-[84vh] w-full rounded-3xl overflow-hidden glass-card border border-cyan-accent/25 bg-nexus-950/95 flex flex-col justify-between p-4 sm:p-8 shadow-2xl backdrop-blur-2xl transition-all duration-300">
+          
+          <!-- Top Telemetry & Stage Selector Navigation -->
+          <div class="relative z-30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-cyan-accent/10 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent">
+                <i data-lucide="scan" class="w-5 h-5 animate-pulse"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-mono font-bold text-cyan-accent uppercase tracking-widest">Nexus Verification Engine</span>
+                  <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-white/10 text-gray-300">CONTINUOUS PHYSICS</span>
+                </div>
+                <h2 id="showcaseStageHeading" class="text-base sm:text-xl font-heading font-bold text-white leading-tight">
+                  01. Official Server Authorization & API Handshake
+                </h2>
+              </div>
+            </div>
+
+            <!-- Stage Pills (Click to smooth scroll) -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+              <button class="stage-pill-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-cyan-accent text-nexus-950 shadow-glow-cyan-sm" data-stage="0">
+                01 Auth
+              </button>
+              <button class="stage-pill-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white" data-stage="1">
+                02 Player UID
+              </button>
+              <button class="stage-pill-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white" data-stage="2">
+                03 Tax & FX
+              </button>
+              <button class="stage-pill-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white" data-stage="3">
+                04 In-Game Deploy
+              </button>
+            </div>
+          </div>
+
+          <!-- Continuous Gradient Progress Bar Line -->
+          <div class="absolute top-0 left-0 right-0 h-1 bg-nexus-800">
+            <div id="showcaseProgressBar" class="h-full bg-gradient-to-r from-cyan-accent via-magenta-accent to-gold-accent w-0 transition-all duration-75"></div>
+          </div>
+
+          <!-- Main Interactive Stage Body -->
+          <div class="relative flex-1 flex items-center justify-center overflow-hidden my-2" style="perspective: 1200px;">
+            
+            <!-- Dynamic Aura Glow Backdrop -->
+            <div id="showcaseAuraGlow" class="absolute w-[360px] h-[360px] sm:w-[540px] sm:h-[540px] rounded-full bg-cyan-accent/20 blur-[130px] pointer-events-none transition-all duration-700"></div>
+
+            <!-- Cyber Tech Grid & Crosshairs Backdrop -->
+            <div class="absolute inset-0 bg-[radial-gradient(#00f0ff_1px,transparent_1px)] [background-size:28px_28px] opacity-10 pointer-events-none"></div>
+
+            <!-- Apple-Style Giant Floating Background Headline -->
+            <div class="absolute top-6 left-1/2 -translate-x-1/2 text-center pointer-events-none select-none z-0 w-full px-4">
+              <h3 id="showcaseHeroHeadline" class="text-2xl sm:text-4xl lg:text-5xl font-extrabold font-heading uppercase tracking-widest text-white/10 transition-all duration-700">
+                OFFICIAL SERVER AUTH
+              </h3>
+            </div>
+
+            <!-- Live HUD Overlays / Coordinates -->
+            <div class="absolute top-4 left-4 font-mono text-[10px] text-gray-500 space-y-1 select-none pointer-events-none hidden sm:block z-20">
+              <p>OPTICAL MAGNIFICATION: <span id="hudZoomVal" class="text-cyan-accent font-bold">1.00X</span></p>
+              <p>PERSPECTIVE ROTATION: <span id="hudRotVal" class="text-cyan-accent font-bold">0.0°</span></p>
+              <p>PHYSICS INERTIA: <span class="text-emerald-400 font-bold">60FPS_SMOOTH_LERP</span></p>
+            </div>
+
+            <!-- Laser Crosshairs Overlay (Follows target on zoom) -->
+            <div id="laserCrosshairsHud" class="absolute z-20 pointer-events-none transition-all duration-300 opacity-80" style="top: 35%; left: 35%;">
+              <div class="relative flex items-center justify-center">
+                <div class="w-12 h-12 border border-cyan-accent/40 rounded-full animate-spin [animation-duration:8s]"></div>
+                <div class="absolute w-2 h-2 bg-cyan-accent rounded-full animate-ping"></div>
+                <div class="absolute -top-4 font-mono text-[9px] text-cyan-accent font-bold tracking-wider">VALIDATED // 0x4B</div>
+              </div>
+            </div>
+
+            <!-- Interactive Hotspot 1 -->
+            <div id="hotspot1" class="absolute z-30 transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group" style="top: 35%; left: 35%;">
+              <div class="relative flex items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-cyan-accent opacity-40"></span>
+                <span class="relative inline-flex rounded-full h-5 w-5 bg-cyan-accent text-nexus-900 font-mono font-bold text-[10px] items-center justify-center shadow-glow-cyan-sm">1</span>
+                <!-- Floating Callout Card -->
+                <div class="absolute left-7 top-1/2 -translate-y-1/2 w-52 sm:w-60 p-3.5 rounded-2xl bg-nexus-900/95 border border-cyan-accent/50 backdrop-blur-xl shadow-2xl space-y-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none sm:pointer-events-auto">
+                  <span class="text-[9px] font-mono uppercase text-cyan-accent font-bold block">Publisher Direct API</span>
+                  <p id="hotspot1Desc" class="text-[11px] text-gray-200 leading-tight">Official server-to-server gateway for authorized digital delivery.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Hotspot 2 -->
+            <div id="hotspot2" class="absolute z-30 transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group hidden" style="top: 65%; left: 65%;">
+              <div class="relative flex items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-magenta-accent opacity-40"></span>
+                <span class="relative inline-flex rounded-full h-5 w-5 bg-magenta-accent text-white font-mono font-bold text-[10px] items-center justify-center shadow-lg">2</span>
+                <!-- Floating Callout Card -->
+                <div class="absolute right-7 top-1/2 -translate-y-1/2 w-52 sm:w-60 p-3.5 rounded-2xl bg-nexus-900/95 border border-magenta-accent/50 backdrop-blur-xl shadow-2xl space-y-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-[9px] font-mono uppercase text-magenta-accent font-bold block">Player ID Verification</span>
+                  <p id="hotspot2Desc" class="text-[11px] text-gray-200 leading-tight">Live nickname matching prevents wrong-account deliveries.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Hotspot 3 -->
+            <div id="hotspot3" class="absolute z-30 transition-all duration-300 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group hidden" style="top: 40%; left: 70%;">
+              <div class="relative flex items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-gold-accent opacity-40"></span>
+                <span class="relative inline-flex rounded-full h-5 w-5 bg-gold-accent text-nexus-950 font-mono font-bold text-[10px] items-center justify-center shadow-lg">3</span>
+                <!-- Floating Callout Card -->
+                <div class="absolute right-7 top-1/2 -translate-y-1/2 w-52 sm:w-60 p-3.5 rounded-2xl bg-nexus-900/95 border border-gold-accent/50 backdrop-blur-xl shadow-2xl space-y-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-[9px] font-mono uppercase text-gold-accent font-bold block">Fiscal Compliance</span>
+                  <p id="hotspot3Desc" class="text-[11px] text-gray-200 leading-tight">Official VAT tax receipt and dual-currency bank fees fully covered.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- The Transforming 3D Product Canvas with Inertial Smooth Physics -->
+            <div id="showcaseTransformWrapper" class="relative z-10 w-full h-full flex items-center justify-center will-change-transform" style="transform-style: preserve-3d;">
+              <img id="showcaseStageImg" src="/categories/pubg-mobile.svg" alt="Showcase Product" class="max-h-[68%] max-w-[68%] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.9)] select-none pointer-events-none transition-opacity duration-300" />
+            </div>
+
+            <!-- Floating Side Engineering Highlights Card (Apple/Samsung Style) -->
+            <div id="showcaseSideCard" class="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-30 max-w-xs sm:max-w-sm p-4 sm:p-5 rounded-2xl bg-nexus-900/90 border border-white/15 backdrop-blur-xl shadow-2xl space-y-2 transition-all duration-300">
+              <div class="flex items-center gap-2">
+                <span id="showcaseCardStepTag" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-accent/20 text-cyan-accent border border-cyan-accent/30 uppercase">
+                  Stage 01
+                </span>
+                <span id="showcaseCardSub" class="text-xs text-gray-400 font-mono">Server Authorization</span>
+              </div>
+              <h3 id="showcaseCardTitle" class="text-base sm:text-lg font-heading font-bold text-white leading-tight">
+                Direct Publisher API Handshake
+              </h3>
+              <p id="showcaseCardDesc" class="text-xs text-gray-300 leading-relaxed">
+                Scroll to explore our automated fulfillment gateway, player ID verification pipeline, and 100% legal ban-proof delivery guarantees.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Bottom Scrub Controls & Scroll Prompt -->
+          <div class="relative z-30 flex items-center justify-between gap-4 border-t border-white/10 pt-3 text-xs">
+            <div class="flex items-center gap-2 text-gray-400">
+              <i data-lucide="mouse" class="w-4 h-4 text-cyan-accent animate-bounce"></i>
+              <span class="hidden sm:inline">Scroll smoothly down for continuous 3D zoom & perspective shifts</span>
+              <span class="sm:hidden">Scroll to rotate & zoom</span>
+            </div>
+
+            <!-- Manual Angle / Stage Scrub Controls -->
+            <div class="flex items-center gap-2">
+              <button id="showcasePrevBtn" class="p-2 rounded-xl bg-nexus-800 hover:bg-nexus-700 text-gray-300 hover:text-white border border-white/10 transition-all" title="Previous Angle">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <button id="showcaseNextBtn" class="p-2 rounded-xl bg-nexus-800 hover:bg-nexus-700 text-gray-300 hover:text-white border border-white/10 transition-all" title="Next Angle">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+              <button id="showcaseAutoPlayBtn" class="px-3 py-2 rounded-xl bg-cyan-accent/10 text-cyan-accent hover:bg-cyan-accent hover:text-nexus-900 border border-cyan-accent/30 font-bold text-[11px] transition-all flex items-center gap-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                <span id="showcaseAutoPlayText">Auto Tour</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Deep Dive Tabs Section (Tech Specs, Overview, What's in Box, Reviews) -->
+      <div class="glass-card rounded-3xl p-8 border border-white/10 space-y-8">
+        <!-- Tabs Header -->
+        <div class="flex flex-wrap gap-2 border-b border-white/10 pb-4">
+          <button class="tab-btn px-5 py-2.5 rounded-xl font-heading font-bold text-sm bg-cyan-accent text-nexus-900 shadow-glow-cyan-sm transition-all" data-tab="overview">
+            Top-Up Overview & Security
+          </button>
+          <button class="tab-btn px-5 py-2.5 rounded-xl font-heading font-bold text-sm bg-nexus-800 text-text-secondary hover:text-white transition-all" data-tab="specs">
+            Full Delivery Specifications
+          </button>
+          <button class="tab-btn px-5 py-2.5 rounded-xl font-heading font-bold text-sm bg-nexus-800 text-text-secondary hover:text-white transition-all" data-tab="inbox">
+            Delivery Package
+          </button>
+          <button class="tab-btn px-5 py-2.5 rounded-xl font-heading font-bold text-sm bg-nexus-800 text-text-secondary hover:text-white transition-all" data-tab="reviews">
+            Gamer Reviews
+          </button>
+        </div>
+
+        <!-- Tab 1: Overview -->
+        <div id="tabOverview" class="tab-pane space-y-4">
+          <h3 class="text-xl font-heading font-bold text-white">100% Authorized & Ban-Proof Top-Up Protocol</h3>
+          <p class="text-text-secondary text-sm leading-relaxed" id="tabOverviewText">
+            All game credits, UC, CP, diamonds, and passes are purchased using official international payment gateways with full foreign exchange fees and government VAT included. Deliveries are processed directly via publisher server APIs to your Player ID / UID with zero password required.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+            <div class="p-5 rounded-2xl bg-nexus-900/60 border border-white/5 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-cyan-accent/10 text-cyan-accent flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-white text-sm">100% Ban-Free Legal Top-Up</h4>
+              <p class="text-xs text-gray-400">Processed directly through authorized publisher APIs. Never risks your game account standing or ranking.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-nexus-900/60 border border-white/5 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-cyan-accent/10 text-cyan-accent flex items-center justify-center">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-white text-sm">Strict Zero-Password Privacy</h4>
+              <p class="text-xs text-gray-400">We only require your public Player ID / Character UID. You never share your password, login, or social accounts.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-nexus-900/60 border border-white/5 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-cyan-accent/10 text-cyan-accent flex items-center justify-center">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-white text-sm">2 to 5 Minute Fast Dispatch</h4>
+              <p class="text-xs text-gray-400">Automated queue backed by 24/7 dedicated support staff ensures immediate in-game wallet crediting.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Technical Specs Table -->
+        <div id="tabSpecs" class="tab-pane hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border-collapse">
+              <tbody class="divide-y divide-white/5" id="specsTableBody">
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-4 font-mono text-gray-400 w-1/3">Delivery Protocol</td>
+                  <td class="py-3 px-4 text-white font-medium">Direct In-Game Player ID / UID Crediting</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-4 font-mono text-gray-400">Fulfillment Speed</td>
+                  <td class="py-3 px-4 text-cyan-accent font-medium">&lt; 5 Minutes Automated Dispatch (24/7 Queue)</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-4 font-mono text-gray-400">Region Compatibility</td>
+                  <td class="py-3 px-4 text-white font-medium">Global / All Game Servers & Regions</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-4 font-mono text-gray-400">Account Credentials</td>
+                  <td class="py-3 px-4 text-emerald-400 font-medium">Zero Password Required (100% Secure UID only)</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-4 font-mono text-gray-400">Anti-Ban Guarantee</td>
+                  <td class="py-3 px-4 text-white font-medium">100% Authorized Legal Digital Goods (0% Ban Risk)</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="py-3 px-4 font-mono text-gray-400">Fiscal Breakdown</td>
+                  <td class="py-3 px-4 text-white font-medium">Includes 18% FX/Card Fees, 15% VAT Tax, 12% Infrastructure &amp; 15% Living Wages</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 3: What's In The Box (Delivery Package) -->
+        <div id="tabInbox" class="tab-pane hidden space-y-4">
+          <h3 class="text-xl font-heading font-bold text-white">What You Receive in Your Delivery</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-300">
+            <li class="flex items-center gap-3 p-3 rounded-xl bg-nexus-900/60 border border-white/5">
+              <i data-lucide="check-circle" class="w-4 h-4 text-cyan-accent"></i>
+              <span id="inboxProductName">1x Official In-Game Currency / Pass Credited Directly to UID</span>
+            </li>
+            <li class="flex items-center gap-3 p-3 rounded-xl bg-nexus-900/60 border border-white/5">
+              <i data-lucide="check-circle" class="w-4 h-4 text-cyan-accent"></i>
+              <span>1x Instant Email Confirmation with In-Game Delivery Reference Hash</span>
+            </li>
+            <li class="flex items-center gap-3 p-3 rounded-xl bg-nexus-900/60 border border-white/5">
+              <i data-lucide="check-circle" class="w-4 h-4 text-cyan-accent"></i>
+              <span>1x Official VAT Tax &amp; FX Banking Compliance Invoice Receipt</span>
+            </li>
+            <li class="flex items-center gap-3 p-3 rounded-xl bg-nexus-900/60 border border-white/5">
+              <i data-lucide="check-circle" class="w-4 h-4 text-cyan-accent"></i>
+              <span>24/7 Dedicated Nexus Gaming Human Order Tracking &amp; Support Guarantee</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tab 4: Reviews -->
+        <div id="tabReviews" class="tab-pane hidden space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-nexus-900/60 border border-white/5">
+            <div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-bold font-mono text-gold-accent">5.0</span>
+                <span class="text-sm text-gray-400">out of 5 stars</span>
+              </div>
+              <p class="text-xs text-gray-400 mt-1">Based on verified gamer telemetry and tournament evaluations.</p>
+            </div>
+            <button onclick="document.getElementById('reviewForm').classList.toggle('hidden')" class="btn-primary !text-xs !py-2.5">
+              Write a Review
+            </button>
+          </div>
+
+          <!-- Review Form (Toggled) -->
+          <div id="reviewForm" class="hidden p-6 rounded-2xl bg-nexus-800/90 border border-cyan-accent/30 space-y-4 animate-fade-in">
+            <h4 class="font-bold text-base text-white">Share Your Battle Assessment</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Your Gamer Tag</label>
+                <input type="text" id="reviewTag" placeholder="e.g. CyberViper" class="w-full px-3 py-2 bg-nexus-900 border border-white/10 rounded-xl text-white text-sm outline-none focus:border-cyan-accent" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Rating</label>
+                <select id="reviewRating" class="w-full px-3 py-2 bg-nexus-900 border border-white/10 rounded-xl text-white text-sm outline-none focus:border-cyan-accent">
+                  <option value="5">★★★★★ (5/5) Masterpiece</option>
+                  <option value="4">★★★★☆ (4/5) Excellent Gear</option>
+                  <option value="3">★★★☆☆ (3/5) Good Performance</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs text-gray-400 mb-1">Review</label>
+              <textarea id="reviewText" rows="3" placeholder="Tell other gamers about latency, ergonomics, and build quality..." class="w-full px-3 py-2 bg-nexus-900 border border-white/10 rounded-xl text-white text-sm outline-none focus:border-cyan-accent"></textarea>
+            </div>
+            <button id="submitReviewBtn" class="btn-primary !text-xs !py-2">Submit Verified Review</button>
+          </div>
+
+          <!-- Reviews List -->
+          <div class="space-y-4" id="reviewsList">
+            <div class="p-5 rounded-2xl bg-nexus-900/40 border border-white/5 space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-cyan-accent/20 text-cyan-accent font-bold text-xs flex items-center justify-center">VT</div>
+                  <div>
+                    <span class="font-bold text-white text-xs">ViperTactics</span>
+                    <span class="text-[10px] text-emerald-400 ml-2 font-mono">✓ Verified Buyer</span>
+                  </div>
+                </div>
+                <span class="text-gold-accent text-xs">★★★★★</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                "Zero delay wireless connection and insane soundstage. I can hear footsteps from across the map in competitive CS2. Easily the best gear in my setup."
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-nexus-900/40 border border-white/5 space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-magenta-accent/20 text-magenta-accent font-bold text-xs flex items-center justify-center">MK</div>
+                  <div>
+                    <span class="font-bold text-white text-xs">Marcus_K</span>
+                    <span class="text-[10px] text-emerald-400 ml-2 font-mono">✓ Verified Buyer</span>
+                  </div>
+                </div>
+                <span class="text-gold-accent text-xs">★★★★★</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                "Build quality feels like aircraft grade metal. The battery lasts through my entire weekend streaming marathon without needing a single recharge."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Loadouts Grid Section -->
+      <section class="space-y-6 pt-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-mono font-bold text-cyan-accent uppercase tracking-widest">Synergy Gear</span>
+            <h2 class="text-2xl font-heading font-bold text-white">Recommended Equipment</h2>
+          </div>
+          <a href="/#products" class="text-xs font-semibold text-cyan-accent hover:underline flex items-center gap-1">
+            View All Gear <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="relatedProductsGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Universal Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-4 opacity-0 invisible transition-all duration-300">
+    <div class="glass-strong rounded-xl px-5 py-3 border border-cyan-accent/30 flex items-center gap-3 shadow-glow-cyan-sm">
+      <span class="w-2 h-2 rounded-full bg-cyan-accent animate-pulse"></span>
+      <span id="toast-message" class="text-sm font-medium"></span>
+    </div>
+  </div>
+
+  <script type="module" src="/src/product-details.js"></script>
+</body>
+</html>

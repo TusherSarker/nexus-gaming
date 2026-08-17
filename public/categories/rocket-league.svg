@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="rl-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="rl-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <filter id="rl-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#38BDF8" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#rl-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#rl-cyan)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Rocket League Shield & Turbo Battle Car -->
+  <g filter="url(#rl-glow)">
+    <!-- Tournament Shield -->
+    <path d="M55 45 L145 45 L145 95 C145 125 100 148 100 148 C100 148 55 125 55 95 Z" fill="#0f172a" stroke="url(#rl-cyan)" stroke-width="2.5"/>
+    <!-- Octane Battle-Car Silhouette -->
+    <path d="M68 95 L82 82 L118 82 L132 95 L128 108 L72 108 Z" fill="#38BDF8"/>
+    <!-- Wheels -->
+    <circle cx="78" cy="108" r="7" fill="#F97316"/>
+    <circle cx="122" cy="108" r="7" fill="#F97316"/>
+    <!-- Turbo Flame -->
+    <polygon points="65,95 50,92 56,98 48,102 65,98" fill="#F97316"/>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#0f172a" stroke="url(#rl-cyan)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#38BDF8" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="12" letter-spacing="1">ROCKET LEAGUE</text>
+  </g>
+</svg>

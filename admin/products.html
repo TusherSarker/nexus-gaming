@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Nexus Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nexus': { 900: '#0a0e17', 800: '#111827', 700: '#1a2035', 600: '#2a3148', 950: '#060a12' },
+            'cyan-accent': '#00f0ff',
+            'magenta-accent': '#ff2d78',
+            'gold-accent': '#ffd700',
+            'success': '#22c55e',
+            'warning': '#f59e0b',
+            'danger': '#ef4444',
+          },
+          fontFamily: {
+            heading: ['Rajdhani', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0a0e17; color: white; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Rajdhani', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-nexus-900 text-white">
+
+  <main class="p-6 max-w-7xl mx-auto space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-3xl font-bold font-heading tracking-wider">PRODUCTS</h1>
+        <p class="text-gray-400 mt-1">Manage, add, update, and remove gaming gear in your inventory</p>
+      </div>
+      <button onclick="openProductModal()" class="flex items-center gap-2 px-4 py-2 bg-cyan-accent hover:bg-cyan-accent/90 text-nexus-900 font-bold rounded-lg transition-colors shadow-glow-cyan-sm">
+        <i data-lucide="plus" class="w-5 h-5"></i>
+        Add Product
+      </button>
+    </div>
+
+    <!-- Filters & Search -->
+    <div class="flex flex-col sm:flex-row gap-4 bg-nexus-800/80 backdrop-blur-xl border border-white/5 p-4 rounded-2xl">
+      <div class="relative flex-1">
+        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+        <input type="text" id="searchInput" placeholder="Search products by title..." class="w-full pl-10 pr-4 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 focus:border-transparent outline-none">
+      </div>
+      <div class="flex gap-4">
+        <select class="bg-nexus-700 border border-white/10 rounded-lg px-4 py-2 text-white outline-none focus:ring-2 focus:ring-cyan-accent/50 min-w-[170px]" id="categoryFilter">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[850px]">
+          <thead class="bg-nexus-700/50">
+            <tr class="text-gray-400 text-sm border-b border-white/10">
+              <th class="p-4 font-medium">Product</th>
+              <th class="p-4 font-medium">Category</th>
+              <th class="p-4 font-medium">Price</th>
+              <th class="p-4 font-medium">Stock</th>
+              <th class="p-4 font-medium">Badge</th>
+              <th class="p-4 font-medium">Status</th>
+              <th class="p-4 font-medium text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody" class="text-sm divide-y divide-white/5">
+            <tr>
+              <td colspan="7" class="p-8 text-center text-gray-400">Loading products from database...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="p-4 border-t border-white/10 flex items-center justify-between text-sm text-gray-400" id="paginationContainer">
+        <div id="paginationSummary">Showing products</div>
+        <div class="flex gap-2" id="paginationButtons">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Product Modal -->
+  <div id="productModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeProductModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-nexus-800 border border-white/10 rounded-2xl shadow-2xl p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 id="modalTitle" class="text-2xl font-bold font-heading">Add Product</h2>
+        <button onclick="closeProductModal()" class="text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form id="productForm" class="space-y-4" enctype="multipart/form-data">
+        <input type="hidden" id="productId">
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Product Name *</label>
+            <input type="text" id="productName" required class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none">
+          </div>
+          
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Description</label>
+            <textarea id="productDesc" rows="3" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none placeholder:text-gray-500" placeholder="Product features and specifications..."></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Price ($) *</label>
+            <input type="number" step="0.01" min="0" id="productPrice" required class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Compare Price ($)</label>
+            <input type="number" step="0.01" min="0" id="productComparePrice" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono" placeholder="Original price for discount">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Category *</label>
+            <select id="productCategory" required class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none">
+              <!-- Loaded from API -->
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Stock Level *</label>
+            <input type="number" min="0" id="productStock" required value="10" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Badge</label>
+            <select id="productBadge" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none">
+              <option value="">None</option>
+              <option value="New">New</option>
+              <option value="Best Seller">Best Seller</option>
+              <option value="Popular">Popular</option>
+              <option value="Limited">Limited</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Image URL / Path</label>
+            <input type="text" id="productImageUrl" placeholder="/products/gaming_headset.jpg" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none text-sm">
+          </div>
+
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Or Upload Image File</label>
+            <input type="file" id="productImageFile" accept="image/*" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-gray-300 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-cyan-accent file:text-nexus-900 hover:file:bg-cyan-accent/80 cursor-pointer">
+          </div>
+          
+          <div class="col-span-2 flex gap-6 mt-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="productActive" checked class="rounded border-white/10 bg-nexus-700 text-cyan-accent focus:ring-cyan-accent/50 w-4 h-4">
+              <span class="text-sm font-medium text-gray-300">Active (Published)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="productFeatured" checked class="rounded border-white/10 bg-nexus-700 text-cyan-accent focus:ring-cyan-accent/50 w-4 h-4">
+              <span class="text-sm font-medium text-gray-300">Featured (Show on Homepage)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-end gap-3 pt-6 border-t border-white/10">
+          <button type="button" onclick="closeProductModal()" class="px-4 py-2 bg-nexus-700 hover:bg-nexus-600 text-white rounded-lg transition-colors">Cancel</button>
+          <button type="submit" id="saveProductBtn" class="px-4 py-2 bg-cyan-accent hover:bg-cyan-accent/90 text-nexus-900 font-bold rounded-lg transition-colors">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script>
+    let productsList = [];
+    let categoriesList = [];
+    let currentPage = 1;
+    let totalPages = 1;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuth();
+      if (window.lucide) lucide.createIcons();
+      await loadCategories();
+      await loadProducts();
+
+      document.getElementById('searchInput').addEventListener('input', debounce(() => {
+        currentPage = 1;
+        loadProducts();
+      }, 300));
+
+      document.getElementById('categoryFilter').addEventListener('change', () => {
+        currentPage = 1;
+        loadProducts();
+      });
+    });
+
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    async function loadCategories() {
+      try {
+        const res = await api.get('/categories');
+        categoriesList = res.data || [];
+        
+        const filterSelect = document.getElementById('categoryFilter');
+        const modalSelect = document.getElementById('productCategory');
+        
+        filterSelect.innerHTML = '<option value="">All Categories</option>' + 
+          categoriesList.map(c => `<option value="${c._id}">${c.name}</option>`).join('');
+          
+        modalSelect.innerHTML = categoriesList.map(c => `<option value="${c._id}">${c.name}</option>`).join('');
+      } catch (err) {
+        console.error('Error loading categories:', err);
+      }
+    }
+
+    async function loadProducts(page = 1) {
+      currentPage = page;
+      const search = document.getElementById('searchInput').value.trim();
+      const category = document.getElementById('categoryFilter').value;
+
+      let queryParams = `?page=${page}&limit=10`;
+      if (search) queryParams += `&search=${encodeURIComponent(search)}`;
+      if (category) queryParams += `&category=${category}`;
+
+      try {
+        const res = await api.get(`/products${queryParams}`);
+        productsList = res.data || [];
+        totalPages = res.pages || 1;
+        renderProductsTable(productsList);
+        renderPagination(res.total, res.count, page, totalPages);
+      } catch (err) {
+        console.error('Error loading products:', err);
+        document.getElementById('productsTableBody').innerHTML = `
+          <tr>
+            <td colspan="7" class="p-8 text-center text-danger">Failed to load products. Check server connection.</td>
+          </tr>
+        `;
+      }
+    }
+
+    function renderProductsTable(products) {
+      const tbody = document.getElementById('productsTableBody');
+      if (products.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="p-8 text-center text-gray-400">No products found. Click "Add Product" to create one.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = products.map(p => {
+        const catName = p.category && typeof p.category === 'object' ? p.category.name : 'General';
+        const imgUrl = p.image || '/products/gaming_headset.jpg';
+        const badgeHtml = p.badge 
+          ? `<span class="px-2 py-0.5 text-xs font-semibold rounded bg-cyan-accent/20 text-cyan-accent">${p.badge}</span>` 
+          : `<span class="text-gray-500">-</span>`;
+
+        return `
+          <tr class="hover:bg-white/5 transition-colors group">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <img src="${imgUrl}" alt="${p.name}" class="w-12 h-12 rounded-lg bg-nexus-800 object-contain p-1 border border-white/10">
+                <div>
+                  <span class="font-medium text-white group-hover:text-cyan-accent transition-colors block">${p.name}</span>
+                  <span class="text-xs text-gray-400">${p.featured ? '⭐ Featured' : ''}</span>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 text-gray-300 font-medium">${catName}</td>
+            <td class="p-4 font-mono font-semibold text-cyan-accent">$${Math.round(p.price || 0)}</td>
+            <td class="p-4">
+              <span class="${p.stock > 10 ? 'text-success' : p.stock > 0 ? 'text-warning' : 'text-danger'} font-mono font-medium">
+                ${p.stock || 0} in stock
+              </span>
+            </td>
+            <td class="p-4">${badgeHtml}</td>
+            <td class="p-4">
+              <span class="px-2.5 py-1 text-xs font-medium rounded-full border ${p.active !== false ? 'bg-success/20 text-success border-success/30' : 'bg-gray-500/20 text-gray-400 border-gray-500/30'} capitalize">
+                ${p.active !== false ? 'Active' : 'Draft'}
+              </span>
+            </td>
+            <td class="p-4">
+              <div class="flex items-center justify-end gap-2">
+                <button onclick="editProduct('${p._id}')" class="p-2 text-gray-400 hover:text-cyan-accent bg-nexus-700 hover:bg-nexus-600 rounded-lg transition-colors" title="Edit">
+                  <i data-lucide="edit-2" class="w-4 h-4"></i>
+                </button>
+                <button onclick="deleteProduct('${p._id}')" class="p-2 text-gray-400 hover:text-danger bg-nexus-700 hover:bg-nexus-600 rounded-lg transition-colors" title="Delete">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function renderPagination(total, count, page, pages) {
+      document.getElementById('paginationSummary').textContent = `Showing ${count || 0} of ${total || 0} products`;
+      const container = document.getElementById('paginationButtons');
+      
+      let html = '';
+      if (page > 1) {
+        html += `<button onclick="loadProducts(${page - 1})" class="px-3 py-1 bg-nexus-700 rounded hover:bg-nexus-600">Prev</button>`;
+      }
+      for (let i = 1; i <= pages; i++) {
+        const active = i === page ? 'bg-cyan-accent text-nexus-900 font-bold' : 'bg-nexus-700 text-white hover:bg-nexus-600';
+        html += `<button onclick="loadProducts(${i})" class="px-3 py-1 rounded ${active}">${i}</button>`;
+      }
+      if (page < pages) {
+        html += `<button onclick="loadProducts(${page + 1})" class="px-3 py-1 bg-nexus-700 rounded hover:bg-nexus-600">Next</button>`;
+      }
+      container.innerHTML = html;
+    }
+
+    const modal = document.getElementById('productModal');
+
+    function openProductModal() {
+      document.getElementById('modalTitle').textContent = 'Add Product';
+      document.getElementById('productForm').reset();
+      document.getElementById('productId').value = '';
+      modal.classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      modal.classList.add('hidden');
+    }
+
+    function editProduct(id) {
+      const p = productsList.find(x => x._id === id);
+      if (!p) return;
+
+      document.getElementById('modalTitle').textContent = 'Edit Product';
+      document.getElementById('productId').value = p._id;
+      document.getElementById('productName').value = p.name || '';
+      document.getElementById('productDesc').value = p.description || '';
+      document.getElementById('productPrice').value = p.price || 0;
+      document.getElementById('productComparePrice').value = p.comparePrice || '';
+      document.getElementById('productCategory').value = p.category && typeof p.category === 'object' ? p.category._id : p.category;
+      document.getElementById('productStock').value = p.stock || 0;
+      document.getElementById('productBadge').value = p.badge || '';
+      document.getElementById('productImageUrl').value = p.image || '';
+      document.getElementById('productActive').checked = p.active !== false;
+      document.getElementById('productFeatured').checked = Boolean(p.featured);
+
+      modal.classList.remove('hidden');
+    }
+
+    async function deleteProduct(id) {
+      if (confirm('Are you sure you want to permanently delete this product?')) {
+        try {
+          await api.delete(`/products/${id}`);
+          showToast('Product deleted successfully', 'success');
+          loadProducts(currentPage);
+        } catch (err) {
+          showToast(err.message || 'Failed to delete product', 'error');
+        }
+      }
+    }
+
+    document.getElementById('productForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const saveBtn = document.getElementById('saveProductBtn');
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      const id = document.getElementById('productId').value;
+      const fileInput = document.getElementById('productImageFile');
+
+      try {
+        let payload;
+        
+        if (fileInput.files.length > 0) {
+          payload = new FormData();
+          payload.append('name', document.getElementById('productName').value);
+          payload.append('description', document.getElementById('productDesc').value);
+          payload.append('price', document.getElementById('productPrice').value);
+          payload.append('comparePrice', document.getElementById('productComparePrice').value);
+          payload.append('category', document.getElementById('productCategory').value);
+          payload.append('stock', document.getElementById('productStock').value);
+          payload.append('badge', document.getElementById('productBadge').value);
+          payload.append('active', document.getElementById('productActive').checked);
+          payload.append('featured', document.getElementById('productFeatured').checked);
+          payload.append('image', fileInput.files[0]);
+        } else {
+          payload = {
+            name: document.getElementById('productName').value,
+            description: document.getElementById('productDesc').value,
+            price: Number(document.getElementById('productPrice').value),
+            comparePrice: document.getElementById('productComparePrice').value ? Number(document.getElementById('productComparePrice').value) : undefined,
+            category: document.getElementById('productCategory').value,
+            stock: Number(document.getElementById('productStock').value),
+            badge: document.getElementById('productBadge').value,
+            image: document.getElementById('productImageUrl').value || '/products/gaming_headset.jpg',
+            active: document.getElementById('productActive').checked,
+            featured: document.getElementById('productFeatured').checked,
+          };
+        }
+
+        if (id) {
+          if (fileInput.files.length > 0) {
+            await fetch(`/api/products/${id}`, {
+              method: 'PUT',
+              headers: { 'Authorization': `Bearer ${getToken()}` },
+              body: payload
+            });
+          } else {
+            await api.put(`/products/${id}`, payload);
+          }
+          showToast('Product updated successfully!', 'success');
+        } else {
+          if (fileInput.files.length > 0) {
+            await fetch('/api/products', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${getToken()}` },
+              body: payload
+            });
+          } else {
+            await api.post('/products', payload);
+          }
+          showToast('Product created successfully!', 'success');
+        }
+
+        closeProductModal();
+        loadProducts(currentPage);
+      } catch (err) {
+        showToast(err.message || 'Failed to save product', 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Product';
+      }
+    });
+  </script>
+</body>
+</html>

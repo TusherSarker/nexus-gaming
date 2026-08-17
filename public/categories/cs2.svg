@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cs-split" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="cs-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#F97316" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#cs-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="#F97316" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- CS2 Silhouette Operator with Rifle -->
+  <g filter="url(#cs-glow)">
+    <circle cx="100" cy="50" r="14" fill="#F97316"/>
+    <!-- Torso & Rifle Silhouette -->
+    <path d="M78 72 L122 72 L128 128 L112 140 L100 105 L88 140 L72 128 Z" fill="#F97316"/>
+    <path d="M90 76 L152 64 L158 74 L120 88" fill="#F97316"/>
+    <rect x="145" y="60" width="12" height="4" fill="#F97316"/>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#0f172a" stroke="#F97316" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="13" letter-spacing="2">COUNTER-STRIKE 2</text>
+  </g>
+</svg>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users & Admins - Nexus Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nexus': { 900: '#0a0e17', 800: '#111827', 700: '#1a2035', 600: '#2a3148', 950: '#060a12' },
+            'cyan-accent': '#00f0ff',
+            'magenta-accent': '#ff2d78',
+            'gold-accent': '#ffd700',
+            'success': '#22c55e',
+            'warning': '#f59e0b',
+            'danger': '#ef4444',
+          },
+          fontFamily: {
+            heading: ['Rajdhani', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0a0e17; color: white; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Rajdhani', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-nexus-900 text-white">
+
+  <main class="p-6 max-w-7xl mx-auto space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-3xl font-bold font-heading tracking-wider">USERS & ADMIN ACCESS</h1>
+        <p class="text-gray-400 mt-1">Manage customer profiles, administrators, and granular role permissions</p>
+      </div>
+      <button onclick="openCreateAdminModal()" class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-cyan-accent to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-nexus-900 font-bold rounded-xl transition-all shadow-lg shadow-cyan-accent/20">
+        <i data-lucide="shield-plus" class="w-5 h-5"></i>
+        <span>Create Dedicated Admin</span>
+      </button>
+    </div>
+
+    <!-- Filters & Search -->
+    <div class="flex flex-col sm:flex-row gap-4 bg-nexus-800/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl">
+      <div class="relative flex-1">
+        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+        <input type="text" id="userSearch" placeholder="Search by name, username (@handle), User ID, or email..." class="w-full pl-10 pr-4 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none">
+      </div>
+      <div class="flex gap-4">
+        <select id="roleFilter" class="bg-nexus-700 border border-white/10 rounded-lg px-4 py-2 text-white outline-none focus:ring-2 focus:ring-cyan-accent/50 min-w-[150px]">
+          <option value="">All Roles</option>
+          <option value="super_admin">Super Admin</option>
+          <option value="admin">Admin</option>
+          <option value="user">Customer / User</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[850px]">
+          <thead class="bg-nexus-700/60">
+            <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-white/10">
+              <th class="p-4 font-semibold">User / Admin</th>
+              <th class="p-4 font-semibold">User ID</th>
+              <th class="p-4 font-semibold">Role</th>
+              <th class="p-4 font-semibold">Permissions</th>
+              <th class="p-4 font-semibold">Joined</th>
+              <th class="p-4 font-semibold text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody" class="text-sm divide-y divide-white/5">
+            <tr>
+              <td colspan="6" class="p-8 text-center text-gray-400">Loading accounts...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Create Admin Modal -->
+  <div id="createAdminModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md hidden p-4">
+    <div class="bg-nexus-800 border border-white/10 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-fade-in">
+      <div class="p-6 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="p-2 rounded-lg bg-cyan-accent/10 text-cyan-accent">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold font-heading">Create Dedicated Admin</h3>
+            <p class="text-xs text-gray-400">Assign specific permissions to this administrative account</p>
+          </div>
+        </div>
+        <button onclick="closeCreateAdminModal()" class="text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="createAdminForm" class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Full Name</label>
+          <input type="text" id="adminName" required placeholder="e.g. Alex Morgan" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white outline-none focus:border-cyan-accent">
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Username (@handle)</label>
+            <span id="usernameStatus" class="text-xs font-mono"></span>
+          </div>
+          <input type="text" id="adminUsername" required placeholder="e.g. orders_lead" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white outline-none focus:border-cyan-accent font-mono text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Email Address</label>
+          <input type="email" id="adminEmail" required placeholder="admin.person@nexusgaming.com" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white outline-none focus:border-cyan-accent text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Temporary Password</label>
+          <input type="password" id="adminPassword" required minlength="6" placeholder="At least 6 characters" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white outline-none focus:border-cyan-accent text-sm">
+        </div>
+
+        <!-- Granular Permissions Picker -->
+        <div class="pt-2 border-t border-white/10">
+          <label class="block text-xs font-semibold text-cyan-accent uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <i data-lucide="key" class="w-3.5 h-3.5"></i> Granular Access Permissions
+          </label>
+          <div class="grid grid-cols-1 gap-2.5">
+            <label class="flex items-start gap-3 p-2.5 rounded-lg bg-nexus-700/50 hover:bg-nexus-700 cursor-pointer border border-white/5">
+              <input type="checkbox" name="permissions" value="orders" class="mt-1 accent-cyan-accent w-4 h-4 rounded">
+              <div>
+                <p class="text-sm font-semibold text-white">Manage Orders</p>
+                <p class="text-xs text-gray-400">View orders, customer addresses, and update fulfillment statuses</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-2.5 rounded-lg bg-nexus-700/50 hover:bg-nexus-700 cursor-pointer border border-white/5">
+              <input type="checkbox" name="permissions" value="products" class="mt-1 accent-cyan-accent w-4 h-4 rounded">
+              <div>
+                <p class="text-sm font-semibold text-white">Manage Products & Inventory</p>
+                <p class="text-xs text-gray-400">Add, edit, upload photos, change prices, and delete hardware items</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-2.5 rounded-lg bg-nexus-700/50 hover:bg-nexus-700 cursor-pointer border border-white/5">
+              <input type="checkbox" name="permissions" value="categories" class="mt-1 accent-cyan-accent w-4 h-4 rounded">
+              <div>
+                <p class="text-sm font-semibold text-white">Manage Categories</p>
+                <p class="text-xs text-gray-400">Create, update, and manage hardware categories and icons</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-2.5 rounded-lg bg-nexus-700/50 hover:bg-nexus-700 cursor-pointer border border-white/5">
+              <input type="checkbox" name="permissions" value="users" class="mt-1 accent-cyan-accent w-4 h-4 rounded">
+              <div>
+                <p class="text-sm font-semibold text-white">Manage Users & Accounts</p>
+                <p class="text-xs text-gray-400">View customer accounts, toggle user/admin roles, and delete accounts</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-2.5 rounded-lg bg-nexus-700/50 hover:bg-nexus-700 cursor-pointer border border-white/5">
+              <input type="checkbox" name="permissions" value="subscriptions" class="mt-1 accent-cyan-accent w-4 h-4 rounded">
+              <div>
+                <p class="text-sm font-semibold text-white">Manage Subscriptions</p>
+                <p class="text-xs text-gray-400">Edit Game Pass tiers, monthly/annual pricing, and perks</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-2.5 rounded-lg bg-nexus-700/50 hover:bg-nexus-700 cursor-pointer border border-white/5">
+              <input type="checkbox" name="permissions" value="all" id="permAll" class="mt-1 accent-gold-accent w-4 h-4 rounded">
+              <div>
+                <p class="text-sm font-semibold text-gold-accent">Super Admin (All Permissions)</p>
+                <p class="text-xs text-gray-400">Unrestricted access across all dashboards, routes, and admin tools</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-white/10">
+          <button type="button" onclick="closeCreateAdminModal()" class="px-4 py-2 border border-white/10 hover:bg-white/5 rounded-lg text-sm">Cancel</button>
+          <button type="submit" class="px-5 py-2 bg-cyan-accent hover:bg-cyan-400 text-nexus-900 font-bold rounded-lg text-sm shadow-lg shadow-cyan-accent/20 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4"></i> Create Admin
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Permissions Modal -->
+  <div id="editPermsModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md hidden p-4">
+    <div class="bg-nexus-800 border border-white/10 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
+      <div class="p-6 border-b border-white/10 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold font-heading">Edit Admin Permissions</h3>
+          <p class="text-xs text-gray-400" id="editPermsSubtitle">Updating permissions for Admin</p>
+        </div>
+        <button onclick="closeEditPermsModal()" class="text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form id="editPermsForm" class="p-6 space-y-3">
+        <input type="hidden" id="editAdminId">
+        <div class="space-y-2">
+          <label class="flex items-center gap-2.5 p-2 rounded bg-nexus-700/50 cursor-pointer">
+            <input type="checkbox" name="editPerms" value="orders" class="accent-cyan-accent">
+            <span class="text-sm">Manage Orders</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded bg-nexus-700/50 cursor-pointer">
+            <input type="checkbox" name="editPerms" value="products" class="accent-cyan-accent">
+            <span class="text-sm">Manage Products</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded bg-nexus-700/50 cursor-pointer">
+            <input type="checkbox" name="editPerms" value="categories" class="accent-cyan-accent">
+            <span class="text-sm">Manage Categories</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded bg-nexus-700/50 cursor-pointer">
+            <input type="checkbox" name="editPerms" value="users" class="accent-cyan-accent">
+            <span class="text-sm">Manage Users & Admins</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded bg-nexus-700/50 cursor-pointer">
+            <input type="checkbox" name="editPerms" value="subscriptions" class="accent-cyan-accent">
+            <span class="text-sm">Manage Subscriptions</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded bg-nexus-700/50 cursor-pointer">
+            <input type="checkbox" name="editPerms" value="all" class="accent-gold-accent">
+            <span class="text-sm font-semibold text-gold-accent">Full Access (All Permissions)</span>
+          </label>
+        </div>
+        <div class="flex justify-end gap-2 pt-4 border-t border-white/10">
+          <button type="button" onclick="closeEditPermsModal()" class="px-3 py-1.5 border border-white/10 rounded text-xs">Cancel</button>
+          <button type="submit" class="px-4 py-1.5 bg-cyan-accent text-nexus-900 font-bold rounded text-xs">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script>
+    let usersList = [];
+    let usernameDebounceTimer = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuth();
+      if (window.lucide) lucide.createIcons();
+      loadUsers();
+
+      document.getElementById('userSearch').addEventListener('input', () => filterAndRenderUsers());
+      document.getElementById('roleFilter').addEventListener('change', () => filterAndRenderUsers());
+
+      // Live 0.1s Username Check in Admin Creator
+      const adminUsernameInput = document.getElementById('adminUsername');
+      adminUsernameInput.addEventListener('input', (e) => {
+        clearTimeout(usernameDebounceTimer);
+        const val = e.target.value.trim().toLowerCase();
+        const statusEl = document.getElementById('usernameStatus');
+
+        if (!val || val.length < 3) {
+          statusEl.innerHTML = '<span class="text-gray-400">Min 3 chars</span>';
+          return;
+        }
+
+        statusEl.innerHTML = '<span class="text-cyan-accent animate-pulse">Checking...</span>';
+
+        usernameDebounceTimer = setTimeout(async () => {
+          try {
+            const res = await api.get(`/auth/check-username?username=${encodeURIComponent(val)}`);
+            if (res.available) {
+              statusEl.innerHTML = '<span class="text-emerald-400 font-semibold flex items-center gap-1">✓ Available</span>';
+            } else {
+              statusEl.innerHTML = `<span class="text-rose-400 font-semibold flex items-center gap-1">✗ ${res.error || 'Taken'}</span>`;
+            }
+          } catch (err) {
+            statusEl.innerHTML = '<span class="text-rose-400">Check failed</span>';
+          }
+        }, 100); // 0.1s ultra-fast response
+      });
+
+      // Handle Select All Checkbox
+      const permAll = document.getElementById('permAll');
+      permAll.addEventListener('change', (e) => {
+        const others = document.querySelectorAll('#createAdminForm input[name="permissions"]:not(#permAll)');
+        others.forEach(cb => { cb.checked = e.target.checked; });
+      });
+
+      // Submit Create Admin Form
+      document.getElementById('createAdminForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('adminName').value.trim();
+        const username = document.getElementById('adminUsername').value.trim().toLowerCase();
+        const email = document.getElementById('adminEmail').value.trim().toLowerCase();
+        const password = document.getElementById('adminPassword').value;
+
+        const checkedBoxes = Array.from(document.querySelectorAll('#createAdminForm input[name="permissions"]:checked')).map(cb => cb.value);
+
+        if (checkedBoxes.length === 0) {
+          showToast('Please select at least one permission for this admin.', 'error');
+          return;
+        }
+
+        try {
+          const res = await api.post('/auth/create-admin', {
+            name,
+            username,
+            email,
+            password,
+            permissions: checkedBoxes
+          });
+
+          showToast('Dedicated admin account created successfully!', 'success');
+          closeCreateAdminModal();
+          loadUsers();
+        } catch (err) {
+          showToast(err.message || 'Failed to create admin', 'error');
+        }
+      });
+
+      // Submit Edit Permissions Form
+      document.getElementById('editPermsForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const adminId = document.getElementById('editAdminId').value;
+        const checkedBoxes = Array.from(document.querySelectorAll('#editPermsForm input[name="editPerms"]:checked')).map(cb => cb.value);
+
+        try {
+          await api.put(`/auth/admins/${adminId}/permissions`, { permissions: checkedBoxes });
+          showToast('Admin permissions updated!', 'success');
+          closeEditPermsModal();
+          loadUsers();
+        } catch (err) {
+          showToast(err.message || 'Failed to update permissions', 'error');
+        }
+      });
+    });
+
+    function openCreateAdminModal() {
+      document.getElementById('createAdminForm').reset();
+      document.getElementById('usernameStatus').innerHTML = '';
+      document.getElementById('createAdminModal').classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeCreateAdminModal() {
+      document.getElementById('createAdminModal').classList.add('hidden');
+    }
+
+    function openEditPermsModal(user) {
+      document.getElementById('editAdminId').value = user._id;
+      document.getElementById('editPermsSubtitle').textContent = `Updating permissions for ${user.name} (@${user.username})`;
+      
+      const userPerms = user.permissions || [];
+      const boxes = document.querySelectorAll('#editPermsForm input[name="editPerms"]');
+      boxes.forEach(cb => {
+        cb.checked = userPerms.includes(cb.value);
+      });
+
+      document.getElementById('editPermsModal').classList.remove('hidden');
+    }
+
+    function closeEditPermsModal() {
+      document.getElementById('editPermsModal').classList.add('hidden');
+    }
+
+    async function loadUsers() {
+      try {
+        const res = await api.get('/auth/users');
+        usersList = res.data || [];
+        filterAndRenderUsers();
+      } catch (err) {
+        console.error('Error loading users:', err);
+        document.getElementById('usersTableBody').innerHTML = `
+          <tr><td colspan="6" class="p-8 text-center text-danger">Failed to load accounts list.</td></tr>
+        `;
+      }
+    }
+
+    function filterAndRenderUsers() {
+      const search = document.getElementById('userSearch').value.toLowerCase().trim();
+      const role = document.getElementById('roleFilter').value;
+
+      const filtered = usersList.filter(u => {
+        const nameMatch = u.name?.toLowerCase().includes(search);
+        const userMatch = u.username?.toLowerCase().includes(search);
+        const emailMatch = u.email?.toLowerCase().includes(search);
+        const idMatch = u.userId?.toLowerCase().includes(search);
+        const matchSearch = !search || nameMatch || userMatch || emailMatch || idMatch;
+        const matchRole = !role || u.role === role;
+        return matchSearch && matchRole;
+      });
+
+      renderUsers(filtered);
+    }
+
+    function renderUsers(users) {
+      const tbody = document.getElementById('usersTableBody');
+      const currentUser = getUser();
+
+      if (users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-400">No accounts match your criteria.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = users.map(u => {
+        const joined = new Date(u.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        const isSelf = currentUser && (currentUser._id === u._id || currentUser.id === u._id || currentUser.email === u.email);
+        const avatar = u.avatar || 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=300&q=80';
+        
+        // Role chip
+        let roleBadge = '<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-gray-600/30 text-gray-300 border border-gray-500/30 uppercase">User</span>';
+        if (u.role === 'super_admin') {
+          roleBadge = '<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-gold-accent/20 text-gold-accent border border-gold-accent/40 uppercase tracking-wider">Super Admin</span>';
+        } else if (u.role === 'admin') {
+          roleBadge = '<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-cyan-accent/20 text-cyan-accent border border-cyan-accent/40 uppercase tracking-wider">Admin</span>';
+        }
+
+        // Permissions chips
+        const perms = u.permissions || [];
+        let permsHtml = '<span class="text-xs text-gray-500 italic">None (Customer)</span>';
+        if (perms.length > 0) {
+          permsHtml = `<div class="flex flex-wrap gap-1">` + perms.map(p => {
+            const color = p === 'all' ? 'bg-gold-accent/15 text-gold-accent border-gold-accent/30' : 'bg-cyan-accent/10 text-cyan-accent border-cyan-accent/30';
+            return `<span class="px-2 py-0.5 text-[11px] font-mono rounded border ${color}">${p}</span>`;
+          }).join('') + `</div>`;
+        }
+
+        const userJson = JSON.stringify(u).replace(/"/g, '&quot;');
+
+        return `
+          <tr class="hover:bg-white/5 transition-colors">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <img src="${avatar}" alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10" />
+                <div>
+                  <div class="font-medium text-white flex items-center gap-1.5">
+                    ${u.name}
+                    ${isSelf ? '<span class="text-[10px] bg-cyan-accent/20 text-cyan-accent px-1.5 py-0.5 rounded font-mono font-bold">You</span>' : ''}
+                  </div>
+                  <div class="text-xs text-cyan-accent/80 font-mono">@${u.username || 'user'}</div>
+                  <div class="text-[11px] text-gray-400">${u.email}</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 font-mono text-xs text-gray-300 font-bold">${u.userId || '—'}</td>
+            <td class="p-4">${roleBadge}</td>
+            <td class="p-4">${permsHtml}</td>
+            <td class="p-4 text-gray-400 text-xs">${joined}</td>
+            <td class="p-4">
+              <div class="flex items-center justify-end gap-2">
+                ${u.role === 'admin' || u.role === 'super_admin' ? `
+                  <button onclick="openEditPermsModal(${userJson})" class="px-2.5 py-1.5 text-xs font-semibold bg-nexus-700 hover:bg-cyan-accent hover:text-nexus-900 text-cyan-accent rounded transition-all flex items-center gap-1">
+                    <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Perms
+                  </button>
+                ` : ''}
+                ${!isSelf ? `
+                  <button onclick="toggleRole('${u._id}', '${u.role}')" class="px-2.5 py-1.5 text-xs font-medium border border-white/10 hover:border-cyan-accent hover:bg-cyan-accent/10 rounded transition-colors">
+                    Make ${u.role === 'user' ? 'Admin' : 'User'}
+                  </button>
+                  <button onclick="deleteUser('${u._id}')" class="p-1.5 text-gray-400 hover:text-danger bg-nexus-700 hover:bg-nexus-600 rounded transition-colors" title="Delete Account">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                  </button>
+                ` : '<span class="text-xs text-gray-500 italic pr-2">Current Session</span>'}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    async function toggleRole(id, currentRole) {
+      const newRole = currentRole === 'user' ? 'admin' : 'user';
+      const defaultPerms = newRole === 'admin' ? ['orders'] : [];
+      try {
+        await api.put(`/auth/users/${id}`, { role: newRole, permissions: defaultPerms });
+        const user = usersList.find(u => u._id === id);
+        if (user) {
+          user.role = newRole;
+          user.permissions = defaultPerms;
+        }
+        filterAndRenderUsers();
+        showToast(`Account updated to ${newRole.toUpperCase()} with basic permissions`, 'success');
+      } catch (err) {
+        showToast(err.message || 'Failed to update account role', 'error');
+      }
+    }
+
+    async function deleteUser(id) {
+      if (confirm('Are you sure you want to permanently delete this account?')) {
+        try {
+          await api.delete(`/auth/users/${id}`);
+          usersList = usersList.filter(u => u._id !== id);
+          filterAndRenderUsers();
+          showToast('Account permanently removed', 'success');
+        } catch (err) {
+          showToast(err.message || 'Failed to delete account', 'error');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

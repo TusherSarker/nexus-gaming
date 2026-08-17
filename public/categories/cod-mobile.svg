@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cod-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="cod-hazard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <filter id="cod-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#EAB308" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#cod-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#cod-hazard)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Tactical Crosshair Background -->
+  <circle cx="100" cy="90" r="55" fill="none" stroke="#EAB308" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="6,4"/>
+  <line x1="100" y1="28" x2="100" y2="45" stroke="#EAB308" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="100" y1="135" x2="100" y2="152" stroke="#EAB308" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="38" y1="90" x2="55" y2="90" stroke="#EAB308" stroke-width="2" stroke-opacity="0.6"/>
+  <line x1="145" y1="90" x2="162" y2="90" stroke="#EAB308" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Ghost Skull Emblem -->
+  <g filter="url(#cod-glow)">
+    <!-- Skull Cranium -->
+    <path d="M68 65 C68 45 80 38 100 38 C120 38 132 45 132 65 C132 82 136 98 126 112 C120 120 114 125 100 125 C86 125 80 120 74 112 C64 98 68 82 68 65 Z" fill="#1e293b" stroke="url(#cod-hazard)" stroke-width="2.5"/>
+    <!-- Eye Sockets -->
+    <path d="M78 72 Q86 68 92 78 Q84 86 78 72 Z" fill="#020617"/>
+    <path d="M122 72 Q114 68 108 78 Q116 86 122 72 Z" fill="#020617"/>
+    <!-- Nose Cavity -->
+    <polygon points="100,82 95,94 105,94" fill="#020617"/>
+    <!-- Tactical Skull Teeth -->
+    <rect x="85" y="105" width="6" height="12" rx="1" fill="url(#cod-hazard)"/>
+    <rect x="94" y="105" width="5" height="14" rx="1" fill="url(#cod-hazard)"/>
+    <rect x="101" y="105" width="5" height="14" rx="1" fill="url(#cod-hazard)"/>
+    <rect x="109" y="105" width="6" height="12" rx="1" fill="url(#cod-hazard)"/>
+    <!-- Headset -->
+    <path d="M58 75 C52 75 52 95 58 95 Z" fill="url(#cod-hazard)"/>
+    <path d="M142 75 C148 75 148 95 142 95 Z" fill="url(#cod-hazard)"/>
+    <path d="M58 78 C58 48 72 32 100 32 C128 32 142 48 142 78" fill="none" stroke="url(#cod-hazard)" stroke-width="3"/>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#020617" stroke="url(#cod-hazard)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#EAB308" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="12" letter-spacing="1.5">COD MOBILE</text>
+  </g>
+</svg>

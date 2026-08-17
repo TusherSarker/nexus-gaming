@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscriptions - Nexus Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nexus': { 900: '#0a0e17', 800: '#111827', 700: '#1a2035', 600: '#2a3148', 950: '#060a12' },
+            'cyan-accent': '#00f0ff',
+            'magenta-accent': '#ff2d78',
+            'gold-accent': '#ffd700',
+            'success': '#22c55e',
+            'warning': '#f59e0b',
+            'danger': '#ef4444',
+          },
+          fontFamily: {
+            heading: ['Rajdhani', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0a0e17; color: white; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Rajdhani', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-nexus-900 text-white">
+
+  <main class="p-6 max-w-7xl mx-auto space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-3xl font-bold font-heading tracking-wider">SUBSCRIPTION PLANS</h1>
+        <p class="text-gray-400 mt-1">Manage gaming membership tiers, pricing, and perks</p>
+      </div>
+      <button onclick="openSubModal()" class="flex items-center gap-2 px-4 py-2 bg-cyan-accent hover:bg-cyan-accent/90 text-nexus-900 font-bold rounded-lg transition-colors shadow-glow-cyan-sm">
+        <i data-lucide="plus" class="w-5 h-5"></i>
+        Add Plan
+      </button>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-nexus-800/80 backdrop-blur-xl border border-white/5 rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[850px]">
+          <thead class="bg-nexus-700/50">
+            <tr class="text-gray-400 text-sm border-b border-white/10">
+              <th class="p-4 font-medium">Plan Name</th>
+              <th class="p-4 font-medium">Monthly Price</th>
+              <th class="p-4 font-medium">Annual Price</th>
+              <th class="p-4 font-medium">Badge</th>
+              <th class="p-4 font-medium">Perks / Features</th>
+              <th class="p-4 font-medium">Status</th>
+              <th class="p-4 font-medium text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="subsTableBody" class="text-sm divide-y divide-white/5">
+            <tr>
+              <td colspan="7" class="p-8 text-center text-gray-400">Loading subscription plans...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Subscription Modal -->
+  <div id="subModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeSubModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl max-h-[90vh] overflow-y-auto bg-nexus-800 border border-white/10 rounded-2xl shadow-2xl p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 id="modalSubTitle" class="text-2xl font-bold font-heading">Add Plan</h2>
+        <button onclick="closeSubModal()" class="text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form id="subForm" class="space-y-4">
+        <input type="hidden" id="subId">
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Plan Name *</label>
+            <input type="text" id="subName" required class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none" placeholder="Starter, Pro, Elite, VIP">
+          </div>
+
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Description</label>
+            <input type="text" id="subDesc" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none" placeholder="Short description for gamers">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Monthly Price ($) *</label>
+            <input type="number" step="0.01" min="0" id="subMonthlyPrice" required class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Annual Price ($/mo) *</label>
+            <input type="number" step="0.01" min="0" id="subAnnualPrice" required class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Badge</label>
+            <input type="text" id="subBadge" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none" placeholder="Most Popular, VIP, etc.">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-1">Accent Theme</label>
+            <select id="subAccentColor" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none">
+              <option value="silver">Silver (Starter)</option>
+              <option value="cyan">Cyan (Pro)</option>
+              <option value="gold">Gold (Elite)</option>
+            </select>
+          </div>
+
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Included Features (one per line)</label>
+            <textarea id="subFeatures" rows="4" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono text-xs" placeholder="500+ AAA games&#10;1080p 60fps streaming&#10;Early access passes"></textarea>
+          </div>
+
+          <div class="col-span-2">
+            <label class="block text-sm font-medium text-gray-300 mb-1">Excluded Features (one per line)</label>
+            <textarea id="subExcludedFeatures" rows="2" class="w-full px-3 py-2 bg-nexus-700 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-cyan-accent/50 outline-none font-mono text-xs" placeholder="4K ultra streaming&#10;VIP concierge"></textarea>
+          </div>
+
+          <div class="col-span-2 flex items-center gap-2">
+            <input type="checkbox" id="subActive" checked class="rounded border-white/10 bg-nexus-700 text-cyan-accent focus:ring-cyan-accent/50 w-4 h-4">
+            <span class="text-sm font-medium text-gray-300">Active (Visible in store)</span>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-end gap-3 pt-6 border-t border-white/10">
+          <button type="button" onclick="closeSubModal()" class="px-4 py-2 bg-nexus-700 hover:bg-nexus-600 text-white rounded-lg transition-colors">Cancel</button>
+          <button type="submit" id="saveSubBtn" class="px-4 py-2 bg-cyan-accent hover:bg-cyan-accent/90 text-nexus-900 font-bold rounded-lg transition-colors">Save Plan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script>
+    let subsList = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuth();
+      if (window.lucide) lucide.createIcons();
+      loadSubscriptions();
+    });
+
+    async function loadSubscriptions() {
+      try {
+        const res = await api.get('/subscriptions');
+        subsList = res.data || [];
+        renderSubscriptions(subsList);
+      } catch (err) {
+        console.error('Error loading subscriptions:', err);
+        document.getElementById('subsTableBody').innerHTML = `
+          <tr><td colspan="7" class="p-8 text-center text-danger">Failed to load subscriptions.</td></tr>
+        `;
+      }
+    }
+
+    function renderSubscriptions(plans) {
+      const tbody = document.getElementById('subsTableBody');
+      if (plans.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-gray-400">No membership tiers found. Click "Add Plan" to create one.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = plans.map(s => {
+        const accentClass = s.accentColor === 'cyan' ? 'text-cyan-accent' : s.accentColor === 'gold' ? 'text-gold-accent' : 'text-gray-300';
+        const badgeHtml = s.badge 
+          ? `<span class="px-2 py-0.5 text-xs font-semibold rounded bg-magenta-accent/20 text-magenta-accent">${s.badge}</span>` 
+          : `<span class="text-gray-500">-</span>`;
+
+        return `
+          <tr class="hover:bg-white/5 transition-colors">
+            <td class="p-4">
+              <span class="font-bold font-heading text-lg ${accentClass}">${s.name}</span>
+              <p class="text-xs text-gray-400">${s.description || ''}</p>
+            </td>
+            <td class="p-4 font-mono font-semibold text-white">$${Math.round(s.monthlyPrice || 0)}/mo</td>
+            <td class="p-4 font-mono font-semibold text-success">$${Math.round(s.annualPrice || 0)}/mo</td>
+            <td class="p-4">${badgeHtml}</td>
+            <td class="p-4 text-xs text-gray-300">
+              ${(s.features || []).length} included, ${(s.excludedFeatures || []).length} excluded
+            </td>
+            <td class="p-4">
+              <span class="px-2.5 py-1 text-xs font-medium rounded-full border ${s.active !== false ? 'bg-success/20 text-success border-success/30' : 'bg-gray-500/20 text-gray-400 border-gray-500/30'} capitalize">
+                ${s.active !== false ? 'Active' : 'Draft'}
+              </span>
+            </td>
+            <td class="p-4">
+              <div class="flex items-center justify-end gap-2">
+                <button onclick="editSub('${s._id}')" class="p-2 text-gray-400 hover:text-cyan-accent bg-nexus-700 hover:bg-nexus-600 rounded-lg transition-colors" title="Edit">
+                  <i data-lucide="edit-2" class="w-4 h-4"></i>
+                </button>
+                <button onclick="deleteSub('${s._id}')" class="p-2 text-gray-400 hover:text-danger bg-nexus-700 hover:bg-nexus-600 rounded-lg transition-colors" title="Delete">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    const modal = document.getElementById('subModal');
+
+    function openSubModal() {
+      document.getElementById('modalSubTitle').textContent = 'Add Plan';
+      document.getElementById('subForm').reset();
+      document.getElementById('subId').value = '';
+      modal.classList.remove('hidden');
+    }
+
+    function closeSubModal() {
+      modal.classList.add('hidden');
+    }
+
+    function editSub(id) {
+      const s = subsList.find(x => x._id === id);
+      if (!s) return;
+
+      document.getElementById('modalSubTitle').textContent = 'Edit Plan';
+      document.getElementById('subId').value = s._id;
+      document.getElementById('subName').value = s.name || '';
+      document.getElementById('subDesc').value = s.description || '';
+      document.getElementById('subMonthlyPrice').value = s.monthlyPrice || 0;
+      document.getElementById('subAnnualPrice').value = s.annualPrice || 0;
+      document.getElementById('subBadge').value = s.badge || '';
+      document.getElementById('subAccentColor').value = s.accentColor || 'silver';
+      document.getElementById('subFeatures').value = (s.features || []).join('\n');
+      document.getElementById('subExcludedFeatures').value = (s.excludedFeatures || []).join('\n');
+      document.getElementById('subActive').checked = s.active !== false;
+
+      modal.classList.remove('hidden');
+    }
+
+    async function deleteSub(id) {
+      if (confirm('Are you sure you want to delete this subscription plan?')) {
+        try {
+          await api.delete(`/subscriptions/${id}`);
+          showToast('Plan deleted successfully', 'success');
+          loadSubscriptions();
+        } catch (err) {
+          showToast(err.message || 'Failed to delete plan', 'error');
+        }
+      }
+    }
+
+    document.getElementById('subForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const saveBtn = document.getElementById('saveSubBtn');
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      const id = document.getElementById('subId').value;
+      const features = document.getElementById('subFeatures').value.split('\n').map(f => f.trim()).filter(Boolean);
+      const excluded = document.getElementById('subExcludedFeatures').value.split('\n').map(f => f.trim()).filter(Boolean);
+
+      const payload = {
+        name: document.getElementById('subName').value,
+        description: document.getElementById('subDesc').value,
+        monthlyPrice: Number(document.getElementById('subMonthlyPrice').value),
+        annualPrice: Number(document.getElementById('subAnnualPrice').value),
+        badge: document.getElementById('subBadge').value,
+        accentColor: document.getElementById('subAccentColor').value,
+        features,
+        excludedFeatures: excluded,
+        active: document.getElementById('subActive').checked
+      };
+
+      try {
+        if (id) {
+          await api.put(`/subscriptions/${id}`, payload);
+          showToast('Plan updated successfully!', 'success');
+        } else {
+          await api.post('/subscriptions', payload);
+          showToast('Plan created successfully!', 'success');
+        }
+        closeSubModal();
+        loadSubscriptions();
+      } catch (err) {
+        showToast(err.message || 'Failed to save plan', 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Plan';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gta-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="50%" stop-color="#022c22"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="gta-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="gta-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#34D399" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#gta-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#gta-green)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Roman Numeral V with Dollar Engraving -->
+  <g filter="url(#gta-glow)">
+    <path d="M62 45 L85 45 L100 115 L115 45 L138 45 L112 138 L88 138 Z" fill="url(#gta-green)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <text x="100" y="85" text-anchor="middle" fill="#FFFFFF" font-family="'Pricedown', 'Impact', sans-serif" font-weight="900" font-size="28">$</text>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#022c22" stroke="url(#gta-green)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#34D399" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="12" letter-spacing="1.5">GTA ONLINE</text>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="wz-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="50%" stop-color="#0c0a09"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+    <linearGradient id="wz-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="wz-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#F59E0B" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#wz-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#wz-amber)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Warzone Gas Mask & Skull -->
+  <g filter="url(#wz-glow)">
+    <!-- Gas Mask Skull -->
+    <path d="M68 62 C68 45 80 38 100 38 C120 38 132 45 132 62 C132 85 138 105 125 120 C115 130 100 135 100 135 C100 135 85 130 75 120 C62 105 68 85 68 62 Z" fill="#292524" stroke="url(#wz-amber)" stroke-width="2.5"/>
+    <!-- Gas Goggles -->
+    <circle cx="82" cy="72" r="12" fill="#0c0a09" stroke="url(#wz-amber)" stroke-width="2"/>
+    <circle cx="118" cy="72" r="12" fill="#0c0a09" stroke="url(#wz-amber)" stroke-width="2"/>
+    <!-- Gas Filter Canister -->
+    <circle cx="100" cy="108" r="15" fill="#1c1917" stroke="url(#wz-amber)" stroke-width="2"/>
+    <line x1="90" y1="108" x2="110" y2="108" stroke="url(#wz-amber)" stroke-width="2"/>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#0c0a09" stroke="url(#wz-amber)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#F59E0B" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="12" letter-spacing="2">WARZONE</text>
+  </g>
+</svg>

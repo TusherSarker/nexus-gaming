@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="roblox-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="roblox-silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <filter id="roblox-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#FFFFFF" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#roblox-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.3"/>
+  
+  <!-- Iconic Tilted Roblox Cube -->
+  <g transform="rotate(-15 100 85)" filter="url(#roblox-glow)">
+    <!-- Outer 3D Square -->
+    <rect x="62" y="47" width="76" height="76" rx="14" fill="url(#roblox-silver)" stroke="#09090b" stroke-width="2"/>
+    <!-- Inner Hollow Square -->
+    <rect x="86" y="71" width="28" height="28" rx="5" fill="#09090b"/>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#18181b" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="13" letter-spacing="3">ROBLOX</text>
+  </g>
+</svg>

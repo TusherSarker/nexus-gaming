@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ml-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="ml-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <linearGradient id="ml-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <filter id="ml-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#EAB308" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#ml-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#ml-gold)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Celestial Wings & Crown Crest -->
+  <g filter="url(#ml-glow)">
+    <!-- Dragon Wing Left -->
+    <path d="M98 75 C80 50 45 48 35 68 C45 82 60 92 98 108 Z" fill="url(#ml-blue)"/>
+    <path d="M98 88 C75 75 52 82 45 96 C60 105 75 110 98 118 Z" fill="url(#ml-blue)" opacity="0.7"/>
+    <!-- Dragon Wing Right -->
+    <path d="M102 75 C120 50 155 48 165 68 C155 82 140 92 102 108 Z" fill="url(#ml-blue)"/>
+    <path d="M102 88 C125 75 148 82 155 96 C140 105 125 110 102 118 Z" fill="url(#ml-blue)" opacity="0.7"/>
+    <!-- Central Mythic Sword & Crown -->
+    <polygon points="100,32 106,75 100,135 94,75" fill="url(#ml-gold)"/>
+    <path d="M85 70 L100 48 L115 70 L125 60 L100 95 L75 60 Z" fill="url(#ml-gold)" stroke="#78350f" stroke-width="1"/>
+    <!-- Center Radiant Diamond Gem -->
+    <polygon points="100,68 110,80 100,92 90,80" fill="#38BDF8"/>
+  </g>
+  
+  <!-- MLBB Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#1e1b4b" stroke="url(#ml-gold)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#FDE047" font-family="'Trebuchet MS', sans-serif" font-weight="900" font-size="12" letter-spacing="1">MLBB • BANG BANG</text>
+  </g>
+</svg>

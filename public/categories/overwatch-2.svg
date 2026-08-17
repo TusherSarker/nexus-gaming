@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ow-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="ow-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <filter id="ow-glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#FB923C" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="36" fill="url(#ow-bg)"/>
+  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#ow-orange)" stroke-width="2" stroke-opacity="0.4"/>
+  
+  <!-- Iconic Overwatch Symbol with '2' -->
+  <g filter="url(#ow-glow)">
+    <!-- Top Arc (Orange) -->
+    <path d="M68 55 C80 42 120 42 132 55 L120 70 C112 62 88 62 80 70 Z" fill="url(#ow-orange)"/>
+    <!-- Bottom Wings (Silver) -->
+    <path d="M58 78 C52 95 60 120 80 132 L92 118 C80 110 74 92 78 78 Z" fill="#CBD5E1"/>
+    <path d="M142 78 C148 95 140 120 120 132 L108 118 C120 110 126 92 122 78 Z" fill="#CBD5E1"/>
+    <!-- Superscript '2' -->
+    <text x="145" y="58" fill="url(#ow-orange)" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="28">2</text>
+  </g>
+  
+  <!-- Banner -->
+  <g transform="translate(100, 166)">
+    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="#0f172a" stroke="url(#ow-orange)" stroke-width="1.5"/>
+    <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', sans-serif" font-weight="900" font-size="12" letter-spacing="1">OVERWATCH 2</text>
+  </g>
+</svg>

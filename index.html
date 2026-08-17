@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Gaming — Premium Gaming Gear & Subscriptions</title>
+  <meta name="description" content="Discover premium gaming gear, peripherals, and exclusive subscriptions at Nexus Gaming. Keyboards, mice, headsets, controllers and more from top brands." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-lg bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm">
+            <span class="font-heading font-bold text-nexus-900 text-xl">N</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">NEXUS<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Gaming Gear</a>
+          <a href="#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Subscriptions</a>
+          <a href="#categories" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Categories</a>
+          <a href="#community" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Community</a>
+          <a href="/admin/" target="_blank" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all duration-300 tracking-wider uppercase flex items-center gap-1.5">
+            <i data-lucide="shield" class="w-3.5 h-3.5"></i> Admin Portal
+          </a>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-4">
+          <!-- Search -->
+          <button id="search-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Search">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <!-- Cart -->
+          <a href="/cart.html" id="cart-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+          <!-- User Container (Dynamic: Sign In or Avatar Profile) -->
+          <div id="navbarUserContainer" class="flex items-center">
+            <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all flex items-center gap-1.5">
+              <i data-lucide="user" class="w-3.5 h-3.5"></i> Sign In
+            </button>
+          </div>
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-text-secondary hover:text-cyan-accent transition-all duration-300" aria-label="Menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-50 hidden">
+      <div id="mobile-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+      <div id="mobile-drawer" class="absolute right-0 top-0 h-full w-72 bg-nexus-850 border-l border-white/5 transform translate-x-full transition-transform duration-300 ease-out p-6">
+        <button id="mobile-close-btn" class="absolute top-5 right-5 p-2 text-text-secondary hover:text-cyan-accent" aria-label="Close menu">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <div class="mt-16 flex flex-col gap-6">
+          <a href="#products" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors">Gaming Gear</a>
+          <a href="#subscriptions" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors">Subscriptions</a>
+          <a href="#categories" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors">Categories</a>
+          <a href="/cart.html" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i> View Loadout
+          </a>
+          <a href="/user-dashboard.html" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors flex items-center gap-2">
+            <i data-lucide="user" class="w-5 h-5"></i> My Gamer Dashboard
+          </a>
+          <a href="/admin/" target="_blank" class="text-lg font-heading font-semibold text-cyan-accent hover:underline flex items-center gap-2">
+            <i data-lucide="shield" class="w-5 h-5"></i> Admin Portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SEARCH MODAL ===== -->
+  <div id="search-modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="search-overlay"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 px-4">
+      <div class="glass-strong rounded-2xl p-4 animate-slide-down border border-white/10 shadow-2xl space-y-3">
+        <div class="flex items-center gap-3 px-3 py-2 bg-nexus-800/80 rounded-xl border border-white/10">
+          <i data-lucide="search" class="w-5 h-5 text-cyan-accent"></i>
+          <input id="search-input" type="text" placeholder="Search gaming gear, headset, keyboard..." class="flex-1 bg-transparent border-none outline-none text-base text-text-primary placeholder:text-text-muted py-2 font-body">
+          <kbd class="hidden sm:inline-block px-2 py-1 text-[10px] font-mono text-text-muted border border-white/10 rounded">ESC</kbd>
+        </div>
+        <!-- Live Search Results Dropdown -->
+        <div id="search-results" class="max-h-96 overflow-y-auto space-y-2 pt-1 hidden">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 bg-hero-gradient"></div>
+    <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-accent/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-1/3 left-1/4 w-72 h-72 bg-magenta-accent/5 rounded-full blur-[100px]"></div>
+
+    <!-- Floating Particles -->
+    <div class="particle w-1 h-1 bg-cyan-accent/30 top-[20%] left-[10%]" style="animation-delay: 0s;"></div>
+    <div class="particle w-1.5 h-1.5 bg-cyan-accent/20 top-[60%] left-[80%]" style="animation-delay: 2s;"></div>
+    <div class="particle w-1 h-1 bg-magenta-accent/20 top-[30%] left-[70%]" style="animation-delay: 4s;"></div>
+    <div class="particle w-2 h-2 bg-cyan-accent/10 top-[80%] left-[20%]" style="animation-delay: 1s;"></div>
+    <div class="particle w-1 h-1 bg-magenta-accent/15 top-[10%] left-[50%]" style="animation-delay: 3s;"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Content -->
+        <div class="text-center lg:text-left space-y-8 pt-20 lg:pt-0">
+          <div class="inline-block">
+            <a href="#pricing-transparency" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent text-xs font-mono tracking-wider hover:bg-cyan-accent/20 transition-colors cursor-pointer">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> 100% Transparent All-Inclusive Pricing • Learn More →
+            </a>
+          </div>
+          <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight">
+            TOP UP.<br>
+            <span class="text-gradient-cyan">GAME ON.</span>
+          </h1>
+          <p class="text-text-secondary text-lg sm:text-xl max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Instant game top-ups, battle passes & subscriptions for 20+ top titles. 100% legal, ban-free delivery with all bank fees & taxes included.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#products" class="btn-primary text-center">
+              Explore Top-Ups
+              <i data-lucide="arrow-right" class="inline w-4 h-4 ml-2"></i>
+            </a>
+            <a href="#pricing-transparency" class="btn-secondary text-center">
+              Pricing Transparency
+            </a>
+          </div>
+          <!-- Trust strip -->
+          <div class="flex flex-wrap items-center gap-5 justify-center lg:justify-start text-text-muted text-xs sm:text-sm">
+            <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-4 h-4 text-cyan-accent"></i> 5-Min Delivery</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-cyan-accent"></i> 100% Ban-Proof</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="receipt" class="w-4 h-4 text-cyan-accent"></i> VAT & Fees Included</span>
+          </div>
+        </div>
+
+        <!-- Right: Hero Image -->
+        <div class="relative flex items-center justify-center">
+          <div class="absolute w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] rounded-full bg-cyan-accent/5 blur-[80px]"></div>
+          <img id="hero-product-img" src="/products/gaming_headset.jpg" alt="Premium Gaming Headset" class="relative w-[320px] sm:w-[400px] lg:w-[480px] animate-float drop-shadow-2xl">
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted animate-bounce-arrow">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <i data-lucide="chevron-down" class="w-5 h-5"></i>
+    </div>
+  </section>
+
+  <!-- ===== POPULAR GAMES & TOP-UP CATEGORIES ===== -->
+  <section id="categories" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 reveal">
+        <h2 class="section-title mb-3">Popular <span class="text-gradient-cyan">Games</span></h2>
+        <p class="section-subtitle mx-auto">Instant game top-ups, battle passes, and currency vaults for the world's most played games.</p>
+      </div>
+
+      <!-- Categories Grid (1 row visible by default, expandable to all 20 games) -->
+      <div id="categoriesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        
+        <!-- Category 1: PUBG Mobile -->
+        <a href="#products" data-filter-game="PUBG Mobile" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all">
+          <div class="w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden">
+            <img src="/categories/pubg-mobile.svg" alt="PUBG Mobile" class="w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all">
+          </div>
+          <div>
+            <span class="font-heading font-bold text-sm text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[130px]">PUBG Mobile</span>
+            <span class="text-[10px] text-gray-400 font-mono block truncate max-w-[130px]">UC & Royale Pass</span>
+          </div>
+        </a>
+
+        <!-- Category 2: COD Mobile -->
+        <a href="#products" data-filter-game="Call of Duty: Mobile" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all">
+          <div class="w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden">
+            <img src="/categories/cod-mobile.svg" alt="Call of Duty: Mobile" class="w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all">
+          </div>
+          <div>
+            <span class="font-heading font-bold text-sm text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[130px]">COD Mobile</span>
+            <span class="text-[10px] text-gray-400 font-mono block truncate max-w-[130px]">CP & Battle Pass</span>
+          </div>
+        </a>
+
+        <!-- Category 3: eFootball -->
+        <a href="#products" data-filter-game="eFootball" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all">
+          <div class="w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden">
+            <img src="/categories/efootball.svg" alt="eFootball" class="w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all">
+          </div>
+          <div>
+            <span class="font-heading font-bold text-sm text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[130px]">eFootball</span>
+            <span class="text-[10px] text-gray-400 font-mono block truncate max-w-[130px]">Coins & Match Pass</span>
+          </div>
+        </a>
+
+        <!-- Category 4: Free Fire -->
+        <a href="#products" data-filter-game="Free Fire" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all">
+          <div class="w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden">
+            <img src="/categories/free-fire.svg" alt="Free Fire" class="w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all">
+          </div>
+          <div>
+            <span class="font-heading font-bold text-sm text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[130px]">Free Fire</span>
+            <span class="text-[10px] text-gray-400 font-mono block truncate max-w-[130px]">Diamonds & Booyah</span>
+          </div>
+        </a>
+
+        <!-- Category 5: Mobile Legends -->
+        <a href="#products" data-filter-game="Mobile Legends: Bang Bang" class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all">
+          <div class="w-16 h-16 rounded-2xl bg-nexus-900/90 p-2 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden">
+            <img src="/categories/mobile-legends.svg" alt="Mobile Legends: Bang Bang" class="w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all">
+          </div>
+          <div>
+            <span class="font-heading font-bold text-sm text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[130px]">Mobile Legends</span>
+            <span class="text-[10px] text-gray-400 font-mono block truncate max-w-[130px]">Diamonds & Starlight</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- See More / See Less Categories Toggle Button -->
+      <div class="mt-8 text-center">
+        <button id="toggleCategoriesBtn" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-nexus-800 hover:bg-nexus-700 text-white border border-white/10 hover:border-cyan-accent/40 font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg group">
+          <span id="toggleCategoriesText">See More Categories (20 Games)</span>
+          <i id="toggleCategoriesIcon" data-lucide="chevron-down" class="w-4 h-4 text-cyan-accent group-hover:translate-y-0.5 transition-transform"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED GAMING TOP-UPS & PASSES ===== -->
+  <section id="products" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-10 reveal">
+        <h2 class="section-title mb-4">Instant Game <span class="text-gradient-cyan">Top-Ups</span></h2>
+        <p class="section-subtitle mx-auto">100% verified digital top-ups, battle passes, and game currencies delivered instantly to your ID.</p>
+      </div>
+
+      <!-- Category Filter Tabs (Games) -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-12" id="categoryFilterTabs">
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-cyan-accent text-nexus-900 shadow-glow-cyan-sm transition-all" data-category="all">All Games</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="PUBG Mobile">PUBG Mobile</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Call of Duty: Mobile">COD Mobile</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="eFootball">eFootball</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Free Fire">Free Fire</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Mobile Legends: Bang Bang">Mobile Legends</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Valorant">Valorant</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Fortnite">Fortnite</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Genshin Impact">Genshin</button>
+        <button class="cat-filter-btn px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-nexus-800 text-text-secondary border border-white/10 hover:text-cyan-accent hover:border-cyan-accent/30 transition-all" data-category="Roblox">Roblox</button>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Product 1: PUBG Mobile 660 UC -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="pubg-mobile-660-uc" data-product-category="PUBG Mobile">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/pubg-mobile.svg" data-lightbox-title="PUBG Mobile 660 UC + 60 Bonus" data-lightbox-category="PUBG Mobile" data-lightbox-id="pubg-mobile-660-uc" title="Click to view big high-res image">
+              <span class="badge-hot absolute top-4 left-4 z-10">Best Seller</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/pubg-mobile.svg" alt="PUBG Mobile 660 UC" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">PUBG Mobile</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $10</span>
+              </div>
+              <a href="/product-details.html?id=pubg-mobile-660-uc" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">PUBG Mobile 660 UC + 60 Bonus</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(340)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$16</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="pubg-mobile-660-uc">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2: COD Mobile CP -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="cod-mobile-8000-cp" data-product-category="Call of Duty: Mobile">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/cod-mobile.svg" data-lightbox-title="COD Mobile 8,000 CP Points Vault" data-lightbox-category="Call of Duty: Mobile" data-lightbox-id="cod-mobile-8000-cp" title="Click to view big high-res image">
+              <span class="badge-new absolute top-4 left-4 z-10">New</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/cod-mobile.svg" alt="COD Mobile CP Points" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">Call of Duty: Mobile</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $50</span>
+              </div>
+              <a href="/product-details.html?id=cod-mobile-8000-cp" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">COD Mobile 8,000 CP Points Vault</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(275)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$80</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="cod-mobile-8000-cp">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: eFootball Coins -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="efootball-12000-coins" data-product-category="eFootball">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/efootball.svg" data-lightbox-title="eFootball 12,800 Coins Match Pass Pack" data-lightbox-category="eFootball" data-lightbox-id="efootball-12000-coins" title="Click to view big high-res image">
+              <span class="badge-popular absolute top-4 left-4 z-10">Popular</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/efootball.svg" alt="eFootball Coins" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">eFootball</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $40</span>
+              </div>
+              <a href="/product-details.html?id=efootball-12000-coins" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">eFootball 12,800 Coins Match Pass Pack</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(92)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$64</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="efootball-12000-coins">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4: Free Fire Diamonds -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="free-fire-2180-diamonds" data-product-category="Free Fire">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/free-fire.svg" data-lightbox-title="Free Fire 2,180 Diamonds + 218 Bonus" data-lightbox-category="Free Fire" data-lightbox-id="free-fire-2180-diamonds" title="Click to view big high-res image">
+              <span class="badge-hot absolute top-4 left-4 z-10">Best Seller</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/free-fire.svg" alt="Free Fire Diamonds" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">Free Fire</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $20</span>
+              </div>
+              <a href="/product-details.html?id=free-fire-2180-diamonds" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">Free Fire 2,180 Diamonds + 218 Bonus</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(412)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$32</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="free-fire-2180-diamonds">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5: Mobile Legends -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="mobile-legends-2000-diamonds" data-product-category="Mobile Legends: Bang Bang">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/mobile-legends.svg" data-lightbox-title="Mobile Legends 2,000 Diamonds + Starlight" data-lightbox-category="Mobile Legends: Bang Bang" data-lightbox-id="mobile-legends-2000-diamonds" title="Click to view big high-res image">
+              <span class="badge-popular absolute top-4 left-4 z-10">Popular</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/mobile-legends.svg" alt="Mobile Legends Diamonds" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">Mobile Legends</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $35</span>
+              </div>
+              <a href="/product-details.html?id=mobile-legends-2000-diamonds" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">Mobile Legends 2,000 Diamonds + Starlight</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(288)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$56</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="mobile-legends-2000-diamonds">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6: Valorant VP -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="valorant-5350-vp" data-product-category="Valorant">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/valorant.svg" data-lightbox-title="Valorant 5,350 VP Points Bundle" data-lightbox-category="Valorant" data-lightbox-id="valorant-5350-vp" title="Click to view big high-res image">
+              <span class="badge-hot absolute top-4 left-4 z-10">Best Seller</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/valorant.svg" alt="Valorant VP Points" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">Valorant</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $50</span>
+              </div>
+              <a href="/product-details.html?id=valorant-5350-vp" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">Valorant 5,350 VP Points Bundle</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(310)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$80</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="valorant-5350-vp">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7: Fortnite V-Bucks -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="fortnite-5000-vbucks" data-product-category="Fortnite">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/fortnite.svg" data-lightbox-title="Fortnite 5,000 V-Bucks Official Card" data-lightbox-category="Fortnite" data-lightbox-id="fortnite-5000-vbucks" title="Click to view big high-res image">
+              <span class="badge-new absolute top-4 left-4 z-10">New</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/fortnite.svg" alt="Fortnite V-Bucks" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">Fortnite</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $35</span>
+              </div>
+              <a href="/product-details.html?id=fortnite-5000-vbucks" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">Fortnite 5,000 V-Bucks Official Card</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(195)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$56</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="fortnite-5000-vbucks">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8: Genshin Impact Crystals -->
+        <div class="glass-card rounded-2xl overflow-hidden group reveal product-item cursor-pointer hover:border-cyan-accent/40 transition-all flex flex-col justify-between" data-product-card-id="genshin-6480-crystals" data-product-category="Genshin Impact">
+          <div>
+            <div class="relative p-6 pb-0 overflow-hidden cursor-zoom-in group/img" data-open-lightbox="/categories/genshin-impact.svg" data-lightbox-title="Genshin Impact 6,480 + 1,600 Genesis Crystals" data-lightbox-category="Genshin Impact" data-lightbox-id="genshin-6480-crystals" title="Click to view big high-res image">
+              <span class="badge-popular absolute top-4 left-4 z-10">Limited</span>
+              <div class="aspect-square flex items-center justify-center overflow-hidden bg-nexus-900/60 rounded-xl p-4">
+                <img src="/categories/genshin-impact.svg" alt="Genshin Impact Crystals" class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-110">
+              </div>
+            </div>
+            <div class="p-6 pt-4 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <p class="text-text-muted text-[10px] uppercase font-mono tracking-widest">Genshin Impact</p>
+                <span class="text-[10px] text-gray-400 font-mono">Official Base: $100</span>
+              </div>
+              <a href="/product-details.html?id=genshin-6480-crystals" class="font-heading font-bold text-lg leading-tight text-white hover:text-cyan-accent transition-colors block truncate">Genshin Impact 6,480 + 1,600 Genesis Crystals</a>
+              <div class="flex items-center gap-1.5">
+                <div class="flex text-gold-accent text-xs">★★★★★</div>
+                <span class="text-text-muted text-[11px]">(220)</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="flex items-center justify-between pt-3 border-t border-white/5">
+              <div>
+                <span class="font-mono font-bold text-xl text-cyan-accent">$160</span>
+                <span class="text-[10px] text-gray-400 block font-mono">All-Inclusive</span>
+              </div>
+              <button class="btn-primary !px-4 !py-2 !text-xs font-semibold" data-product-id="genshin-6480-crystals">Top Up Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 100% TRANSPARENT PRICING & SAFE TOP-UP GUARANTEE ===== -->
+  <section id="pricing-transparency" class="py-20 relative bg-nexus-900/60 border-y border-white/5">
+    <!-- Glow backdrops -->
+    <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-gold-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-accent/10 border border-cyan-accent/20 text-cyan-accent text-xs font-mono uppercase tracking-wider mb-4">
+          <i data-lucide="shield-check" class="w-4 h-4"></i> 100% Transparent Value Policy
+        </div>
+        <h2 class="section-title mb-4">Why Our Pricing Is <span class="text-gradient-cyan">All-Inclusive</span></h2>
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+          We purchase all digital game items directly through our authorized <strong>dual-currency international cards</strong>. To provide 100% ban-proof safety, comply with taxes, and maintain 24/7 human fulfillment, our delivered price includes all operational costs with <span class="text-cyan-accent font-semibold">zero hidden surprise fees</span>.
+        </p>
+      </div>
+
+      <!-- Interactive Calculation Banner: $100 -> $160 -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 mb-12 border-cyan-accent/30 reveal shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left: Formula Highlight -->
+          <div class="lg:col-span-5 space-y-3">
+            <span class="text-xs font-mono uppercase tracking-widest text-cyan-accent">Transparent Cost Formula</span>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white">
+              Official Store <span class="text-gray-400">$100</span> <span class="text-cyan-accent font-mono text-2xl">→</span> Nexus Price <span class="text-cyan-accent">$160</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              If an item is listed at $100 in the official game store, our delivered price is <strong>$160</strong> (a ~60% all-inclusive markup). This covers all international card fees, government taxes, cloud servers, and living wages for our support staff.
+            </p>
+            <div class="flex items-center gap-2 text-success text-xs font-medium pt-1">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-success"></i> 100% Legal In-Game Top-Up • Zero Account Ban Risk
+            </div>
+          </div>
+
+          <!-- Right: Visual Cost Split -->
+          <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            
+            <div class="bg-nexus-950/70 border border-white/10 rounded-2xl p-4 text-center hover:border-cyan-accent/40 transition-colors">
+              <div class="w-10 h-10 mx-auto rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent mb-2.5">
+                <i data-lucide="credit-card" class="w-5 h-5"></i>
+              </div>
+              <span class="font-heading font-bold text-lg text-white block">+18%</span>
+              <span class="text-[11px] font-semibold text-gray-200 block">Dual-Currency</span>
+              <span class="text-[10px] text-gray-400 block mt-0.5">Card FX & Bank Fee</span>
+            </div>
+
+            <div class="bg-nexus-950/70 border border-white/10 rounded-2xl p-4 text-center hover:border-cyan-accent/40 transition-colors">
+              <div class="w-10 h-10 mx-auto rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent mb-2.5">
+                <i data-lucide="receipt" class="w-5 h-5"></i>
+              </div>
+              <span class="font-heading font-bold text-lg text-white block">+15%</span>
+              <span class="text-[11px] font-semibold text-gray-200 block">Govt VAT</span>
+              <span class="text-[10px] text-gray-400 block mt-0.5">Digital Tax Compliant</span>
+            </div>
+
+            <div class="bg-nexus-950/70 border border-white/10 rounded-2xl p-4 text-center hover:border-cyan-accent/40 transition-colors">
+              <div class="w-10 h-10 mx-auto rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent mb-2.5">
+                <i data-lucide="server" class="w-5 h-5"></i>
+              </div>
+              <span class="font-heading font-bold text-lg text-white block">+12%</span>
+              <span class="text-[11px] font-semibold text-gray-200 block">Site Infra</span>
+              <span class="text-[10px] text-gray-400 block mt-0.5">24/7 Server & SSL</span>
+            </div>
+
+            <div class="bg-nexus-950/70 border border-white/10 rounded-2xl p-4 text-center hover:border-cyan-accent/40 transition-colors">
+              <div class="w-10 h-10 mx-auto rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent mb-2.5">
+                <i data-lucide="users" class="w-5 h-5"></i>
+              </div>
+              <span class="font-heading font-bold text-lg text-white block">+15%</span>
+              <span class="text-[11px] font-semibold text-gray-200 block">Staff Wages</span>
+              <span class="text-[10px] text-gray-400 block mt-0.5">Decent Living Pay</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Detailed Cost Pillars -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Pillar 1 -->
+        <div class="glass-card rounded-2xl p-6 space-y-3 hover:border-cyan-accent/40 transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent group-hover:bg-cyan-accent/20 transition-colors">
+            <i data-lucide="credit-card" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-heading font-bold text-base text-white">Dual-Currency Processing</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            All purchases are charged on authorized dual-currency international cards, incurring cross-border currency conversion fees, international exchange rate margins, and merchant gateway charges.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="glass-card rounded-2xl p-6 space-y-3 hover:border-cyan-accent/40 transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent group-hover:bg-cyan-accent/20 transition-colors">
+            <i data-lucide="building-2" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-heading font-bold text-base text-white">Government VAT & Taxes</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            We operate 100% legally with official government VAT, digital goods tax, and statutory fiscal compliance, ensuring your purchase is legitimate and fully documented.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="glass-card rounded-2xl p-6 space-y-3 hover:border-cyan-accent/40 transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent group-hover:bg-cyan-accent/20 transition-colors">
+            <i data-lucide="shield" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-heading font-bold text-base text-white">Website Maintenance</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Covers high-speed cloud server hosting, automated database backups, DDoS defense, SSL encryption, and continuous website feature enhancements for frictionless orders.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="glass-card rounded-2xl p-6 space-y-3 hover:border-cyan-accent/40 transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-accent/10 flex items-center justify-center text-cyan-accent group-hover:bg-cyan-accent/20 transition-colors">
+            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-heading font-bold text-base text-white">Fair Living Wages</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            We proudly pay our dedicated customer service agents and order fulfillment team a decent, dignified living wage so they can support you 24/7 with rapid 5-minute deliveries.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Trust Comparison Strip -->
+      <div class="mt-10 p-5 rounded-2xl bg-gradient-to-r from-cyan-accent/10 via-nexus-800 to-cyan-accent/5 border border-cyan-accent/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-cyan-accent text-nexus-900 flex items-center justify-center flex-shrink-0 font-bold">
+            <i data-lucide="badge-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h5 class="font-heading font-bold text-sm text-white">No International Dual-Currency Card Needed!</h5>
+            <p class="text-xs text-gray-300">You can pay with simple local payment methods while we handle all the international banking, taxes, and direct in-game delivery.</p>
+          </div>
+        </div>
+        <a href="#products" class="btn-primary !px-5 !py-2.5 !text-xs whitespace-nowrap font-semibold">
+          Explore Game Top-Ups
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SUBSCRIPTION PLANS ===== -->
+  <section id="subscriptions" class="py-24 relative overflow-hidden">
+    <!-- Background glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-accent/3 rounded-full blur-[150px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16 reveal">
+        <h2 class="section-title mb-4">Choose Your <span class="text-gradient-cyan">Plan</span></h2>
+        <p class="section-subtitle mx-auto">Unlock exclusive games, early access, and premium perks with a Nexus subscription.</p>
+
+        <!-- Billing Toggle -->
+        <div class="flex items-center justify-center gap-4 mt-8">
+          <span id="monthly-label" class="text-sm font-medium text-text-primary">Monthly</span>
+          <button id="billing-toggle" class="relative w-14 h-7 rounded-full bg-nexus-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-accent/30" aria-label="Toggle billing period">
+            <span id="toggle-dot" class="absolute top-0.5 left-0.5 w-6 h-6 bg-cyan-accent rounded-full transition-transform duration-300 shadow-glow-cyan-sm"></span>
+          </button>
+          <span id="annual-label" class="text-sm font-medium text-text-muted">Annual <span class="text-success text-xs font-bold ml-1">Save 20%</span></span>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
+
+        <!-- Starter Plan -->
+        <div class="glass-card rounded-2xl p-8 reveal">
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-text-secondary">Starter</h3>
+              <p class="text-text-muted text-sm mt-1">For casual gamers</p>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-mono text-5xl font-bold text-text-primary plan-price" data-monthly="10" data-annual="8">$10</span>
+              <span class="text-text-muted text-sm">/mo</span>
+            </div>
+            <hr class="border-white/5">
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 100+ games library</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 720p cloud streaming</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> Basic support</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 1 active profile</li>
+              <li class="flex items-center gap-3 text-sm text-text-muted"><i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i> Early access games</li>
+              <li class="flex items-center gap-3 text-sm text-text-muted"><i data-lucide="x" class="w-4 h-4 flex-shrink-0"></i> Exclusive DLCs</li>
+            </ul>
+            <button class="btn-secondary w-full !py-3.5" data-sub-tier="starter">Get Starter Pass</button>
+          </div>
+        </div>
+
+        <!-- Pro Plan (Featured) -->
+        <div class="relative glass-card rounded-2xl p-8 border-cyan-accent/30 reveal" style="box-shadow: 0 0 40px rgba(0,240,255,0.08), 0 8px 32px rgba(0,0,0,0.4);">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="badge-popular">⭐ Most Popular</span>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-cyan-accent">Pro</h3>
+              <p class="text-text-muted text-sm mt-1">For competitive gamers</p>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-mono text-5xl font-bold text-text-primary plan-price" data-monthly="20" data-annual="16">$20</span>
+              <span class="text-text-muted text-sm">/mo</span>
+            </div>
+            <hr class="border-cyan-accent/10">
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 500+ games library</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 1080p cloud streaming</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> Standard support</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 2 active profiles</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-cyan-accent flex-shrink-0"></i> Early access games</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-cyan-accent flex-shrink-0"></i> Exclusive DLCs</li>
+            </ul>
+            <button class="btn-primary w-full !py-3.5 shadow-glow-cyan-sm" data-sub-tier="pro">Get Pro Pass</button>
+          </div>
+        </div>
+
+        <!-- Elite Plan -->
+        <div class="glass-card rounded-2xl p-8 reveal">
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-heading text-2xl font-bold text-gold-accent">Elite</h3>
+              <p class="text-text-muted text-sm mt-1">For the ultimate gamer</p>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-mono text-5xl font-bold text-text-primary plan-price" data-monthly="30" data-annual="24">$30</span>
+              <span class="text-text-muted text-sm">/mo</span>
+            </div>
+            <hr class="border-white/5">
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> All games (unlimited)</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 4K UHD streaming</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 24/7 priority support</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i> 5 active profiles</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-gold-accent flex-shrink-0"></i> Early access & betas</li>
+              <li class="flex items-center gap-3 text-sm text-text-secondary"><i data-lucide="check" class="w-4 h-4 text-gold-accent flex-shrink-0"></i> DLCs & in-game credits</li>
+            </ul>
+            <button class="btn-gold w-full !py-3.5" data-sub-tier="elite">Get Elite VIP Pass</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16 reveal">
+        <h2 class="section-title mb-4">What Gamers <span class="text-gradient-cyan">Say</span></h2>
+        <p class="section-subtitle mx-auto">Join 50,000+ gamers who trust Nexus for their setup.</p>
+      </div>
+
+      <!-- Carousel Outer Viewport Frame -->
+      <div class="relative overflow-hidden p-2 rounded-3xl">
+        <div id="testimonial-track" class="flex gap-6 transition-transform duration-500 ease-out will-change-transform">
+
+          <!-- Testimonial 1 -->
+          <div class="glass-card rounded-3xl p-7 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-cyan-accent/40 transition-all shadow-xl">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-accent to-blue-600 flex items-center justify-center font-heading font-bold text-nexus-900 shadow-glow-cyan-sm text-base">AK</div>
+                <div>
+                  <h4 class="font-heading font-bold text-white text-base">Alex Kim</h4>
+                  <p class="text-text-muted text-xs font-mono">Pro Esports Player · Sentinels</p>
+                </div>
+              </div>
+              <div class="flex text-gold-accent text-sm">★★★★★</div>
+              <p class="text-text-secondary text-sm leading-relaxed">"The Aurora Pro Headset changed my game completely. Crystal clear positional audio, zero latency. I've been using Nexus gear for 2 years and never looked back."</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400 font-mono">
+              <span>Verified Battle Station</span>
+              <span class="text-emerald-400 font-semibold">✓ Verified Buyer</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="glass-card rounded-3xl p-7 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-magenta-accent/40 transition-all shadow-xl">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-magenta-accent to-purple-600 flex items-center justify-center font-heading font-bold text-white shadow-lg text-base">SR</div>
+                <div>
+                  <h4 class="font-heading font-bold text-white text-base">Sarah Rodriguez</h4>
+                  <p class="text-text-muted text-xs font-mono">Twitch Streamer · 120K</p>
+                </div>
+              </div>
+              <div class="flex text-gold-accent text-sm">★★★★★</div>
+              <p class="text-text-secondary text-sm leading-relaxed">"My viewers always ask about my setup. The Vortex K70 keyboard and StreamCam are absolute game changers for content creation."</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400 font-mono">
+              <span>Streaming Setup</span>
+              <span class="text-emerald-400 font-semibold">✓ Verified Buyer</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="glass-card rounded-3xl p-7 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-gold-accent/40 transition-all shadow-xl">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-accent to-orange-600 flex items-center justify-center font-heading font-bold text-nexus-900 shadow-lg text-base">MJ</div>
+                <div>
+                  <h4 class="font-heading font-bold text-white text-base">Marcus Johnson</h4>
+                  <p class="text-text-muted text-xs font-mono">Casual Gamer</p>
+                </div>
+              </div>
+              <div class="flex text-gold-accent text-sm">★★★★<span class="text-text-muted">★</span></div>
+              <p class="text-text-secondary text-sm leading-relaxed">"The Elite subscription is worth every penny. Access to hundreds of games, early betas, and the in-game credits are a huge bonus."</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400 font-mono">
+              <span>Elite Member</span>
+              <span class="text-emerald-400 font-semibold">✓ Verified Buyer</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="glass-card rounded-3xl p-7 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-cyan-accent/40 transition-all shadow-xl">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-success to-emerald-600 flex items-center justify-center font-heading font-bold text-nexus-900 shadow-lg text-base">LP</div>
+                <div>
+                  <h4 class="font-heading font-bold text-white text-base">Luna Park</h4>
+                  <p class="text-text-muted text-xs font-mono">Game Developer</p>
+                </div>
+              </div>
+              <div class="flex text-gold-accent text-sm">★★★★★</div>
+              <p class="text-text-secondary text-sm leading-relaxed">"The QD-OLED monitor is stunning for both development and gaming. Color accuracy is impeccable and the 175Hz refresh rate is buttery smooth."</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400 font-mono">
+              <span>Dev Rig</span>
+              <span class="text-emerald-400 font-semibold">✓ Verified Buyer</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 5 -->
+          <div class="glass-card rounded-3xl p-7 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 flex flex-col justify-between border border-white/10 hover:border-cyan-accent/40 transition-all shadow-xl">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-accent to-teal-600 flex items-center justify-center font-heading font-bold text-nexus-900 shadow-lg text-base">DW</div>
+                <div>
+                  <h4 class="font-heading font-bold text-white text-base">David Wang</h4>
+                  <p class="text-text-muted text-xs font-mono">YouTube Creator · 500K</p>
+                </div>
+              </div>
+              <div class="flex text-gold-accent text-sm">★★★★★</div>
+              <p class="text-text-secondary text-sm leading-relaxed">"Nexus shipping is insanely fast and the 30-day return policy gave me confidence to try. Now I'm fully locked into the ecosystem. 10/10."</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400 font-mono">
+              <span>Verified Creator</span>
+              <span class="text-emerald-400 font-semibold">✓ Verified Buyer</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Carousel Controls -->
+        <div class="flex items-center justify-center gap-4 mt-10">
+          <button id="prev-btn" class="p-3.5 rounded-2xl glass hover:border-cyan-accent/40 hover:text-cyan-accent transition-all duration-300 shadow-lg" aria-label="Previous testimonial">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <div id="carousel-dots" class="flex items-center gap-2">
+            <!-- Dynamically populated -->
+          </div>
+          <button id="next-btn" class="p-3.5 rounded-2xl glass hover:border-cyan-accent/40 hover:text-cyan-accent transition-all duration-300 shadow-lg" aria-label="Next testimonial">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER CTA ===== -->
+  <section id="community" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-accent/[0.02] to-transparent"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-accent/[0.03] rounded-full blur-[120px]"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <div class="glass-strong rounded-3xl p-10 md:p-16">
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-cyan-accent/10 border border-cyan-accent/20">
+          <i data-lucide="zap" class="w-4 h-4 text-cyan-accent"></i>
+          <span class="text-cyan-accent text-sm font-semibold tracking-wide">50,000+ Gamers Subscribed</span>
+        </div>
+        <h2 class="section-title mb-4">Join the <span class="text-gradient-cyan">Squad</span></h2>
+        <p class="text-text-secondary text-lg mb-10 max-w-xl mx-auto">Get exclusive deals, early access announcements, and pro tips delivered straight to your inbox.</p>
+        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input type="email" id="newsletter-email" placeholder="Enter your email" required
+            class="flex-1 px-5 py-3.5 rounded-xl bg-nexus-800 border border-white/5 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-cyan-accent/40 focus:ring-1 focus:ring-cyan-accent/20 transition-all duration-300 font-body">
+          <button type="submit" class="btn-primary !rounded-xl whitespace-nowrap">
+            Subscribe
+            <i data-lucide="send" class="inline w-4 h-4 ml-1.5"></i>
+          </button>
+        </form>
+        <p class="text-text-muted text-xs mt-4">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
+
+        <!-- Brand -->
+        <div class="col-span-2 md:col-span-4 lg:col-span-1 mb-6 lg:mb-0">
+          <a href="#" class="flex items-center gap-2 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-cyan-accent flex items-center justify-center">
+              <span class="font-heading font-bold text-nexus-900 text-lg">N</span>
+            </div>
+            <span class="font-heading font-bold text-lg">NEXUS<span class="text-cyan-accent">GAMING</span></span>
+          </a>
+          <p class="text-text-muted text-sm leading-relaxed max-w-xs">Premium gaming gear and subscriptions for those who play to win.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-text-primary mb-5">Shop</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">All Products</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Keyboards</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Mice</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Headsets</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Monitors</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-text-primary mb-5">Support</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Help Center</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Shipping Info</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Returns</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Warranty</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-text-primary mb-5">Community</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Blog</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Pro Setups</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Tournaments</a></li>
+            <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Affiliate Program</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-text-primary mb-5">Connect</h4>
+          <div class="flex flex-wrap gap-3">
+            <a href="#" class="w-10 h-10 rounded-xl bg-nexus-800 flex items-center justify-center text-text-muted hover:text-cyan-accent hover:bg-nexus-700 transition-all duration-300" aria-label="Discord">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-nexus-800 flex items-center justify-center text-text-muted hover:text-cyan-accent hover:bg-nexus-700 transition-all duration-300" aria-label="Twitch">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-nexus-800 flex items-center justify-center text-text-muted hover:text-cyan-accent hover:bg-nexus-700 transition-all duration-300" aria-label="Twitter/X">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-nexus-800 flex items-center justify-center text-text-muted hover:text-cyan-accent hover:bg-nexus-700 transition-all duration-300" aria-label="YouTube">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-nexus-800 flex items-center justify-center text-text-muted hover:text-cyan-accent hover:bg-nexus-700 transition-all duration-300" aria-label="Instagram">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-sm">&copy; 2026 Nexus Gaming. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-text-muted text-sm hover:text-text-secondary transition-colors">Privacy</a>
+          <a href="#" class="text-text-muted text-sm hover:text-text-secondary transition-colors">Terms</a>
+          <a href="#" class="text-text-muted text-sm hover:text-text-secondary transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-cyan-accent text-nexus-900 shadow-glow-cyan opacity-0 invisible transition-all duration-300 hover:scale-110 z-40" aria-label="Back to top">
+      <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 glass-strong rounded-xl px-6 py-4 flex items-center gap-3 opacity-0 invisible transition-all duration-500 transform translate-y-4 z-50">
+    <i data-lucide="check-circle" class="w-5 h-5 text-success"></i>
+    <span id="toast-message" class="text-sm font-medium">Item added to loadout!</span>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

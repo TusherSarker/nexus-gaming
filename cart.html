@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Loadout — Nexus Gaming Cart</title>
+  <meta name="description" content="Review your gaming gear loadout and proceed to checkout at Nexus Gaming." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card" style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-lg bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm">
+            <span class="font-heading font-bold text-nexus-900 text-xl">N</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">NEXUS<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Shop All</a>
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Hardware</a>
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Accessories</a>
+          <a href="/#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Subscriptions</a>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-4">
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+          <div id="navbarUserContainer" class="flex items-center">
+            <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all flex items-center gap-1.5">
+              <i data-lucide="user" class="w-3.5 h-3.5"></i> Sign In
+            </button>
+          </div>
+          <a href="/" class="hidden sm:flex p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Home">
+            <i data-lucide="home" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== CART PAGE ===== -->
+  <main class="pt-28 pb-24 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-sm text-text-muted mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-cyan-accent transition-colors">Home</a>
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        <span class="text-text-primary">Your Loadout</span>
+      </nav>
+
+      <!-- Page Title -->
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <h1 class="font-heading text-4xl md:text-5xl font-bold tracking-tight">
+            Your <span class="text-gradient-cyan">Loadout</span>
+          </h1>
+          <p id="cart-summary-text" class="text-text-secondary mt-2">Loading...</p>
+        </div>
+        <button id="clear-cart-btn" class="hidden sm:flex items-center gap-2 text-sm text-text-muted hover:text-magenta-accent transition-colors duration-300">
+          <i data-lucide="trash-2" class="w-4 h-4"></i>
+          Clear All
+        </button>
+      </div>
+
+      <!-- ===== EMPTY STATE (hidden by default) ===== -->
+      <div id="empty-cart" class="hidden text-center py-24">
+        <div class="w-24 h-24 mx-auto mb-8 rounded-full bg-nexus-700/50 flex items-center justify-center">
+          <i data-lucide="shopping-bag" class="w-12 h-12 text-text-muted"></i>
+        </div>
+        <h2 class="font-heading text-3xl font-bold mb-4">Your loadout is empty</h2>
+        <p class="text-text-secondary mb-8 max-w-md mx-auto">Looks like you haven't added any gear yet. Head back to the shop and gear up!</p>
+        <a href="/" class="btn-primary inline-flex items-center gap-2">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          Continue Shopping
+        </a>
+      </div>
+
+      <!-- ===== CART CONTENT ===== -->
+      <div id="cart-content" class="hidden">
+        <div class="grid lg:grid-cols-3 gap-8">
+
+          <!-- LEFT: Cart Items -->
+          <div class="lg:col-span-2 space-y-4">
+
+            <!-- Cart Header (desktop) -->
+            <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-3 text-xs uppercase tracking-widest text-text-muted font-semibold">
+              <div class="col-span-6">Product</div>
+              <div class="col-span-2 text-center">Quantity</div>
+              <div class="col-span-2 text-right">Price</div>
+              <div class="col-span-2 text-right">Total</div>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cart-items" class="space-y-3">
+              <!-- Items are rendered by JS -->
+            </div>
+
+            <!-- Continue Shopping -->
+            <div class="pt-6">
+              <a href="/" class="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-cyan-accent transition-colors duration-300">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT: Order Summary -->
+          <div class="lg:col-span-1">
+            <div class="glass-strong rounded-2xl p-6 lg:p-8 sticky top-28 space-y-6">
+              <h2 class="font-heading text-xl font-bold">Order Summary</h2>
+
+              <!-- Promo Code -->
+              <div>
+                <label for="promo-input" class="text-sm text-text-secondary mb-2 block">Promo Code</label>
+                <div class="flex gap-2">
+                  <input id="promo-input" type="text" placeholder="Enter code" class="flex-1 px-4 py-2.5 rounded-lg bg-nexus-800 border border-white/5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-cyan-accent/40 transition-all duration-300 font-mono uppercase">
+                  <button id="apply-promo-btn" class="btn-secondary !px-4 !py-2.5 !text-xs">Apply</button>
+                </div>
+                <p id="promo-message" class="text-xs mt-2 hidden"></p>
+              </div>
+
+              <hr class="border-white/5">
+
+              <!-- Price Breakdown -->
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-text-secondary">Subtotal</span>
+                  <span id="subtotal" class="font-mono font-semibold">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-text-secondary">Shipping</span>
+                  <span id="shipping" class="font-mono font-semibold text-success">Free</span>
+                </div>
+                <div id="discount-row" class="flex justify-between hidden">
+                  <span class="text-text-secondary">Discount <span id="discount-label" class="text-magenta-accent text-xs"></span></span>
+                  <span id="discount-amount" class="font-mono font-semibold text-magenta-accent">-$0.00</span>
+                </div>
+                <div id="shipping-cost-row" class="flex justify-between hidden">
+                  <span class="text-text-secondary">Shipping</span>
+                  <span id="shipping-cost" class="font-mono font-semibold">$9.99</span>
+                </div>
+              </div>
+
+              <hr class="border-white/5">
+
+              <!-- Total -->
+              <div class="flex justify-between items-baseline">
+                <span class="font-heading text-lg font-bold">Total</span>
+                <span id="total-price" class="font-mono text-3xl font-bold text-cyan-accent">$0.00</span>
+              </div>
+
+              <!-- Checkout Button -->
+              <button id="checkout-btn" class="btn-primary w-full !py-4 text-base flex items-center justify-center gap-2">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                Proceed to Checkout
+              </button>
+
+              <!-- Trust Signals -->
+              <div class="flex flex-col gap-2 pt-2">
+                <div class="flex items-center gap-2 text-xs text-text-muted">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-success"></i>
+                  <span>100% Ban-proof direct in-game delivery</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-text-muted">
+                  <i data-lucide="zap" class="w-3.5 h-3.5 text-success"></i>
+                  <span>Instant 5-minute manual order fulfillment</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-text-muted">
+                  <i data-lucide="receipt" class="w-3.5 h-3.5 text-success"></i>
+                  <span>Official VAT & tax invoice included</span>
+                </div>
+
+                <div class="p-3 rounded-xl bg-cyan-accent/10 border border-cyan-accent/20 text-xs text-gray-300 space-y-1 mt-2">
+                  <span class="font-bold text-cyan-accent flex items-center gap-1.5 font-mono">
+                    <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> All-Inclusive Transparent Pricing
+                  </span>
+                  <p class="text-[11px] text-gray-300 leading-relaxed">
+                    Our price includes all dual-currency bank fees, VAT, server maintenance, and fair living wages for our 24/7 fulfillment team. No hidden surprise fees.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER (minimal) ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-cyan-accent flex items-center justify-center">
+            <span class="font-heading font-bold text-nexus-900 text-sm">N</span>
+          </div>
+          <span class="font-heading font-bold text-sm">NEXUS<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+        <p class="text-text-muted text-sm">&copy; 2026 Nexus Gaming. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 glass-strong rounded-xl px-6 py-4 flex items-center gap-3 opacity-0 invisible transition-all duration-500 transform translate-y-4 z-50">
+    <i data-lucide="check-circle" class="w-5 h-5 text-success"></i>
+    <span id="toast-message" class="text-sm font-medium">Item removed!</span>
+  </div>
+
+  <script type="module" src="/src/cart.js"></script>
+</body>
+</html>
