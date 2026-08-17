@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
   initSearchModal();
+  initHeroCharacters();
   initCategoryFilters();
   initCarousel();
   initBillingToggle();
@@ -35,6 +36,106 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchLiveProducts();
   fetchLiveSubscriptions();
 });
+
+// ===== 3D FLOATING HERO CHARACTERS SWITCHER =====
+const HERO_CHARACTERS = [
+  {
+    name: 'PUBG Mobile • Level 3 Assault',
+    tag: 'PUBG Mobile • Level 3 Assault',
+    badge: '100% Ban-Proof',
+    src: '/characters/pubg-character.svg',
+    glow: '#d47f97'
+  },
+  {
+    name: 'eFootball • Leo Messi #10',
+    tag: 'eFootball • Leo Messi #10',
+    badge: 'Instant Coin Top-Up',
+    src: '/characters/efootball-messi.svg',
+    glow: '#00f0ff'
+  },
+  {
+    name: 'eFootball • Cristiano Ronaldo #7',
+    tag: 'eFootball • CR7 Power Strike',
+    badge: 'Instant Coin Top-Up',
+    src: '/characters/efootball-ronaldo.svg',
+    glow: '#e06d92'
+  },
+  {
+    name: 'Call of Duty Mobile • Ghost Operator',
+    tag: 'COD Mobile • Ghost Operator',
+    badge: 'CP Vault Direct Credit',
+    src: '/characters/cod-ghost.svg',
+    glow: '#d47f97'
+  },
+  {
+    name: 'Valorant • Jett Wind Agent',
+    tag: 'Valorant • Jett Duelist',
+    badge: 'VP Riot Code Delivery',
+    src: '/characters/valorant-jett.svg',
+    glow: '#2dd4bf'
+  },
+  {
+    name: 'Free Fire • Cyber Katana Hero',
+    tag: 'Free Fire • Cyber Katana',
+    badge: 'Diamond Top-Up 24/7',
+    src: '/characters/freefire-hero.svg',
+    glow: '#f59e0b'
+  }
+];
+
+let currentHeroCharIdx = 0;
+let heroCharAutoTimer = null;
+
+function initHeroCharacters() {
+  const mainImg = document.getElementById('heroMainCharacterImg');
+  const tagEl = document.getElementById('heroCharTag');
+  const pills = document.querySelectorAll('.hero-char-btn');
+  if (!mainImg) return;
+
+  window.switchHeroCharacter = function(index) {
+    if (index < 0 || index >= HERO_CHARACTERS.length) return;
+    currentHeroCharIdx = index;
+    const char = HERO_CHARACTERS[index];
+
+    mainImg.style.opacity = '0';
+    mainImg.style.transform = 'scale(0.92) translateY(10px)';
+
+    setTimeout(() => {
+      mainImg.src = char.src;
+      mainImg.alt = char.name;
+      if (tagEl) tagEl.textContent = char.tag;
+      mainImg.style.opacity = '1';
+      mainImg.style.transform = 'scale(1) translateY(0)';
+    }, 200);
+
+    pills.forEach((btn, idx) => {
+      if (idx === index) {
+        btn.className = 'hero-char-btn px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-cyan-accent text-nexus-950 shadow-glow-cyan-sm flex items-center gap-1.5 whitespace-nowrap scale-105';
+      } else {
+        btn.className = 'hero-char-btn px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white hover:bg-nexus-700 flex items-center gap-1.5 whitespace-nowrap';
+      }
+    });
+  };
+
+  pills.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx, 10);
+      window.switchHeroCharacter(idx);
+      // Reset timer on user interaction
+      clearInterval(heroCharAutoTimer);
+      startAutoHeroRotation();
+    });
+  });
+
+  function startAutoHeroRotation() {
+    heroCharAutoTimer = setInterval(() => {
+      currentHeroCharIdx = (currentHeroCharIdx + 1) % HERO_CHARACTERS.length;
+      window.switchHeroCharacter(currentHeroCharIdx);
+    }, 6000);
+  }
+
+  startAutoHeroRotation();
+}
 
 // ===== CATEGORY STATE & TOGGLE (1 Row initially, expandable to 20 Games) =====
 let allLiveCategories = [];

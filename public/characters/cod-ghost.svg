@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" fill="none" width="100%" height="100%">
+  <defs>
+    <filter id="ghost3dShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="25" stdDeviation="20" flood-color="#000000" flood-opacity="0.7"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="15" flood-color="#d47f97" flood-opacity="0.3"/>
+    </filter>
+    <filter id="laserGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <linearGradient id="ghostGear" x1="150" y1="200" x2="450" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2d3748"/>
+      <stop offset="50%" stop-color="#1a202c"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="hoodDark" x1="180" y1="80" x2="420" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="60%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="300" cy="650" rx="190" ry="24" fill="#000000" opacity="0.65"/>
+  <ellipse cx="300" cy="650" rx="130" ry="15" fill="#d47f97" opacity="0.2"/>
+
+  <!-- Character Group -->
+  <g filter="url(#ghost3dShadow)">
+    
+    <!-- Tactical Cape / Cloak -->
+    <path d="M160 260 C120 380 90 540 120 620 C160 630 200 580 230 510 L240 340 Z" fill="url(#ghostGear)"/>
+    <path d="M440 260 C480 380 510 540 480 620 C440 630 400 580 370 510 L360 340 Z" fill="url(#ghostGear)"/>
+
+    <!-- Tactical Torso & Plate Carrier -->
+    <path d="M220 250 L380 250 L400 480 L360 550 L240 550 L200 480 Z" fill="url(#ghostGear)"/>
+    <path d="M235 270 L365 270 L380 460 L340 510 L260 510 L220 460 Z" fill="#1e293b" stroke="#475569" stroke-width="2.5"/>
+
+    <!-- Molle Webbing & Grenades -->
+    <line x1="250" y1="330" x2="350" y2="330" stroke="#64748b" stroke-width="4" stroke-dasharray="12 4"/>
+    <line x1="245" y1="370" x2="355" y2="370" stroke="#64748b" stroke-width="4" stroke-dasharray="12 4"/>
+    <line x1="250" y1="410" x2="350" y2="410" stroke="#64748b" stroke-width="4" stroke-dasharray="12 4"/>
+
+    <!-- Dual SMGs in Combat Grip -->
+    <rect x="90" y="360" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <rect x="70" y="370" width="50" height="15" rx="3" fill="#1e293b"/>
+    <line x1="70" y1="377" x2="20" y2="377" stroke="#e06d92" stroke-width="2.5" filter="url(#laserGlow)"/>
+
+    <rect x="350" y="360" width="160" height="35" rx="4" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <rect x="480" y="370" width="50" height="15" rx="3" fill="#1e293b"/>
+    <line x1="530" y1="377" x2="580" y2="377" stroke="#e06d92" stroke-width="2.5" filter="url(#laserGlow)"/>
+
+    <!-- Tactical Arms & Carbon Knuckle Gloves -->
+    <circle cx="190" cy="380" r="22" fill="#111827" stroke="#475569" stroke-width="2"/>
+    <circle cx="410" cy="380" r="22" fill="#111827" stroke="#475569" stroke-width="2"/>
+
+    <!-- Hood & Tactical Balaclava -->
+    <path d="M200 170 C190 70 410 70 400 170 C410 250 390 280 370 290 L230 290 C210 280 190 250 200 170 Z" fill="url(#hoodDark)" stroke="#475569" stroke-width="2"/>
+
+    <!-- Iconic Skull Face Mask -->
+    <path d="M225 150 C225 120 375 120 375 150 C380 210 360 250 340 260 L260 260 C240 250 220 210 225 150 Z" fill="#e2e8f0" stroke="#0f172a" stroke-width="3"/>
+
+    <!-- Skull Eye Sockets -->
+    <path d="M245 160 C245 145 280 145 280 165 C280 185 245 185 245 160 Z" fill="#0f172a"/>
+    <circle cx="262" cy="165" r="4" fill="#d47f97" filter="url(#laserGlow)"/>
+
+    <path d="M355 160 C355 145 320 145 320 165 C320 185 355 185 355 160 Z" fill="#0f172a"/>
+    <circle cx="338" cy="165" r="4" fill="#d47f97" filter="url(#laserGlow)"/>
+
+    <!-- Skull Nose Cavity & Jaw Teeth Lines -->
+    <polygon points="300,185 292,205 308,205" fill="#0f172a"/>
+    <line x1="265" y1="230" x2="335" y2="230" stroke="#0f172a" stroke-width="3"/>
+    <line x1="275" y1="220" x2="275" y2="240" stroke="#0f172a" stroke-width="2.5"/>
+    <line x1="290" y1="220" x2="290" y2="240" stroke="#0f172a" stroke-width="2.5"/>
+    <line x1="305" y1="220" x2="305" y2="240" stroke="#0f172a" stroke-width="2.5"/>
+    <line x1="320" y1="220" x2="320" y2="240" stroke="#0f172a" stroke-width="2.5"/>
+
+    <!-- Tactical Comms Headset Over Hood -->
+    <path d="M205 130 C205 85 395 85 395 130" stroke="#1e293b" stroke-width="8" fill="none"/>
+    <rect x="195" y="150" width="18" height="40" rx="6" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+    <rect x="387" y="150" width="18" height="40" rx="6" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+    <path d="M200 180 Q 210 230 250 230" stroke="#334155" stroke-width="3.5" fill="none"/>
+    <circle cx="250" cy="230" r="5" fill="#0f172a"/>
+  </g>
+</svg>
