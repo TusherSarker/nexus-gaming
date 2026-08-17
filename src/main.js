@@ -115,9 +115,8 @@ function initHeroCharacters() {
   startAutoHeroRotation();
 }
 
-// ===== PUBG 3-LOGO CYCLING & TOGGLE =====
+// ===== PUBG DYNAMIC LOGO CYCLING & TOGGLE =====
 const PUBG_LOGOS = [
-  { name: 'Level 3 Helmet', src: '/categories/pubg-logo-1.png' },
   { name: 'White Box Emblem', src: '/categories/pubg-logo-2.png' },
   { name: 'Official Yellow Logo', src: '/categories/pubg-logo-3.png' }
 ];
@@ -152,9 +151,9 @@ function updateAllPubgLogosUI() {
   pubgDots.forEach(dot => {
     const dotIdx = parseInt(dot.dataset.dotIdx, 10);
     if (dotIdx === currentPubgLogoIndex) {
-      dot.className = 'pubg-logo-dot w-1.5 h-1.5 rounded-full bg-cyan-accent scale-125 transition-all shadow-glow-cyan-sm';
+      dot.className = 'pubg-logo-dot w-2 h-2 rounded-full bg-cyan-accent scale-125 transition-all shadow-glow-cyan-sm';
     } else {
-      dot.className = 'pubg-logo-dot w-1.5 h-1.5 rounded-full bg-white/30 hover:bg-white/70 transition-all';
+      dot.className = 'pubg-logo-dot w-2 h-2 rounded-full bg-white/30 hover:bg-white/70 transition-all';
     }
   });
 }
@@ -164,7 +163,7 @@ function initPubgLogoCycle() {
   pubgLogoCycleInterval = setInterval(() => {
     currentPubgLogoIndex = (currentPubgLogoIndex + 1) % PUBG_LOGOS.length;
     updateAllPubgLogosUI();
-  }, 3500);
+  }, 4000);
 }
 
 // ===== CATEGORY STATE & TOGGLE (1 Row initially, expandable to 20 Games) =====
@@ -190,18 +189,17 @@ function renderCategoryGrid() {
     if (isPubg) {
       return `
         <a href="#products" data-filter-game="${cat.name}" class="glass-card rounded-2xl p-5 sm:p-6 flex flex-col items-center text-center gap-3.5 group cursor-pointer hover:border-cyan-accent/50 hover:shadow-glow-cyan-sm transition-all animate-fade-in relative" title="Click icon to switch PUBG logos">
-          <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-nexus-900/90 p-3 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo();" title="Click to Toggle PUBG Logo (3 Variants)">
-            <img src="${logoImg}" alt="${cat.name}" class="pubg-dynamic-logo-img w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all duration-300" onerror="this.onerror=null; this.src='/categories/pubg-mobile.svg'">
-            <!-- 3-Dot Logo Indicator / Switcher -->
-            <div class="absolute bottom-1 inset-x-0 flex items-center justify-center gap-1.5 z-20 py-0.5 bg-nexus-950/80 backdrop-blur-xs rounded-full mx-2">
+          <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-nexus-900/90 p-3 border border-white/10 flex items-center justify-center group-hover:border-cyan-accent/50 group-hover:scale-105 transition-all shadow-lg overflow-hidden" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo();" title="Click to Toggle PUBG Logo">
+            <img src="${logoImg}" alt="${cat.name}" class="pubg-dynamic-logo-img w-full h-full object-contain filter drop-shadow-md group-hover:brightness-110 transition-all duration-300" onerror="this.onerror=null; this.src='/categories/pubg-logo-3.png'">
+            <!-- 2-Dot Logo Indicator / Switcher -->
+            <div class="absolute bottom-1 inset-x-0 flex items-center justify-center gap-1.5 z-20 py-0.5 bg-nexus-950/80 backdrop-blur-xs rounded-full mx-3">
               <span data-dot-idx="0" class="pubg-logo-dot w-2 h-2 rounded-full ${currentPubgLogoIndex === 0 ? 'bg-cyan-accent scale-125' : 'bg-white/30'}" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo(0);"></span>
               <span data-dot-idx="1" class="pubg-logo-dot w-2 h-2 rounded-full ${currentPubgLogoIndex === 1 ? 'bg-cyan-accent scale-125' : 'bg-white/30'}" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo(1);"></span>
-              <span data-dot-idx="2" class="pubg-logo-dot w-2 h-2 rounded-full ${currentPubgLogoIndex === 2 ? 'bg-cyan-accent scale-125' : 'bg-white/30'}" onclick="event.preventDefault(); event.stopPropagation(); window.togglePubgLogo(2);"></span>
             </div>
           </div>
           <div>
             <span class="font-heading font-bold text-base text-white group-hover:text-cyan-accent transition-colors block truncate max-w-[150px]">${cat.name}</span>
-            <span class="text-xs text-cyan-accent font-mono block truncate max-w-[150px] font-semibold">3 Logos ↻</span>
+            <span class="text-xs text-gray-400 font-mono block truncate max-w-[150px]">UC & Royale Pass</span>
           </div>
         </a>
       `;
