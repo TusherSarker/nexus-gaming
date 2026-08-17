@@ -150,7 +150,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Nexus Gaming Full-Stack Server running on port ${PORT}`);
+  console.log(`🚀 Tusher Gaming Full-Stack Server running on port ${PORT}`);
   console.log(`🎮 Storefront:       http://localhost:${PORT}/`);
   console.log(`🛡️ Admin Portal:     http://localhost:${PORT}/admin/`);
   console.log(`⚡ REST API:         http://localhost:${PORT}/api/`);

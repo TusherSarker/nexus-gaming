@@ -14,7 +14,7 @@ export function initAuthModal() {
         <!-- Modal Header / Tabs -->
         <div class="p-6 pb-2 border-b border-white/5">
           <div class="flex items-center gap-2 mb-4">
-            <span class="text-2xl font-bold font-heading text-cyan-accent tracking-wider">NEXUS</span>
+            <span class="text-2xl font-bold font-heading text-cyan-accent tracking-wider">TUSHER</span>
             <span class="text-xs px-2 py-0.5 rounded bg-cyan-accent/10 text-cyan-accent font-mono">GAMER ID</span>
           </div>
           <div class="flex border-b border-white/10">
@@ -38,8 +38,8 @@ export function initAuthModal() {
             <input type="password" id="loginPassword" placeholder="••••••••" class="w-full px-4 py-3 bg-nexus-800 border border-white/10 rounded-xl text-white outline-none focus:border-cyan-accent text-sm" required>
           </div>
           <div id="loginError" class="text-rose-400 text-xs hidden"></div>
-          <button id="loginSubmitBtn" class="w-full py-3.5 bg-gradient-to-r from-cyan-accent to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-nexus-950 font-bold rounded-xl transition-all shadow-lg shadow-cyan-accent/20 flex items-center justify-center gap-2">
-            <span>Sign In to Nexus</span>
+          <button id="loginSubmitBtn" class="w-full py-3.5 bg-cyan-accent hover:bg-[#e8a4b6] text-nexus-950 font-bold rounded-xl transition-all shadow-lg shadow-cyan-accent/20 flex items-center justify-center gap-2">
+            <span>Sign In to Tusher Gaming</span>
           </button>
         </div>
 
@@ -460,6 +460,8 @@ export function updateNavbarUserUI() {
 
 // Attach globally
 if (typeof window !== 'undefined') {
+  window.tusherOpenAuthModal = openAuthModal;
+  window.tusherCustomerLogout = customerLogout;
   window.nexusOpenAuthModal = openAuthModal;
   window.nexusCustomerLogout = customerLogout;
 }

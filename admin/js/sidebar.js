@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="h-16 flex items-center justify-between px-6 border-b border-white/10">
         <a href="/admin/dashboard.html" class="flex items-center gap-2 text-cyan-accent font-heading font-bold text-xl uppercase tracking-wider">
           <i data-lucide="gamepad-2"></i>
-          Nexus Admin
+          Tusher Admin
         </a>
         <button id="closeSidebar" class="md:hidden text-gray-400 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <button id="openSidebar" class="text-gray-400 hover:text-white p-2">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
-      <span class="font-heading font-bold text-lg text-cyan-accent tracking-wider">NEXUS ADMIN</span>
+      <span class="font-heading font-bold text-lg text-cyan-accent tracking-wider">TUSHER ADMIN</span>
       <div class="w-10"></div>
     </header>
     

@@ -231,7 +231,7 @@ async function loadProductData() {
 }
 
 function renderProductDetails(p) {
-  document.title = `${p.name} — Nexus Gaming Specifications`;
+  document.title = `${p.name} — Tusher Gaming Specifications`;
 
   // Breadcrumbs
   document.getElementById('breadcrumbCategory').textContent = p.category;
