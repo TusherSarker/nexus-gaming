@@ -43,28 +43,35 @@ const HERO_CHARACTERS = [
     name: 'PUBG Mobile • Level 3 Assault',
     tag: 'PUBG Mobile • Level 3 Assault',
     badge: '100% Ban-Proof UC',
-    src: '/characters/pubg-hero-main.jpg',
+    src: '/characters/pubg-transparent.png',
+    glow: '#d47f97'
+  },
+  {
+    name: 'Call of Duty Mobile • Ghost Operator',
+    tag: 'COD Mobile • Ghost Operator',
+    badge: 'CP Vault Direct Credit',
+    src: '/characters/cod-ghost-transparent.png',
     glow: '#d47f97'
   },
   {
     name: 'Cyber Ops • VR Pulse Warrior',
     tag: 'Cyber Ops • VR Pulse Warrior',
     badge: 'Instant Battle Pass',
-    src: '/characters/cyber-soldier.jpg',
+    src: '/characters/cyber-soldier-transparent.png',
     glow: '#38bdf8'
   },
   {
     name: 'Clash of Clans • Barbarian King',
     tag: 'Clash of Clans • Barbarian King',
     badge: 'Gems & Gold Pass',
-    src: '/characters/clash-barbarian.jpg',
+    src: '/characters/clash-barbarian-transparent.png',
     glow: '#f59e0b'
   },
   {
     name: 'Mobile Legends • Shadow Assassin',
     tag: 'Mobile Legends • Shadow Assassin',
     badge: 'Diamonds Direct Credit',
-    src: '/characters/fantasy-assassin.png',
+    src: '/characters/shadow-assassin-transparent.png',
     glow: '#c084fc'
   }
 ];

@@ -164,31 +164,34 @@
           <div class="absolute -bottom-6 -right-6 w-64 h-64 rounded-full bg-magenta-accent/10 blur-[90px] pointer-events-none"></div>
 
           <!-- 3D Floating Scene Container -->
-          <div class="relative w-full max-w-[460px] sm:max-w-[540px] aspect-[4/5] sm:aspect-square flex items-center justify-center">
+          <div class="relative w-full max-w-[480px] sm:max-w-[560px] aspect-[4/5] sm:aspect-square flex items-center justify-center">
             
             <!-- Satellite Floating Character 1: Cyber Soldier (Top Left) -->
-            <div id="satelliteChar1" class="absolute top-2 -left-2 sm:-left-6 w-20 sm:w-28 rounded-2xl overflow-hidden border border-white/15 bg-nexus-900/60 p-1 opacity-55 animate-float-slow transform -rotate-12 z-10 shadow-2xl backdrop-blur-md pointer-events-none">
-              <img src="/characters/cyber-soldier.jpg" alt="Cyber Soldier" class="w-full h-full object-cover rounded-xl filter drop-shadow-md">
+            <div id="satelliteChar1" class="absolute top-0 -left-4 sm:-left-8 w-24 sm:w-32 opacity-45 animate-float-slow transform -rotate-12 z-10 filter drop-shadow-2xl pointer-events-none">
+              <img src="/characters/cyber-soldier-transparent.png" alt="Cyber Soldier 3D" class="w-full h-full object-contain filter drop-shadow-[0_15px_20px_rgba(0,0,0,0.7)]">
             </div>
 
-            <!-- Satellite Floating Character 2: Shadow Assassin (Top Right) -->
-            <div id="satelliteChar2" class="absolute top-0 -right-2 sm:-right-4 w-20 sm:w-28 rounded-2xl overflow-hidden border border-white/15 bg-nexus-900/60 p-1 opacity-55 animate-float transform rotate-12 z-10 shadow-2xl backdrop-blur-md pointer-events-none" style="animation-delay: 1.5s;">
-              <img src="/characters/fantasy-assassin.png" alt="Shadow Assassin" class="w-full h-full object-cover rounded-xl filter drop-shadow-md">
+            <!-- Satellite Floating Character 2: COD Ghost (Top Right) -->
+            <div id="satelliteChar2" class="absolute -top-2 -right-4 sm:-right-8 w-24 sm:w-32 opacity-45 animate-float transform rotate-12 z-10 filter drop-shadow-2xl pointer-events-none" style="animation-delay: 1.5s;">
+              <img src="/characters/cod-ghost-transparent.png" alt="COD Ghost 3D" class="w-full h-full object-contain filter drop-shadow-[0_15px_20px_rgba(0,0,0,0.7)]">
             </div>
 
             <!-- Satellite Floating Character 3: Barbarian King (Bottom Left) -->
-            <div id="satelliteChar3" class="absolute bottom-14 -left-4 sm:-left-8 w-20 sm:w-28 rounded-2xl overflow-hidden border border-white/15 bg-nexus-900/60 p-1 opacity-55 animate-float-slow transform -rotate-6 z-10 shadow-2xl backdrop-blur-md pointer-events-none" style="animation-delay: 2.5s;">
-              <img src="/characters/clash-barbarian.jpg" alt="Barbarian King" class="w-full h-full object-cover rounded-xl filter drop-shadow-md">
+            <div id="satelliteChar3" class="absolute bottom-12 -left-6 sm:-left-10 w-24 sm:w-32 opacity-45 animate-float-slow transform -rotate-6 z-10 filter drop-shadow-2xl pointer-events-none" style="animation-delay: 2.8s;">
+              <img src="/characters/clash-barbarian-transparent.png" alt="Barbarian King 3D" class="w-full h-full object-contain filter drop-shadow-[0_15px_20px_rgba(0,0,0,0.7)]">
             </div>
 
-            <!-- Center Stage: Main 3D Floating Character (User Uploaded High-Res Hero) -->
-            <div class="relative z-20 w-[270px] sm:w-[360px] lg:w-[410px] h-[340px] sm:h-[440px] lg:h-[480px] flex items-center justify-center">
-              <div class="relative w-full h-full rounded-3xl overflow-hidden p-2 flex items-center justify-center">
-                <img id="heroMainCharacterImg" src="/characters/pubg-hero-main.jpg" alt="PUBG Mobile 3D Character" class="w-full h-full object-contain rounded-2xl animate-float filter drop-shadow-[0_25px_40px_rgba(0,0,0,0.9)]">
-              </div>
+            <!-- Satellite Floating Character 4: Shadow Assassin (Bottom Right) -->
+            <div id="satelliteChar4" class="absolute bottom-10 -right-6 sm:-right-10 w-24 sm:w-32 opacity-45 animate-float transform rotate-6 z-10 filter drop-shadow-2xl pointer-events-none" style="animation-delay: 2.0s;">
+              <img src="/characters/shadow-assassin-transparent.png" alt="Shadow Assassin 3D" class="w-full h-full object-contain filter drop-shadow-[0_15px_20px_rgba(0,0,0,0.7)]">
+            </div>
+
+            <!-- Center Stage: Main 3D Floating Character (100% Background-Removed Cutout) -->
+            <div class="relative z-20 w-[280px] sm:w-[380px] lg:w-[440px] h-[350px] sm:h-[460px] lg:h-[500px] flex items-center justify-center">
+              <img id="heroMainCharacterImg" src="/characters/pubg-transparent.png" alt="PUBG Mobile 3D Character" class="w-full h-full object-contain animate-float filter drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] transition-all duration-500">
               
               <!-- Floating Live Telemetry Chip -->
-              <div id="heroCharTelemetry" class="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-2xl bg-nexus-900/90 border border-cyan-accent/40 backdrop-blur-xl shadow-2xl flex items-center gap-2.5 z-30 pointer-events-none">
+              <div id="heroCharTelemetry" class="absolute bottom-1 sm:bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-2xl bg-nexus-900/90 border border-cyan-accent/40 backdrop-blur-xl shadow-2xl flex items-center gap-2.5 z-30 pointer-events-none">
                 <span class="w-2.5 h-2.5 rounded-full bg-cyan-accent animate-ping"></span>
                 <span id="heroCharTag" class="text-xs font-mono font-bold text-white tracking-wide">PUBG Mobile • Level 3 Assault</span>
                 <span id="heroCharBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold font-mono">100% Ban-Proof UC</span>
