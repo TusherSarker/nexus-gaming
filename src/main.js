@@ -79,13 +79,13 @@ function initHeroCharacters() {
   const pills = document.querySelectorAll('.hero-char-btn');
   if (!mainImg) return;
 
-  window.switchHeroCharacter = function(index) {
+  function switchHeroCharacter(index) {
     if (index < 0 || index >= HERO_CHARACTERS.length) return;
     currentHeroCharIdx = index;
     const char = HERO_CHARACTERS[index];
 
     mainImg.style.opacity = '0';
-    mainImg.style.transform = 'scale(0.92) translateY(10px)';
+    mainImg.style.transform = 'scale(0.95) translateY(6px)';
 
     setTimeout(() => {
       mainImg.src = char.src;
@@ -94,31 +94,14 @@ function initHeroCharacters() {
       if (badgeEl) badgeEl.textContent = char.badge;
       mainImg.style.opacity = '1';
       mainImg.style.transform = 'scale(1) translateY(0)';
-    }, 200);
-
-    pills.forEach((btn, idx) => {
-      if (idx === index) {
-        btn.className = 'hero-char-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-cyan-accent text-nexus-950 shadow-glow-cyan-sm flex items-center gap-1.5 whitespace-nowrap scale-105';
-      } else {
-        btn.className = 'hero-char-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white hover:bg-nexus-700 flex items-center gap-1.5 whitespace-nowrap';
-      }
-    });
-  };
-
-  pills.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.dataset.idx, 10);
-      window.switchHeroCharacter(idx);
-      // Reset timer on user interaction
-      clearInterval(heroCharAutoTimer);
-      startAutoHeroRotation();
-    });
-  });
+    }, 250);
+  }
 
   function startAutoHeroRotation() {
+    if (heroCharAutoTimer) clearInterval(heroCharAutoTimer);
     heroCharAutoTimer = setInterval(() => {
       currentHeroCharIdx = (currentHeroCharIdx + 1) % HERO_CHARACTERS.length;
-      window.switchHeroCharacter(currentHeroCharIdx);
+      switchHeroCharacter(currentHeroCharIdx);
     }, 5500);
   }
 
