@@ -42,44 +42,30 @@ const HERO_CHARACTERS = [
   {
     name: 'PUBG Mobile • Level 3 Assault',
     tag: 'PUBG Mobile • Level 3 Assault',
-    badge: '100% Ban-Proof',
-    src: '/characters/pubg-character.svg',
+    badge: '100% Ban-Proof UC',
+    src: '/characters/pubg-hero-main.jpg',
     glow: '#d47f97'
   },
   {
-    name: 'eFootball • Leo Messi #10',
-    tag: 'eFootball • Leo Messi #10',
-    badge: 'Instant Coin Top-Up',
-    src: '/characters/efootball-messi.svg',
-    glow: '#00f0ff'
+    name: 'Cyber Ops • VR Pulse Warrior',
+    tag: 'Cyber Ops • VR Pulse Warrior',
+    badge: 'Instant Battle Pass',
+    src: '/characters/cyber-soldier.jpg',
+    glow: '#38bdf8'
   },
   {
-    name: 'eFootball • Cristiano Ronaldo #7',
-    tag: 'eFootball • CR7 Power Strike',
-    badge: 'Instant Coin Top-Up',
-    src: '/characters/efootball-ronaldo.svg',
-    glow: '#e06d92'
-  },
-  {
-    name: 'Call of Duty Mobile • Ghost Operator',
-    tag: 'COD Mobile • Ghost Operator',
-    badge: 'CP Vault Direct Credit',
-    src: '/characters/cod-ghost.svg',
-    glow: '#d47f97'
-  },
-  {
-    name: 'Valorant • Jett Wind Agent',
-    tag: 'Valorant • Jett Duelist',
-    badge: 'VP Riot Code Delivery',
-    src: '/characters/valorant-jett.svg',
-    glow: '#2dd4bf'
-  },
-  {
-    name: 'Free Fire • Cyber Katana Hero',
-    tag: 'Free Fire • Cyber Katana',
-    badge: 'Diamond Top-Up 24/7',
-    src: '/characters/freefire-hero.svg',
+    name: 'Clash of Clans • Barbarian King',
+    tag: 'Clash of Clans • Barbarian King',
+    badge: 'Gems & Gold Pass',
+    src: '/characters/clash-barbarian.jpg',
     glow: '#f59e0b'
+  },
+  {
+    name: 'Mobile Legends • Shadow Assassin',
+    tag: 'Mobile Legends • Shadow Assassin',
+    badge: 'Diamonds Direct Credit',
+    src: '/characters/fantasy-assassin.png',
+    glow: '#c084fc'
   }
 ];
 
@@ -89,6 +75,7 @@ let heroCharAutoTimer = null;
 function initHeroCharacters() {
   const mainImg = document.getElementById('heroMainCharacterImg');
   const tagEl = document.getElementById('heroCharTag');
+  const badgeEl = document.getElementById('heroCharBadge');
   const pills = document.querySelectorAll('.hero-char-btn');
   if (!mainImg) return;
 
@@ -104,15 +91,16 @@ function initHeroCharacters() {
       mainImg.src = char.src;
       mainImg.alt = char.name;
       if (tagEl) tagEl.textContent = char.tag;
+      if (badgeEl) badgeEl.textContent = char.badge;
       mainImg.style.opacity = '1';
       mainImg.style.transform = 'scale(1) translateY(0)';
     }, 200);
 
     pills.forEach((btn, idx) => {
       if (idx === index) {
-        btn.className = 'hero-char-btn px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-cyan-accent text-nexus-950 shadow-glow-cyan-sm flex items-center gap-1.5 whitespace-nowrap scale-105';
+        btn.className = 'hero-char-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-cyan-accent text-nexus-950 shadow-glow-cyan-sm flex items-center gap-1.5 whitespace-nowrap scale-105';
       } else {
-        btn.className = 'hero-char-btn px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white hover:bg-nexus-700 flex items-center gap-1.5 whitespace-nowrap';
+        btn.className = 'hero-char-btn px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all bg-nexus-800 text-gray-400 hover:text-white hover:bg-nexus-700 flex items-center gap-1.5 whitespace-nowrap';
       }
     });
   };
@@ -131,7 +119,7 @@ function initHeroCharacters() {
     heroCharAutoTimer = setInterval(() => {
       currentHeroCharIdx = (currentHeroCharIdx + 1) % HERO_CHARACTERS.length;
       window.switchHeroCharacter(currentHeroCharIdx);
-    }, 6000);
+    }, 5500);
   }
 
   startAutoHeroRotation();
