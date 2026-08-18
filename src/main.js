@@ -482,7 +482,49 @@ function initMobileMenu() {
   });
 }
 
-// ===== SEARCH MODAL & LIVE AUTOCOMPLETE =====
+// ===== UNIVERSAL MULTI-CATEGORY SEARCH ENGINE =====
+const SEARCHABLE_DATABASE = [
+  // 1. Hardware Gear
+  { id: 'h-1', title: 'Aurora Pro Wireless Headset', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=1', image: '/products/gaming_headset.jpg', price: '$149.99', badge: 'Best Seller', keywords: ['headset', 'audio', '7.1 spatial', 'wireless', 'mic', 'headphones', 'sound', 'aurora'] },
+  { id: 'h-2', title: 'Vortex K70 Mechanical Keyboard', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=2', image: '/products/gaming_keyboard.jpg', price: '$229.99', badge: 'New', keywords: ['keyboard', 'mechanical', 'hall effect', 'rapid trigger', 'rgb', 'switches', 'vortex', 'k70', 'tenz'] },
+  { id: 'h-3', title: 'Phantom X Wireless Mouse', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=3', image: '/products/gaming_mouse.jpg', price: '$159.99', badge: 'Ultralight', keywords: ['mouse', 'wireless', '30k dpi', 'sensor', '8000hz', 'lightweight', 'phantom', 'aim'] },
+  { id: 'h-4', title: 'Nexus Elite Controller', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=4', image: '/products/gaming_controller.jpg', price: '$199.99', badge: 'Limited', keywords: ['controller', 'gamepad', 'hall effect', 'paddles', 'joystick', 'wireless', 'trigger stops'] },
+  { id: 'h-5', title: 'UltraWide QD-OLED 34" Monitor', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=5', image: '/products/gaming_monitor.jpg', price: '$999.00', badge: '240Hz OLED', keywords: ['monitor', 'screen', 'oled', 'qd-oled', 'ultrawide', '240hz', '0.03ms', 'display', 'hdr'] },
+  { id: 'h-6', title: 'RGB Control Desk Mat XXL', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=6', image: '/products/gaming_mousepad.jpg', price: '$49.99', badge: 'Esports Mat', keywords: ['desk mat', 'mousepad', 'rgb', 'micro-weave', 'xxl', 'pad', 'control'] },
+  { id: 'h-7', title: 'StreamCam 4K HDR Webcam', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=7', image: '/products/gaming_webcam.jpg', price: '$179.99', badge: 'Popular', keywords: ['webcam', 'camera', '4k', 'streaming', '60fps', 'hdr', 'streamer', 'youtube', 'twitch'] },
+  { id: 'h-8', title: 'Titan Ergonomic Gaming Chair', category: 'Hardware Gear', type: 'gear', url: '/product-details.html?id=8', image: '/products/gaming_chair.jpg', price: '$399.99', badge: 'Ergonomic', keywords: ['chair', 'gaming chair', 'ergonomic', 'lumbar', '4d armrest', 'memory foam', 'titan'] },
+
+  // 2. Popular Games & In-Game Top-Ups
+  { id: 'g-1', title: 'PUBG Mobile Unknown Cash (UC)', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/pubg-logo-3.png', price: 'Instant Direct UID', badge: '100% Anti-Ban', keywords: ['pubg', 'pubg mobile', 'uc', 'unknown cash', 'royale pass', 'a9 pass', 'glacier', 'erangel', 'bgmi', 'krafton', 'tencent'] },
+  { id: 'g-2', title: 'Free Fire Diamonds & Booyah Pass', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/free-fire.svg', price: 'Instant 0-60s', badge: 'Official UID', keywords: ['free fire', 'diamonds', 'booyah pass', 'garena', 'ff', 'alok', 'tatsuya', 'knife', 'ob46'] },
+  { id: 'g-3', title: 'Call of Duty: Mobile CP & Battle Pass', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/cod-mobile.svg', price: 'Instant Direct UID', badge: 'Mythic Vault', keywords: ['cod', 'cod mobile', 'codm', 'cp', 'cod points', 'battle pass', 'activision', 'ghost', 'warzone', 'mythic'] },
+  { id: 'g-4', title: 'eFootball 2026 Coins & Match Pass', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/efootball.svg', price: 'Instant Direct UID', badge: 'Konami Direct', keywords: ['efootball', 'efootball 2026', 'coins', 'pes', 'match pass', 'messi', 'konami', 'booster', 'fifa'] },
+  { id: 'g-5', title: 'Mobile Legends: Bang Bang Diamonds', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/mobile-legends.svg', price: 'Instant Direct UID', badge: 'Moonton Direct', keywords: ['mobile legends', 'mlbb', 'diamonds', 'starlight', 'twilight pass', 'moonton'] },
+  { id: 'g-6', title: 'Valorant Points (VP) & Radianite', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/valorant.svg', price: 'Digital Code', badge: 'Riot Direct', keywords: ['valorant', 'vp', 'valorant points', 'radianite', 'riot games', 'tenz', 'vct', 'skins'] },
+  { id: 'g-7', title: 'EA Sports FC Mobile FC Points', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/ea-fc-mobile.svg', price: 'Instant Direct UID', badge: 'EA Sports', keywords: ['ea fc', 'ea fc mobile', 'fc points', 'fifa mobile', 'star pass', 'ea sports', 'toty'] },
+  { id: 'g-8', title: 'Genshin Impact Genesis Crystals', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/genshin-impact.svg', price: 'Instant Direct UID', badge: 'HoYoverse', keywords: ['genshin', 'genshin impact', 'genesis crystals', 'welkin moon', 'primogems', 'hoyoverse'] },
+  { id: 'g-9', title: 'Roblox Robux & Premium Vouchers', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/roblox.svg', price: 'Digital Gift Code', badge: 'Roblox Code', keywords: ['roblox', 'robux', 'premium', 'avatar', 'bloxfruits'] },
+  { id: 'g-10', title: 'Minecraft Minecoins & Marketplace Pass', category: 'Game Top-Ups', type: 'game', url: '/#products', image: '/categories/minecraft.svg', price: 'Digital Code', badge: 'Mojang', keywords: ['minecraft', 'minecoins', 'marketplace', 'bedrock', 'java', 'mojang'] },
+
+  // 3. VIP Subscription Passes
+  { id: 's-1', title: 'Starter Game Pass ($9.99/mo)', category: 'VIP Passes', type: 'sub', url: '/#subscriptions', image: '/vite.svg', price: '$9.99/mo', badge: 'Starter', keywords: ['subscription', 'starter pass', 'cloud gaming', '100+ games', 'vip', 'pass'] },
+  { id: 's-2', title: 'Pro Game Pass ($19.99/mo)', category: 'VIP Passes', type: 'sub', url: '/#subscriptions', image: '/vite.svg', price: '$19.99/mo', badge: 'Most Popular', keywords: ['subscription', 'pro pass', '500+ games', '1080p stream', 'early access', 'vip'] },
+  { id: 's-3', title: 'Elite Game Pass ($29.99/mo)', category: 'VIP Passes', type: 'sub', url: '/#subscriptions', image: '/vite.svg', price: '$29.99/mo', badge: 'Elite VIP', keywords: ['subscription', 'elite pass', '1000+ games', '4k streaming', 'controller included', 'vip'] },
+
+  // 4. Support & Policies
+  { id: 'p-1', title: 'Help Center & 24/7 FAQ', category: 'Support & Help', type: 'page', url: '/help.html', image: null, icon: 'help-circle', price: 'Support Desk', badge: '24/7 Live', keywords: ['help', 'faq', 'questions', 'support', 'uid guide', 'ticket', 'assistance', 'stuck recharge'] },
+  { id: 'p-2', title: 'Shipping & Instant Delivery Info', category: 'Support & Help', type: 'page', url: '/shipping.html', image: null, icon: 'truck', price: '0-60s Delivery', badge: 'Worldwide', keywords: ['shipping', 'delivery', 'dhaka express', 'tracking', 'courier', 'instant delivery', 'time', 'rates'] },
+  { id: 'p-3', title: 'Returns & 100% Refund Policy', category: 'Support & Help', type: 'page', url: '/returns.html', image: null, icon: 'rotate-ccw', price: '1-Hour Refund', badge: 'Guarantee', keywords: ['return', 'refund', 'money back', 'money-back', 'failed order', 'exchange', 'rma', '30-day'] },
+  { id: 'p-4', title: 'Warranty & 100% Anti-Ban Guarantee', category: 'Support & Help', type: 'page', url: '/warranty.html', image: null, icon: 'shield-check', price: '2-Year Warranty', badge: 'Ironclad', keywords: ['warranty', 'anti-ban', 'ban safety', 'guarantee', 'publisher authorized', 'rma claim', 'defective', 'repair'] },
+  { id: 'p-5', title: 'Contact Us & WhatsApp Desk', category: 'Support & Help', type: 'page', url: '/contact.html', image: null, icon: 'message-circle', price: 'Direct Desk', badge: 'WhatsApp / Discord', keywords: ['contact', 'whatsapp', 'discord', 'email', 'phone', 'location', 'office', 'headquarters'] },
+
+  // 5. Community & Esports
+  { id: 'c-1', title: 'Gaming Blog & Weapon Meta Guides', category: 'Community & Content', type: 'page', url: '/blog.html', image: null, icon: 'book-open', price: 'Free Esports Guides', badge: 'Meta Guides', keywords: ['blog', 'guides', 'news', 'meta', 'pubg 3.5', 'free fire ob46', 'cod season 8', 'efootball formations', 'keyboards'] },
+  { id: 'c-2', title: 'Pro Esports Setups & Sensitivity Codes', category: 'Community & Content', type: 'page', url: '/pro-setups.html', image: null, icon: 'crosshair', price: 'Verified Sens', badge: 'Mortal & TenZ', keywords: ['pro setups', 'sensitivity', 'sens', 'gyroscope', 'hud', '4-finger claw', 'mortal', 'nobru', 'tenz', 'dpi'] },
+  { id: 'c-3', title: 'Community Tournaments & Scrims', category: 'Community & Content', type: 'page', url: '/tournaments.html', image: null, icon: 'trophy', price: '100K BDT Pools', badge: 'Registration Open', keywords: ['tournaments', 'scrims', 'esports cup', 'championship', 'squad showdown', 'clash squad', 'prize pool', 'register'] },
+  { id: 'c-4', title: 'Affiliate & Creator Partner Program', category: 'Community & Content', type: 'page', url: '/affiliate.html', image: null, icon: 'gift', price: '10-15% Commission', badge: 'Creator Code', keywords: ['affiliate', 'creator', 'creator code', 'partner', 'streamer', 'commission', 'payout', 'monetize'] },
+];
+
 function initSearchModal() {
   const searchBtn = document.getElementById('search-btn');
   const searchModal = document.getElementById('search-modal');
@@ -494,28 +536,30 @@ function initSearchModal() {
   function openSearch() {
     searchModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => searchInput.focus(), 100);
+    setTimeout(() => searchInput && searchInput.focus(), 100);
   }
 
   function closeSearch() {
     searchModal.classList.add('hidden');
     document.body.style.overflow = '';
-    searchInput.value = '';
+    if (searchInput) searchInput.value = '';
     if (searchResults) searchResults.classList.add('hidden');
   }
 
   searchBtn.addEventListener('click', openSearch);
-  searchOverlay.addEventListener('click', closeSearch);
+  if (searchOverlay) searchOverlay.addEventListener('click', closeSearch);
 
   document.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       searchModal.classList.contains('hidden') ? openSearch() : closeSearch();
     }
-    if (e.key === 'Escape') closeSearch();
+    if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+      closeSearch();
+    }
   });
 
-  // Live real-time search filtering
+  // Universal Search Algorithm
   if (searchInput && searchResults) {
     searchInput.addEventListener('input', () => {
       const q = searchInput.value.toLowerCase().trim();
@@ -525,27 +569,98 @@ function initSearchModal() {
         return;
       }
 
-      const matches = Object.values(PRODUCTS).filter(p => 
-        !p.isSubscription && (p.name.toLowerCase().includes(q) || (p.category && p.category.toLowerCase().includes(q)))
-      );
+      const tokens = q.split(/\s+/).filter(Boolean);
 
-      if (matches.length === 0) {
-        searchResults.innerHTML = `<div class="p-4 text-center text-sm text-gray-400">No gaming gear found matching "${q}"</div>`;
+      // Score and rank all items
+      const scoredItems = SEARCHABLE_DATABASE.map(item => {
+        let score = 0;
+        const titleLower = item.title.toLowerCase();
+        const catLower = item.category.toLowerCase();
+        const keywordsStr = (item.keywords || []).join(' ').toLowerCase();
+
+        // Exact match in title
+        if (titleLower === q) score += 120;
+        else if (titleLower.includes(q)) score += 70;
+
+        // Token match scoring
+        tokens.forEach(tok => {
+          if (titleLower.startsWith(tok)) score += 40;
+          else if (titleLower.includes(tok)) score += 25;
+
+          if (keywordsStr.includes(tok)) score += 20;
+          if (catLower.includes(tok)) score += 15;
+        });
+
+        return { item, score };
+      })
+      .filter(entry => entry.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(entry => entry.item);
+
+      if (scoredItems.length === 0) {
+        searchResults.innerHTML = `
+          <div class="p-6 text-center text-sm text-gray-400 space-y-2">
+            <i data-lucide="search-x" class="w-8 h-8 text-gray-500 mx-auto"></i>
+            <div>No exact match found for "<span class="text-white font-semibold">${q}</span>"</div>
+            <div class="text-xs text-text-muted">Try searching for <strong>PUBG, UC, Free Fire, COD, Mortal, Headset, Shipping, or Tournaments</strong></div>
+          </div>
+        `;
       } else {
-        searchResults.innerHTML = matches.map(p => `
-          <div class="flex items-center justify-between p-3 rounded-xl bg-nexus-900/80 hover:bg-white/5 border border-white/5 transition-colors">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='/product-details.html?id=${p.id}'">
-              <img src="${p.image}" class="w-10 h-10 object-contain rounded-lg bg-nexus-800 p-1 border border-white/10" alt="${p.name}">
-              <div>
-                <h4 class="font-heading font-bold text-white text-sm leading-tight hover:text-cyan-accent transition-colors">${p.name}</h4>
-                <p class="text-[11px] text-cyan-accent font-mono uppercase">${p.category} • $${Math.round(p.price)}</p>
+        // Render grouped results
+        const grouped = {};
+        scoredItems.forEach(item => {
+          if (!grouped[item.category]) grouped[item.category] = [];
+          grouped[item.category].push(item);
+        });
+
+        let html = '';
+        Object.entries(grouped).forEach(([category, items]) => {
+          html += `
+            <div class="pt-2">
+              <div class="px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-cyan-accent font-bold flex items-center justify-between">
+                <span>${category}</span>
+                <span class="text-gray-500">${items.length} results</span>
+              </div>
+              <div class="space-y-1.5 mt-1">
+          `;
+
+          items.forEach(item => {
+            const visual = item.image 
+              ? `<img src="${item.image}" class="w-9 h-9 object-contain rounded-lg bg-nexus-900 p-1 border border-white/10 shrink-0" alt="${item.title}">`
+              : `<div class="w-9 h-9 rounded-lg bg-cyan-accent/15 border border-cyan-accent/30 text-cyan-accent flex items-center justify-center shrink-0"><i data-lucide="${item.icon || 'arrow-right'}" class="w-4 h-4"></i></div>`;
+
+            html += `
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-nexus-900/80 hover:bg-white/10 border border-white/5 transition-all cursor-pointer group" onclick="window.location.href='${item.url}'">
+                <div class="flex items-center gap-3 min-w-0">
+                  ${visual}
+                  <div class="min-w-0">
+                    <h4 class="font-heading font-bold text-white text-sm truncate group-hover:text-cyan-accent transition-colors leading-tight">${item.title}</h4>
+                    <div class="flex items-center gap-2 mt-0.5 text-[11px] text-gray-400 font-mono">
+                      <span class="text-cyan-accent font-semibold">${item.price}</span>
+                      ${item.badge ? `<span>•</span> <span class="text-gray-400">${item.badge}</span>` : ''}
+                    </div>
+                  </div>
+                </div>
+                <div class="shrink-0 flex items-center gap-2 pl-2">
+                  ${item.type === 'gear' ? `
+                    <button class="btn-primary !px-2.5 !py-1 !text-[10px] font-bold" onclick="event.stopPropagation(); window.nexusAddToCart && window.nexusAddToCart(${item.id.replace('h-','')})">
+                      Add
+                    </button>
+                  ` : `
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-cyan-accent group-hover:translate-x-0.5 transition-all"></i>
+                  `}
+                </div>
+              </div>
+            `;
+          });
+
+          html += `
               </div>
             </div>
-            <button class="btn-primary !px-3 !py-1.5 !text-xs font-semibold" data-product-id="${p.id}">
-              Add to Loadout
-            </button>
-          </div>
-        `).join('');
+          `;
+        });
+
+        searchResults.innerHTML = html;
       }
 
       searchResults.classList.remove('hidden');

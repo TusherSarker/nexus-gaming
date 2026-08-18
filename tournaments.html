@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Tournaments & Scrims — Tusher Gaming</title>
+  <meta name="description" content="Register your squad for PUBG Mobile, Free Fire 4v4, and eFootball tournaments with guaranteed cash prize pools and direct UC payouts." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
+            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">All Gear</a>
+          <a href="/#categories" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Games</a>
+          <a href="/blog.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Blog</a>
+          <a href="/pro-setups.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Pro Setups</a>
+          <a href="/tournaments.html" class="text-sm font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5">Tournaments</a>
+          <a href="/affiliate.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Affiliate</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button id="search-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Search">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SEARCH MODAL ===== -->
+  <div id="search-modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="search-overlay"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 px-4">
+      <div class="glass-strong rounded-2xl p-4 animate-slide-down border border-white/10 shadow-2xl space-y-3">
+        <div class="flex items-center gap-3 px-3 py-2 bg-nexus-800/80 rounded-xl border border-white/10">
+          <i data-lucide="search" class="w-5 h-5 text-cyan-accent"></i>
+          <input id="search-input" type="text" placeholder="Search tournaments, prize pools, squads..." class="flex-1 bg-transparent border-none outline-none text-base text-text-primary placeholder:text-text-muted py-2 font-body">
+          <kbd class="hidden sm:inline-block px-2 py-1 text-[10px] font-mono text-text-muted border border-white/10 rounded">ESC</kbd>
+        </div>
+        <div id="search-results" class="max-h-96 overflow-y-auto space-y-2 pt-1 hidden"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="flex-1 pt-32 pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+      <!-- Header Banner -->
+      <div class="text-center relative py-12 px-6 sm:px-12 rounded-3xl glass-card border border-white/10 overflow-hidden shadow-2xl">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-accent/15 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent text-xs font-mono mb-4">
+          <i data-lucide="trophy" class="w-3.5 h-3.5"></i> Tusher Gaming Esports League 2026
+        </div>
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4">
+          Esports Tournaments & <span class="text-gradient-cyan">Community Cups</span>
+        </h1>
+        <p class="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto">
+          Compete against the best squads in South Asia. Real cash prize pools, live broadcasted finals on YouTube/Twitch, and instant direct UC / Diamond disbursements.
+        </p>
+      </div>
+
+      <!-- Active Tournaments Grid -->
+      <div class="space-y-8">
+        <div class="flex items-center justify-between">
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white">Active & Upcoming <span class="text-cyan-accent">Tournaments</span></h2>
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">● 3 Registrations Open</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Tournament 1: PUBG Mobile -->
+          <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-cyan-accent/40 transition-all flex flex-col justify-between group space-y-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full bg-cyan-accent/15 border border-cyan-accent/30 text-cyan-accent text-xs font-mono font-bold">PUBG MOBILE</span>
+                <span class="text-xs text-emerald-400 font-mono flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Open</span>
+              </div>
+              <div class="h-36 rounded-2xl bg-nexus-950/80 border border-white/5 p-4 flex items-center justify-center overflow-hidden">
+                <img src="/categories/pubg-logo-3.png" class="h-full object-contain filter drop-shadow-lg group-hover:scale-105 transition-transform" alt="PUBG Cup">
+              </div>
+              <h3 class="font-heading font-bold text-2xl text-white group-hover:text-cyan-accent transition-colors">
+                Tusher PUBG Squad Showdown Season 4
+              </h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                4-Player Squad Battle Royale on Erangel & Miramar. 64 Teams, 4 Qualifying Groups, followed by Grand Finals broadcasted live.
+              </p>
+
+              <div class="p-4 rounded-xl bg-nexus-900/80 border border-white/5 space-y-2 text-xs">
+                <div class="flex justify-between text-gray-300"><span>Prize Pool:</span> <strong class="text-cyan-accent font-bold text-sm">100,000 BDT + 50,000 UC</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Format:</span> <strong class="text-white">Squad TPP (Point System)</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Match Date:</span> <strong class="text-white">This Saturday • 8:00 PM</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Slots Filled:</span> <strong class="text-emerald-400">42 / 64 Teams</strong></div>
+              </div>
+            </div>
+
+            <button onclick="window.openRegisterModal('PUBG Mobile Squad Showdown S4')" class="btn-primary w-full !py-3 !rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Register Your Squad (FREE)
+            </button>
+          </div>
+
+          <!-- Tournament 2: Free Fire -->
+          <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-amber-500/40 transition-all flex flex-col justify-between group space-y-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold">FREE FIRE</span>
+                <span class="text-xs text-emerald-400 font-mono flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Open</span>
+              </div>
+              <div class="h-36 rounded-2xl bg-nexus-950/80 border border-white/5 p-4 flex items-center justify-center overflow-hidden">
+                <img src="/categories/free-fire.svg" class="h-16 object-contain filter drop-shadow-lg group-hover:scale-105 transition-transform" alt="Free Fire Cup">
+              </div>
+              <h3 class="font-heading font-bold text-2xl text-white group-hover:text-amber-400 transition-colors">
+                Free Fire Clash Squad 4v4 Invitational
+              </h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                Fast-paced 4v4 Clash Squad single elimination knockout bracket on Bermuda. Limited weapons, pro esports rule presets.
+              </p>
+
+              <div class="p-4 rounded-xl bg-nexus-900/80 border border-white/5 space-y-2 text-xs">
+                <div class="flex justify-between text-gray-300"><span>Prize Pool:</span> <strong class="text-amber-400 font-bold text-sm">50,000 BDT + 25,000 Diamonds</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Format:</span> <strong class="text-white">Clash Squad 4v4 Knockout</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Match Date:</span> <strong class="text-white">Sunday • 7:30 PM</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Slots Filled:</span> <strong class="text-emerald-400">28 / 32 Squads</strong></div>
+              </div>
+            </div>
+
+            <button onclick="window.openRegisterModal('Free Fire Clash Squad 4v4')" class="btn-primary w-full !py-3 !rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Register Team (FREE)
+            </button>
+          </div>
+
+          <!-- Tournament 3: eFootball -->
+          <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-cyan-accent/40 transition-all flex flex-col justify-between group space-y-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full bg-cyan-accent/15 border border-cyan-accent/30 text-cyan-accent text-xs font-mono font-bold">eFOOTBALL 2026</span>
+                <span class="text-xs text-emerald-400 font-mono flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Open</span>
+              </div>
+              <div class="h-36 rounded-2xl bg-nexus-950/80 border border-white/5 p-4 flex items-center justify-center overflow-hidden">
+                <img src="/categories/efootball.svg" class="h-24 object-contain filter drop-shadow-lg group-hover:scale-105 transition-transform" alt="eFootball Cup">
+              </div>
+              <h3 class="font-heading font-bold text-2xl text-white group-hover:text-cyan-accent transition-colors">
+                eFootball Mobile Champions Cup 1v1
+              </h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                1v1 Direct Matchmaking Tournament. Best of 3 aggregate score format. Top 16 qualify for stream broadcasted knockout stages.
+              </p>
+
+              <div class="p-4 rounded-xl bg-nexus-900/80 border border-white/5 space-y-2 text-xs">
+                <div class="flex justify-between text-gray-300"><span>Prize Pool:</span> <strong class="text-cyan-accent font-bold text-sm">30,000 BDT + 10,000 Coins</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Format:</span> <strong class="text-white">1v1 Best of 3 Aggregate</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Match Date:</span> <strong class="text-white">Next Friday • 9:00 PM</strong></div>
+                <div class="flex justify-between text-gray-300"><span>Slots Filled:</span> <strong class="text-emerald-400">54 / 64 Players</strong></div>
+              </div>
+            </div>
+
+            <button onclick="window.openRegisterModal('eFootball Mobile Champions Cup')" class="btn-primary w-full !py-3 !rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Register Solo (FREE)
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scrims Rules & Prize Distribution Policy -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 space-y-6">
+        <h3 class="font-heading text-2xl sm:text-3xl font-bold text-white">Tournament Rules & Anti-Cheat Fair Play</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-300">
+          <div class="p-5 rounded-2xl bg-nexus-800/60 border border-white/5 space-y-2">
+            <div class="font-heading font-bold text-white text-base flex items-center gap-2 text-cyan-accent">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i> Strict Anti-Cheat
+            </div>
+            <p class="text-xs text-text-muted leading-relaxed">Emulators, tablets in phone-only brackets, macros, and third-party overlays are strictly prohibited and result in permanent disqualification.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-nexus-800/60 border border-white/5 space-y-2">
+            <div class="font-heading font-bold text-white text-base flex items-center gap-2 text-cyan-accent">
+              <i data-lucide="dollar-sign" class="w-4 h-4"></i> Instant Cash & Currency
+            </div>
+            <p class="text-xs text-text-muted leading-relaxed">Prize payouts are executed within 2 hours of tournament conclusion via bKash / Nagad or direct UID voucher disbursement.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-nexus-800/60 border border-white/5 space-y-2">
+            <div class="font-heading font-bold text-white text-base flex items-center gap-2 text-cyan-accent">
+              <i data-lucide="tv" class="w-4 h-4"></i> Live Broadcast & Casting
+            </div>
+            <p class="text-xs text-text-muted leading-relaxed">Grand finals are casted live in 1080p 60FPS by official esports casters on Tusher Gaming YouTube and Facebook Gaming channels.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Registration Modal -->
+  <div id="registerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-strong rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/10 shadow-2xl relative space-y-5">
+      <button onclick="document.getElementById('registerModal').classList.add('hidden'); document.getElementById('registerModal').classList.remove('flex');" class="absolute top-5 right-5 text-gray-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="border-b border-white/10 pb-3">
+        <span class="text-xs font-mono uppercase text-cyan-accent" id="modalTournamentTag">Tournament Registration</span>
+        <h3 class="font-heading text-2xl font-bold text-white mt-1" id="modalTournamentTitle">Register Your Squad</h3>
+      </div>
+
+      <form id="tourneyForm" class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('regSuccess').classList.remove('hidden'); this.reset();">
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Squad / Team Name *</label>
+          <input type="text" required placeholder="e.g. Soul Reapers Esports" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Captain Name *</label>
+            <input type="text" required placeholder="Captain Name" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-300 mb-1">WhatsApp Number *</label>
+            <input type="text" required placeholder="+880 1XXXXXXXXX" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Player 1 UID (Captain) *</label>
+          <input type="text" required placeholder="In-Game UID (e.g. 512994821)" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase text-gray-300 mb-1">Player 2, 3, 4 UIDs (Comma separated)</label>
+          <input type="text" placeholder="521992144, 532881924, 519283741" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+        </div>
+
+        <div id="regSuccess" class="hidden p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
+          <i data-lucide="check-circle" class="w-4 h-4 shrink-0"></i>
+          <span><strong>Registration Confirmed!</strong> Your slot is reserved. Custom room ID and password will be sent to your WhatsApp 30 minutes before match start.</span>
+        </div>
+
+        <button type="submit" class="btn-primary w-full !py-3 !rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+          <i data-lucide="check" class="w-4 h-4"></i> Complete Registration
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-sm">&copy; 2026 Tusher Gaming. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+          <a href="/help.html" class="text-text-muted hover:text-cyan-accent transition-colors">Help Center</a>
+          <a href="/shipping.html" class="text-text-muted hover:text-cyan-accent transition-colors">Shipping</a>
+          <a href="/returns.html" class="text-text-muted hover:text-cyan-accent transition-colors">Returns</a>
+          <a href="/warranty.html" class="text-text-muted hover:text-cyan-accent transition-colors">Warranty</a>
+          <a href="/contact.html" class="text-text-muted hover:text-cyan-accent transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    window.openRegisterModal = function(title) {
+      document.getElementById('modalTournamentTitle').textContent = title;
+      const modal = document.getElementById('registerModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    };
+  </script>
+</body>
+</html>

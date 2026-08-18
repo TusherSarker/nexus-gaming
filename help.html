@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Center & 24/7 Support — Tusher Gaming</title>
+  <meta name="description" content="Find instant answers, track top-up redemptions, verify 100% anti-ban security, and get live 24/7 assistance from Tusher Gaming." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
+            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">All Gear</a>
+          <a href="/#categories" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Games</a>
+          <a href="/#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">VIP Passes</a>
+          <a href="/help.html" class="text-sm font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5">Help Center</a>
+          <a href="/contact.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Contact</a>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center gap-4">
+          <button id="search-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Search">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== SEARCH MODAL ===== -->
+  <div id="search-modal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="search-overlay"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 px-4">
+      <div class="glass-strong rounded-2xl p-4 animate-slide-down border border-white/10 shadow-2xl space-y-3">
+        <div class="flex items-center gap-3 px-3 py-2 bg-nexus-800/80 rounded-xl border border-white/10">
+          <i data-lucide="search" class="w-5 h-5 text-cyan-accent"></i>
+          <input id="search-input" type="text" placeholder="Search top-ups, games, gear, guides, orders..." class="flex-1 bg-transparent border-none outline-none text-base text-text-primary placeholder:text-text-muted py-2 font-body">
+          <kbd class="hidden sm:inline-block px-2 py-1 text-[10px] font-mono text-text-muted border border-white/10 rounded">ESC</kbd>
+        </div>
+        <div id="search-results" class="max-h-96 overflow-y-auto space-y-2 pt-1 hidden"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="flex-1 pt-32 pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+      <!-- Hero Header with Glassmorphic Search Banner -->
+      <div class="text-center relative py-12 px-6 sm:px-12 rounded-3xl glass-card border border-white/10 overflow-hidden shadow-2xl">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-accent/15 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent text-xs font-mono mb-4">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> 24/7 Verified Support Hub
+        </div>
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4">
+          How Can We <span class="text-gradient-cyan">Help You?</span>
+        </h1>
+        <p class="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto mb-8">
+          Find instant answers regarding instant digital top-ups, Player ID recharges, 100% Anti-Ban safeguards, hardware delivery, and warranty claims.
+        </p>
+
+        <!-- Live FAQ Search Box -->
+        <div class="max-w-2xl mx-auto relative">
+          <div class="flex items-center gap-3 p-2 bg-nexus-900/90 rounded-2xl border border-white/15 shadow-xl focus-within:border-cyan-accent/60 transition-all">
+            <i data-lucide="help-circle" class="w-6 h-6 text-cyan-accent ml-3 shrink-0"></i>
+            <input type="text" id="faqSearchInput" placeholder="Search questions (e.g., 'How long does UC take?', 'Anti-ban safety', 'Refund')..." 
+              class="w-full bg-transparent border-none outline-none text-white placeholder-gray-400 text-sm sm:text-base py-2">
+            <button class="btn-primary !px-5 !py-2.5 !rounded-xl text-xs shrink-0 font-bold">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Knowledge Base Hubs -->
+      <div>
+        <div class="text-center mb-8">
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white">Browse Help by <span class="text-cyan-accent">Category</span></h2>
+          <p class="text-xs sm:text-sm text-text-muted">Direct solutions for gamers, streamers, and esports competitors</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Card 1 -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-cyan-accent/40 transition-all space-y-4 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-accent/15 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent group-hover:scale-110 transition-transform">
+              <i data-lucide="zap" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-accent transition-colors">Instant Top-Up & Delivery</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Learn how our 0-60 second automated cloud recharge delivers UC, Diamonds, and Coins directly to your Player ID with zero login credentials.
+            </p>
+            <ul class="space-y-2 text-xs text-text-secondary pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> How Player ID Top-Up works</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Average delivery speeds</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Where to find your In-Game UID</li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-cyan-accent/40 transition-all space-y-4 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-accent/15 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-accent transition-colors">100% Anti-Ban Guarantee</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Every coin and voucher is sourced exclusively through publisher-authorized direct API partners (Tencent, Krafton, Garena, Konami, Riot).
+            </p>
+            <ul class="space-y-2 text-xs text-text-secondary pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Authorized distributor receipts</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Zero password requirement</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Account indemnity protection</li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-cyan-accent/40 transition-all space-y-4 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-accent/15 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent group-hover:scale-110 transition-transform">
+              <i data-lucide="credit-card" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-accent transition-colors">Payment Methods & Billing</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              We support bKash, Nagad, Rocket, Upay, Visa, Mastercard, AMEX, and major Crypto (USDT, BTC) with zero hidden transaction surcharges.
+            </p>
+            <ul class="space-y-2 text-xs text-text-secondary pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Mobile Banking (bKash/Nagad)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Instant automated verification</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Invoice & receipt downloads</li>
+            </ul>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-cyan-accent/40 transition-all space-y-4 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-accent/15 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent group-hover:scale-110 transition-transform">
+              <i data-lucide="truck" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-accent transition-colors">Hardware Shipping & Logistics</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Express courier shipping for mechanical keyboards, esports mice, audio headsets, and streaming webcams across Bangladesh & Global.
+            </p>
+            <ul class="space-y-2 text-xs text-text-secondary pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Same-day Dhaka express delivery</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Real-time courier tracking number</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Shockproof protective packaging</li>
+            </ul>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-cyan-accent/40 transition-all space-y-4 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-accent/15 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent group-hover:scale-110 transition-transform">
+              <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-accent transition-colors">Returns & Refunds</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              100% money-back guarantee if a top-up fails, plus a 30-day hassle-free physical gear return policy on defective or unopened hardware.
+            </p>
+            <ul class="space-y-2 text-xs text-text-secondary pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> 1-Hour digital refund approval</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> 30-Day hardware replacement</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Zero restocking penalty fees</li>
+            </ul>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 hover:border-cyan-accent/40 transition-all space-y-4 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-accent/15 border border-cyan-accent/30 flex items-center justify-center text-cyan-accent group-hover:scale-110 transition-transform">
+              <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-accent transition-colors">2-Year Official Warranty</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              All gaming peripherals and esports audio equipment come with a full 2-year official manufacturer replacement warranty.
+            </p>
+            <ul class="space-y-2 text-xs text-text-secondary pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Genuine brand serial registration</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Direct swap for defective units</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-cyan-accent"></i> Fast repair turnaround in 48 hours</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Interactive FAQ Accordion -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 space-y-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white">Frequently Asked <span class="text-cyan-accent">Questions</span></h2>
+            <p class="text-xs sm:text-sm text-text-muted mt-1">Instant verified answers to the most common gamer queries</p>
+          </div>
+          <span class="text-xs font-mono px-3 py-1.5 rounded-lg bg-nexus-800 text-cyan-accent border border-cyan-accent/20">
+            Updated Today
+          </span>
+        </div>
+
+        <div id="faqList" class="space-y-4">
+          
+          <!-- FAQ 1 -->
+          <div class="faq-item rounded-2xl bg-nexus-800/60 border border-white/5 overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-white hover:text-cyan-accent transition-colors">
+              <span>Do I need to give my game password for PUBG UC or Free Fire Diamonds?</span>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-cyan-accent shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content px-5 pb-5 text-sm text-text-secondary leading-relaxed hidden border-t border-white/5 pt-4">
+              <strong>ABSOLUTELY NOT.</strong> Tusher Gaming will <span class="text-cyan-accent font-semibold">NEVER</span> ask for your game password, Facebook login, or Google credentials. All top-ups (PUBG Mobile UC, Free Fire Diamonds, COD Mobile CP, eFootball Coins) are delivered through official direct-to-Player ID API channels. You only provide your numeric In-Game UID and Character Name.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item rounded-2xl bg-nexus-800/60 border border-white/5 overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-white hover:text-cyan-accent transition-colors">
+              <span>How fast is the instant top-up delivered to my game account?</span>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-cyan-accent shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content px-5 pb-5 text-sm text-text-secondary leading-relaxed hidden border-t border-white/5 pt-4">
+              Over 98.6% of digital orders are credited within <strong>0 to 60 seconds</strong> following payment confirmation. During peak publisher maintenance or large season updates, automated delivery may take up to 3 to 5 minutes. You will receive an SMS and email notification the moment the recharge is stamped into your account.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item rounded-2xl bg-nexus-800/60 border border-white/5 overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-white hover:text-cyan-accent transition-colors">
+              <span>What payment methods are supported in Bangladesh and internationally?</span>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-cyan-accent shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content px-5 pb-5 text-sm text-text-secondary leading-relaxed hidden border-t border-white/5 pt-4">
+              We accept <strong>bKash (Automated & Merchant Gateway)</strong>, <strong>Nagad</strong>, <strong>Rocket</strong>, <strong>Upay</strong>, all local and international Visa, Mastercard, AMEX credit/debit cards, and cryptocurrency (USDT TRC20, BTC, ETH). All transactions are encrypted with 256-bit SSL.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item rounded-2xl bg-nexus-800/60 border border-white/5 overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-white hover:text-cyan-accent transition-colors">
+              <span>What happens if I type the wrong Player ID by mistake?</span>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-cyan-accent shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content px-5 pb-5 text-sm text-text-secondary leading-relaxed hidden border-t border-white/5 pt-4">
+              Our automated system performs a real-time character name pre-check before executing the top-up. If the Player ID does not match an active account, the transaction pauses automatically and prompts you to correct it. If an invalid UID was successfully processed due to user error, please contact our 24/7 Live Discord or WhatsApp team immediately with your Order ID.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item rounded-2xl bg-nexus-800/60 border border-white/5 overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-white hover:text-cyan-accent transition-colors">
+              <span>How do physical gaming gear warranties and returns work?</span>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-cyan-accent shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content px-5 pb-5 text-sm text-text-secondary leading-relaxed hidden border-t border-white/5 pt-4">
+              All physical esports peripherals (Vortex K70 Keyboard, Phantom X Mouse, Aurora Pro Headset, etc.) include a <strong>30-Day replacement return window</strong> and a <strong>2-Year official warranty</strong>. If you experience hardware failure or defects, our support team arranges free pickup or replacement dispatch within 48 hours.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quick Support Ticket & Live Channels -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Live Channels (1 Col) -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <h3 class="font-heading text-2xl font-bold text-white">Need Instant Help?</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Connect directly with our 24/7 dedicated game masters on WhatsApp, Discord, or live hotline.
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <a href="https://wa.me/8801700000000" target="_blank" class="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all">
+                <i data-lucide="message-circle" class="w-5 h-5 shrink-0"></i>
+                <div class="text-left">
+                  <div class="font-bold text-sm">WhatsApp Live Desk</div>
+                  <div class="text-[11px] text-gray-400">Response time: ~2 mins</div>
+                </div>
+              </a>
+
+              <a href="#" class="flex items-center gap-3 p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 transition-all">
+                <i data-lucide="disc" class="w-5 h-5 shrink-0"></i>
+                <div class="text-left">
+                  <div class="font-bold text-sm">Discord Community Hub</div>
+                  <div class="text-[11px] text-gray-400">50,000+ Gamers & Staff</div>
+                </div>
+              </a>
+
+              <div class="flex items-center gap-3 p-3.5 rounded-xl bg-nexus-800/80 border border-white/10 text-gray-300">
+                <i data-lucide="mail" class="w-5 h-5 text-cyan-accent shrink-0"></i>
+                <div class="text-left">
+                  <div class="font-bold text-sm">Official Email</div>
+                  <div class="text-[11px] text-gray-400">support@tg.com / admin@tg.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-nexus-950/80 border border-white/5 text-center">
+            <div class="flex items-center justify-center gap-2 text-xs font-mono text-emerald-400 mb-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              All Top-up Gateways Online
+            </div>
+            <div class="text-[11px] text-gray-400">Server Latency: 18ms • System Status: 100%</div>
+          </div>
+        </div>
+
+        <!-- Ticket Form (2 Cols) -->
+        <div class="lg:col-span-2 glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+          <div class="border-b border-white/10 pb-4">
+            <h3 class="font-heading text-2xl font-bold text-white">Submit a Support Ticket</h3>
+            <p class="text-xs sm:text-sm text-text-muted">Fill out this form and our support engineers will review your account immediately.</p>
+          </div>
+
+          <form id="supportTicketForm" class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('ticketSuccessMsg').classList.remove('hidden'); this.reset();">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono uppercase text-gray-300 mb-1.5">Your Full Name *</label>
+                <input type="text" required placeholder="Tusher Sarker" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-gray-300 mb-1.5">Email Address *</label>
+                <input type="email" required placeholder="gamer@example.com" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent transition-all">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono uppercase text-gray-300 mb-1.5">Game / Issue Category *</label>
+                <select class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent transition-all">
+                  <option>PUBG Mobile UC Top-Up</option>
+                  <option>Free Fire Diamonds Top-Up</option>
+                  <option>Call of Duty: Mobile CP</option>
+                  <option>eFootball Coins Top-Up</option>
+                  <option>Hardware Gear & Shipping</option>
+                  <option>Warranty / RMA Claim</option>
+                  <option>Billing & Payment Issue</option>
+                  <option>Other Inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-gray-300 mb-1.5">Order ID or Player UID (Optional)</label>
+                <input type="text" placeholder="e.g. NXS-98421 or 512399824" class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent transition-all">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono uppercase text-gray-300 mb-1.5">Describe Your Issue *</label>
+              <textarea rows="4" required placeholder="Please provide details about your recharge, delivery status, or hardware query..." class="w-full p-3 rounded-xl bg-nexus-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent transition-all"></textarea>
+            </div>
+
+            <div id="ticketSuccessMsg" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 shrink-0"></i>
+              <span><strong>Ticket Submitted Successfully!</strong> Ticket #TG-8829 has been logged. Our live team will reply to your email within 15 minutes.</span>
+            </div>
+
+            <button type="submit" class="btn-primary w-full !py-3.5 !rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i> Submit Priority Ticket
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-sm">&copy; 2026 Tusher Gaming. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+          <a href="/help.html" class="text-cyan-accent hover:underline">Help Center</a>
+          <a href="/shipping.html" class="text-text-muted hover:text-cyan-accent transition-colors">Shipping</a>
+          <a href="/returns.html" class="text-text-muted hover:text-cyan-accent transition-colors">Returns</a>
+          <a href="/warranty.html" class="text-text-muted hover:text-cyan-accent transition-colors">Warranty</a>
+          <a href="/contact.html" class="text-text-muted hover:text-cyan-accent transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    // Simple Accordion Handler
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector('.faq-icon');
+          const isHidden = content.classList.contains('hidden');
+          
+          // Toggle current
+          if (isHidden) {
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+          } else {
+            content.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+
+      // Simple FAQ Search Filter
+      const faqInput = document.getElementById('faqSearchInput');
+      if (faqInput) {
+        faqInput.addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase().trim();
+          document.querySelectorAll('.faq-item').forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(q) ? 'block' : 'none';
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

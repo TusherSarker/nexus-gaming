@@ -139,14 +139,15 @@ if (fs.existsSync(distPath)) {
     if (req.path.startsWith('/api') || req.path.startsWith('/admin') || req.path.startsWith('/uploads') || req.path.startsWith('/products') || req.path.startsWith('/categories') || req.path.startsWith('/characters')) {
       return next();
     }
-    if (req.path === '/cart' || req.path === '/cart.html') {
-      return res.sendFile(path.join(distPath, 'cart.html'));
+    const cleanPath = req.path.replace(/^\//, '');
+    const directFile = path.join(distPath, cleanPath);
+    const htmlFile = path.join(distPath, `${cleanPath}.html`);
+
+    if (cleanPath && fs.existsSync(directFile) && fs.statSync(directFile).isFile()) {
+      return res.sendFile(directFile);
     }
-    if (req.path === '/user-dashboard' || req.path === '/user-dashboard.html') {
-      return res.sendFile(path.join(distPath, 'user-dashboard.html'));
-    }
-    if (req.path === '/product-details' || req.path === '/product-details.html') {
-      return res.sendFile(path.join(distPath, 'product-details.html'));
+    if (cleanPath && fs.existsSync(htmlFile) && fs.statSync(htmlFile).isFile()) {
+      return res.sendFile(htmlFile);
     }
     res.sendFile(path.join(distPath, 'index.html'));
   });
