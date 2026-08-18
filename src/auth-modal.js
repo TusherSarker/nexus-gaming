@@ -1,6 +1,8 @@
 // ===== Nexus Gaming Customer Auth Modal & Session Manager =====
+import { initUniversalMobileNav, updateMobileUserUI } from './mobile-nav.js';
 
 export function initAuthModal() {
+  initUniversalMobileNav();
   if (document.getElementById('nexusAuthModal')) return;
 
   const modalHtml = `
@@ -378,6 +380,7 @@ export function updateNavbarUserUI() {
   if (!container) return;
 
   function render(u) {
+    if (typeof updateMobileUserUI === 'function') updateMobileUserUI();
     if (!container) return;
     if (u) {
       const avatar = u.avatar || 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=300&q=80';

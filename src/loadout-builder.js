@@ -2,6 +2,8 @@
 import './style.css';
 import { soundFX, progression } from './xp-engine.js';
 import { addToCart, getCartCount } from './cart-store.js';
+import { initUniversalMobileNav } from './mobile-nav.js';
+import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 
 // Available Equipment Catalog for Loadout Slots
 const LOADOUT_CATALOG = {
@@ -49,6 +51,10 @@ const testedRGB = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
+
+  initUniversalMobileNav();
+  initAuthModal();
+  updateNavbarUserUI();
 
   initRGBThemeController();
   initSwitchSimulator();

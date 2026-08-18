@@ -2,6 +2,8 @@
 import './style.css';
 import { soundFX, progression } from './xp-engine.js';
 import { getCartCount } from './cart-store.js';
+import { initUniversalMobileNav } from './mobile-nav.js';
+import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 
 // Game Yaw Ratios (Rotational degrees per count)
 const YAW_RATIOS = {
@@ -29,6 +31,10 @@ let recoilExpansion = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
+
+  initUniversalMobileNav();
+  initAuthModal();
+  updateNavbarUserUI();
 
   crosshairCanvas = document.getElementById('crosshairCanvas');
   if (crosshairCanvas) {

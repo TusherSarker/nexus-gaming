@@ -2,6 +2,8 @@
 import './style.css';
 import { soundFX, progression } from './xp-engine.js';
 import { getCartCount } from './cart-store.js';
+import { initUniversalMobileNav } from './mobile-nav.js';
+import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 
 // 7-Day Streak Rewards Configuration
 const STREAK_REWARDS = [
@@ -33,6 +35,10 @@ let wheelCanvas, wheelCtx;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
+
+  initUniversalMobileNav();
+  initAuthModal();
+  updateNavbarUserUI();
 
   wheelCanvas = document.getElementById('wheelCanvas');
   if (wheelCanvas) {

@@ -3,6 +3,7 @@ import { addToCart, getCartCount, registerProduct, PRODUCTS } from './cart-store
 import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 import { initLightbox, openLightbox } from './lightbox.js';
 import { progression } from './xp-engine.js';
+import { initUniversalMobileNav } from './mobile-nav.js';
 
 // State
 let isAnnualBilling = false;
@@ -17,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   progression.updateUI();
   initAuthModal();
   updateNavbarUserUI();
+  initUniversalMobileNav();
   initLightbox();
   initNavbar();
-  initMobileMenu();
   initSearchModal();
   initHeroCharacters();
   initCategoryFilters();
@@ -449,38 +450,6 @@ function initNavbar() {
 
     lastScroll = currentScroll;
   }, { passive: true });
-}
-
-// ===== MOBILE MENU =====
-function initMobileMenu() {
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const closeBtn = document.getElementById('mobile-close-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const drawer = document.getElementById('mobile-drawer');
-  const overlay = document.getElementById('mobile-overlay');
-  if (!menuBtn || !mobileMenu) return;
-
-  function openMenu() {
-    mobileMenu.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      drawer.style.transform = 'translateX(0)';
-    });
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    drawer.style.transform = 'translateX(100%)';
-    document.body.style.overflow = '';
-    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-  }
-
-  menuBtn.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
-  overlay.addEventListener('click', closeMenu);
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
 }
 
 // ===== UNIVERSAL MULTI-CATEGORY SEARCH ENGINE =====

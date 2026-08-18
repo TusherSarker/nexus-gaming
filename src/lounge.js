@@ -2,6 +2,8 @@
 import './style.css';
 import { soundFX, progression } from './xp-engine.js';
 import { getCartCount } from './cart-store.js';
+import { initUniversalMobileNav } from './mobile-nav.js';
+import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 
 // Pre-seeded verified squad posts
 const DEFAULT_SQUAD_POSTS = [
@@ -31,6 +33,10 @@ let soundPlayCount = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
+
+  initUniversalMobileNav();
+  initAuthModal();
+  updateNavbarUserUI();
 
   renderSquadFeed();
   renderSoundboard();

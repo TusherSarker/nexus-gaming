@@ -2,6 +2,8 @@
 import './style.css';
 import { soundFX, progression } from './xp-engine.js';
 import { getCartCount } from './cart-store.js';
+import { initUniversalMobileNav } from './mobile-nav.js';
+import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 
 let canvas, ctx;
 let currentMode = 'gridshot';
@@ -53,6 +55,10 @@ const HIGH_SCORES = {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
+
+  initUniversalMobileNav();
+  initAuthModal();
+  updateNavbarUserUI();
 
   canvas = document.getElementById('arcadeCanvas');
   if (!canvas) return;
