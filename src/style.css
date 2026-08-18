@@ -217,6 +217,74 @@
     border: 1px solid rgba(255, 255, 255, 0.16);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   }
+  /* Ultra-Refined Floating Navbar & Dropdowns */
+  .floating-nav-capsule {
+    background: rgba(11, 13, 19, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .floating-nav-capsule.nav-scrolled {
+    background: rgba(8, 10, 15, 0.94);
+    border-color: rgba(0, 240, 255, 0.22);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 240, 255, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px) scale(0.96);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(14, 17, 26, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 240, 255, 0.08);
+    border-radius: 1.25rem;
+    padding: 0.75rem;
+    z-index: 60;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.85rem;
+    transition: all 0.18s ease;
+    color: #9ca3af;
+  }
+
+  .nav-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+
+  .nav-dropdown-item:hover .item-icon {
+    color: #00f0ff;
+    transform: scale(1.1);
+  }
+
+  .nav-dropdown-item .item-icon {
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
 }
 
 @keyframes sparkleStar {

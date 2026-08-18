@@ -11,30 +11,40 @@
   <link rel="stylesheet" href="./src/style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-nexus-950 text-text-primary font-body antialiased min-h-screen flex flex-col">
-
-  <!-- Navbar -->
-  <header class="sticky top-0 z-50 bg-nexus-900/80 backdrop-blur-xl border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center shadow-lg shadow-cyan-accent/20">
-          <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+<body class="bg-nexus-950 text-text-primary font-body antialiased min-h-screen flex flex-col">  <!-- Top Header Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 pt-3 px-3 sm:px-6 transition-all duration-300 pointer-events-none">
+    <div class="max-w-7xl mx-auto rounded-2xl floating-nav-capsule px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between pointer-events-auto">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-accent via-pink-500 to-amber-400 p-[1.5px] transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md">
+          <div class="w-full h-full bg-nexus-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-heading font-bold text-cyan-accent text-xl group-hover:scale-110 transition-transform">T</span>
+          </div>
         </div>
-        <span class="text-2xl font-bold font-heading tracking-wider bg-gradient-to-r from-white via-gray-200 to-cyan-accent bg-clip-text text-transparent">TUSHER GAMING</span>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-heading font-bold text-lg sm:text-xl tracking-wider text-white">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+            <span class="hidden sm:inline-block px-1.5 py-0.5 rounded bg-cyan-accent/10 border border-cyan-accent/30 text-[8px] font-mono text-cyan-accent font-bold">DASHBOARD</span>
+          </div>
+          <span class="text-[9px] font-mono text-text-muted tracking-widest uppercase hidden sm:block">Personal Esports Vault</span>
+        </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6">
-        <a href="/" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors uppercase">Storefront</a>
-        <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors uppercase">Gaming Gear</a>
-        <a href="/#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors uppercase">Subscriptions</a>
-        <a href="/cart.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors uppercase">Loadout Cart</a>
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="/" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all">Storefront</a>
+        <a href="/#products" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all">Gaming Gear</a>
+        <a href="/arcade.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-cyan-accent hover:text-cyan-accent hover:bg-cyan-accent/10 transition-all flex items-center gap-1">
+          <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade
+        </a>
+        <a href="/rewards.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+          <i data-lucide="gift" class="w-3.5 h-3.5"></i> Rewards
+        </a>
       </nav>
 
-      <div class="flex items-center gap-3">
-        <a href="/cart.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-text-primary border border-white/5 transition-colors">
-          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+      <div class="flex items-center gap-2.5">
+        <a href="/cart.html" class="p-2.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 text-cyan-accent transition-all relative group" aria-label="Cart">
+          <i data-lucide="shopping-bag" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
         </a>
-        <button onclick="window.nexusCustomerLogout()" class="text-xs font-semibold px-3 py-2 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5">
+        <button onclick="window.nexusCustomerLogout()" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5">
           <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Sign Out
         </button>
       </div>

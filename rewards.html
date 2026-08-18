@@ -18,59 +18,70 @@
 </head>
 <body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
 
-  <!-- ===== NAVBAR ===== -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
-        <a href="/" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
-            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+  <!-- ===== REFINED FLOATING GLASS NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 pt-3 px-3 sm:px-6 transition-all duration-300 pointer-events-none">
+    <div class="max-w-7xl mx-auto rounded-2xl floating-nav-capsule px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between pointer-events-auto">
+      
+      <!-- Brand Logo & Crest -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-accent via-pink-500 to-amber-400 p-[1.5px] transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md">
+          <div class="w-full h-full bg-nexus-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-heading font-bold text-cyan-accent text-xl group-hover:scale-110 transition-transform">T</span>
           </div>
-          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-heading font-bold text-lg sm:text-xl tracking-wider text-white">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+            <span class="hidden sm:inline-block px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-[8px] font-mono text-amber-400 font-bold">REWARDS</span>
+          </div>
+          <span class="text-[9px] font-mono text-text-muted tracking-widest uppercase hidden sm:block">Daily Crate & Mystery Wheel Vault</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        <a href="/arcade.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+          <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade Arena
+        </a>
+        <a href="/loadout-builder.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 3D Loadout Lab
+        </a>
+        <a href="/rewards.html" class="px-3 py-2 rounded-xl text-xs font-bold text-amber-400 bg-amber-500/10 flex items-center gap-1">
+          <i data-lucide="gift" class="w-3.5 h-3.5"></i> Daily Rewards
+        </a>
+        <a href="/sens-converter.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+          <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Sens Matrix
+        </a>
+        <a href="/lounge.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i> Squad Lounge
+        </a>
+      </nav>
+
+      <!-- Right User Progress Bar & Cart -->
+      <div class="flex items-center gap-2.5">
+        <!-- Gamer XP Pill -->
+        <a href="/rewards.html" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 transition-all text-xs font-mono group" title="Click to view Level & Rewards">
+          <span class="w-2 h-2 rounded-full bg-cyan-accent animate-pulse"></span>
+          <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+          <div class="w-12 h-1.5 rounded-full bg-nexus-950 overflow-hidden">
+            <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
+          </div>
+          <span class="user-xp-display text-gray-400">0 XP</span>
         </a>
 
-        <!-- Desktop Nav Links -->
-        <div class="hidden lg:flex items-center gap-6">
-          <a href="/arcade.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
-            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade Arena
-          </a>
-          <a href="/loadout-builder.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
-            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 3D Loadout Lab
-          </a>
-          <a href="/rewards.html" class="text-xs font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5 flex items-center gap-1.5">
-            <i data-lucide="gift" class="w-3.5 h-3.5"></i> Daily Rewards
-          </a>
-          <a href="/sens-converter.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
-            <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Sens Matrix
-          </a>
-          <a href="/lounge.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
-            <i data-lucide="users" class="w-3.5 h-3.5"></i> Squad Lounge
-          </a>
-        </div>
+        <!-- Cart -->
+        <a href="/cart.html" class="p-2.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 text-cyan-accent transition-all relative group" aria-label="Cart">
+          <i data-lucide="shopping-bag" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+          <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-md">0</span>
+        </a>
 
-        <!-- Right User Progress Bar & Cart -->
-        <div class="flex items-center gap-4">
-          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-800/80 border border-white/10 text-xs font-mono">
-            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
-            <div class="w-16 h-1.5 rounded-full bg-nexus-900 overflow-hidden">
-              <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
-            </div>
-            <span class="user-xp-display text-gray-400">0 XP</span>
-          </div>
-
-          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
-          </a>
-
-          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
-          </a>
-        </div>
+        <a href="/" class="p-2 rounded-xl bg-nexus-900/90 border border-white/10 text-text-secondary hover:text-cyan-accent transition-all" aria-label="Home">
+          <i data-lucide="home" class="w-4 h-4"></i>
+        </a>
       </div>
+
     </div>
-  </nav>
+  </header>
 
   <!-- ===== MAIN REWARDS VAULT ===== -->
   <main class="flex-1 pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12">

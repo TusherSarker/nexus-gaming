@@ -424,24 +424,23 @@ async function fetchLiveSubscriptions() {
 // ===== NAVBAR SCROLL EFFECT =====
 function initNavbar() {
   const navbar = document.getElementById('navbar');
+  const capsule = document.querySelector('.floating-nav-capsule');
   if (!navbar) return;
-  let lastScroll = 0;
+  let lastScroll = window.scrollY;
 
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    if (currentScroll > 60) {
-      navbar.classList.add('glass-strong', 'shadow-card');
-      navbar.style.borderBottom = '1px solid rgba(255,255,255,0.03)';
+    if (currentScroll > 40) {
+      if (capsule) capsule.classList.add('nav-scrolled');
     } else {
-      navbar.classList.remove('glass-strong', 'shadow-card');
-      navbar.style.borderBottom = 'none';
+      if (capsule) capsule.classList.remove('nav-scrolled');
     }
 
-    if (currentScroll > 400) {
-      if (currentScroll > lastScroll && currentScroll - lastScroll > 10) {
-        navbar.style.transform = 'translateY(-100%)';
-      } else if (lastScroll - currentScroll > 10) {
+    if (currentScroll > 150) {
+      if (currentScroll > lastScroll && currentScroll - lastScroll > 8) {
+        navbar.style.transform = 'translateY(-120%)';
+      } else if (lastScroll - currentScroll > 8) {
         navbar.style.transform = 'translateY(0)';
       }
     } else {
@@ -449,7 +448,7 @@ function initNavbar() {
     }
 
     lastScroll = currentScroll;
-  });
+  }, { passive: true });
 }
 
 // ===== MOBILE MENU =====

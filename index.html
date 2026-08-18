@@ -18,96 +18,310 @@
 </head>
 <body class="bg-nexus-900 text-text-primary font-body">
 
-  <!-- ===== NAVBAR ===== -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
-            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+  <!-- ===== REFINED FLOATING GLASS NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 pt-3 px-3 sm:px-6 transition-all duration-300 pointer-events-none">
+    <div class="max-w-7xl mx-auto rounded-2xl floating-nav-capsule px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between pointer-events-auto">
+      
+      <!-- Brand Logo & Crest -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-accent via-pink-500 to-amber-400 p-[1.5px] transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md">
+          <div class="w-full h-full bg-nexus-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-heading font-bold text-cyan-accent text-xl group-hover:scale-110 transition-transform">T</span>
           </div>
-          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-heading font-bold text-lg sm:text-xl tracking-wider text-white">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+            <span class="hidden sm:inline-block px-1.5 py-0.5 rounded bg-cyan-accent/10 border border-cyan-accent/30 text-[8px] font-mono text-cyan-accent font-bold">PRO</span>
+          </div>
+          <span class="text-[9px] font-mono text-text-muted tracking-widest uppercase hidden sm:block">Esports Top-Up & Gear</span>
+        </div>
+      </a>
+
+      <!-- Desktop Categorized Dropdowns Nav -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        
+        <!-- 1. Store Dropdown -->
+        <div class="nav-dropdown">
+          <button class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+            <span>Store & Top-Ups</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400"></i>
+          </button>
+          <div class="nav-dropdown-menu w-64">
+            <a href="#categories" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">20 Game Top-Ups</div>
+                <div class="text-[10px] text-gray-400">PUBG, Free Fire, COD, eFootball</div>
+              </div>
+            </a>
+            <a href="#products" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/30 text-magenta-accent flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Pro Esports Hardware</div>
+                <div class="text-[10px] text-gray-400">Keyboards, Mice, Headsets</div>
+              </div>
+            </a>
+            <a href="#subscriptions" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="crown" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">VIP Game Passes</div>
+                <div class="text-[10px] text-gray-400">Starter, Pro & Elite Cloud</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Play & Build Dropdown -->
+        <div class="nav-dropdown">
+          <button class="px-3 py-2 rounded-xl text-xs font-semibold text-cyan-accent hover:text-cyan-accent hover:bg-cyan-accent/10 transition-all flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-accent animate-pulse"></span>
+            <span>Play & Build</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-cyan-accent"></i>
+          </button>
+          <div class="nav-dropdown-menu w-72">
+            <a href="/arcade.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="crosshair" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs flex items-center gap-1.5">
+                  <span>Aim & Reflex Arcade</span>
+                  <span class="px-1.5 py-0.2 rounded bg-cyan-accent/20 text-cyan-accent text-[9px] font-mono">10% Promo</span>
+                </div>
+                <div class="text-[10px] text-gray-400">5 Playable Canvas Game Modes</div>
+              </div>
+            </a>
+            <a href="/loadout-builder.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-magenta-accent/10 border border-magenta-accent/30 text-magenta-accent flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">3D RGB Loadout Lab</div>
+                <div class="text-[10px] text-gray-400">Battle Station Studio & Switch Sounds</div>
+              </div>
+            </a>
+            <a href="/rewards.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="gift" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Daily Rewards Vault</div>
+                <div class="text-[10px] text-gray-400">3D Crate Unboxing & Spin Wheel</div>
+              </div>
+            </a>
+            <a href="/lounge.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="users" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Squad Lounge & Soundboard</div>
+                <div class="text-[10px] text-gray-400">Find Teammates & Hype SFX</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Esports Suite Dropdown -->
+        <div class="nav-dropdown">
+          <button class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+            <span>Esports Suite</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400"></i>
+          </button>
+          <div class="nav-dropdown-menu w-64">
+            <a href="/sens-converter.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="sliders" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Sensitivity Matrix</div>
+                <div class="text-[10px] text-gray-400">8-Game 360° Converter & Reticles</div>
+              </div>
+            </a>
+            <a href="/pro-setups.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="target" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Pro Player Setups</div>
+                <div class="text-[10px] text-gray-400">Mortal, Nobru, TenZ Configs</div>
+              </div>
+            </a>
+            <a href="/tournaments.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-gold-accent/10 border border-gold-accent/30 text-gold-accent flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="trophy" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Tournaments & Scrims</div>
+                <div class="text-[10px] text-gray-400">100K BDT Cash Prize Cups</div>
+              </div>
+            </a>
+            <a href="/blog.html" class="nav-dropdown-item">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center shrink-0 item-icon">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <div class="font-bold text-white text-xs">Esports Meta Blog</div>
+                <div class="text-[10px] text-gray-400">PUBG 3.5, Free Fire OB46 Meta</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Support Dropdown -->
+        <div class="nav-dropdown">
+          <button class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+            <span>Support</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400"></i>
+          </button>
+          <div class="nav-dropdown-menu w-60">
+            <a href="/help.html" class="nav-dropdown-item">
+              <i data-lucide="help-circle" class="w-4 h-4 text-cyan-accent item-icon"></i>
+              <span class="font-bold text-white text-xs">Help Center & FAQ</span>
+            </a>
+            <a href="/shipping.html" class="nav-dropdown-item">
+              <i data-lucide="truck" class="w-4 h-4 text-emerald-400 item-icon"></i>
+              <span class="font-bold text-white text-xs">0-60s Delivery Info</span>
+            </a>
+            <a href="/returns.html" class="nav-dropdown-item">
+              <i data-lucide="rotate-ccw" class="w-4 h-4 text-amber-400 item-icon"></i>
+              <span class="font-bold text-white text-xs">Returns & Refunds</span>
+            </a>
+            <a href="/warranty.html" class="nav-dropdown-item">
+              <i data-lucide="shield-check" class="w-4 h-4 text-blue-400 item-icon"></i>
+              <span class="font-bold text-white text-xs">100% Anti-Ban Warranty</span>
+            </a>
+            <a href="/contact.html" class="nav-dropdown-item">
+              <i data-lucide="message-circle" class="w-4 h-4 text-magenta-accent item-icon"></i>
+              <span class="font-bold text-white text-xs">24/7 WhatsApp Desk</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Admin Direct Link -->
+        <a href="/admin/" target="_blank" class="px-2.5 py-1 rounded-lg bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent hover:bg-cyan-accent hover:text-nexus-900 transition-all text-[11px] font-mono font-bold uppercase tracking-wider flex items-center gap-1">
+          <i data-lucide="shield" class="w-3 h-3"></i> Admin
+        </a>
+      </nav>
+
+      <!-- Right Action Hub -->
+      <div class="flex items-center gap-2.5">
+        
+        <!-- Gamer XP & Level Pill -->
+        <a href="/rewards.html" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 transition-all text-xs font-mono group" title="Click to view Gamer Level & Rewards">
+          <span class="w-2 h-2 rounded-full bg-cyan-accent animate-pulse"></span>
+          <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+          <div class="w-12 h-1.5 rounded-full bg-nexus-950 overflow-hidden">
+            <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
+          </div>
+          <span class="user-xp-display text-gray-400">0 XP</span>
         </a>
 
-        <!-- Desktop Nav Links -->
-        <div class="hidden lg:flex items-center gap-6">
-          <a href="#products" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Gaming Gear</a>
-          <a href="#categories" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Games</a>
-          <a href="/arcade.html" class="text-xs font-bold text-cyan-accent hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1">
-            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade
-          </a>
-          <a href="/loadout-builder.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1">
-            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Loadout Lab
-          </a>
-          <a href="/rewards.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1">
-            <i data-lucide="gift" class="w-3.5 h-3.5"></i> Rewards
-          </a>
-          <a href="/sens-converter.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Sens Matrix</a>
-          <a href="/lounge.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Squad Lounge</a>
-          <a href="/admin/" target="_blank" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all uppercase flex items-center gap-1">
-            <i data-lucide="shield" class="w-3 h-3"></i> Admin
-          </a>
-        </div>
+        <!-- Universal Search Trigger -->
+        <button id="search-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 text-text-secondary hover:text-white transition-all text-xs font-mono group" aria-label="Search">
+          <i data-lucide="search" class="w-4 h-4 text-cyan-accent group-hover:scale-110 transition-transform"></i>
+          <span class="hidden xl:inline text-gray-400">Search anything...</span>
+          <kbd class="hidden sm:inline-block px-1.5 py-0.5 rounded bg-nexus-800 text-[9px] text-gray-400 border border-white/10">Ctrl K</kbd>
+        </button>
 
-        <!-- Right Actions -->
-        <div class="flex items-center gap-3">
-          <!-- Gamer XP Pill -->
-          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-800/80 border border-white/10 text-xs font-mono">
-            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
-            <div class="w-14 h-1.5 rounded-full bg-nexus-900 overflow-hidden">
-              <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
-            </div>
-            <span class="user-xp-display text-gray-400">0 XP</span>
-          </div>
+        <!-- Cart Indicator -->
+        <a href="/cart.html" id="cart-btn" class="p-2.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 text-cyan-accent transition-all relative group" aria-label="Cart">
+          <i data-lucide="shopping-bag" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+          <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-md">0</span>
+        </a>
 
-          <!-- Search -->
-          <button id="search-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Search">
-            <i data-lucide="search" class="w-5 h-5"></i>
-          </button>
-          <!-- Cart -->
-          <a href="/cart.html" id="cart-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
-          </a>
-          <!-- User Container (Dynamic: Sign In or Avatar Profile) -->
-          <div id="navbarUserContainer" class="flex items-center">
-            <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all flex items-center gap-1.5">
-              <i data-lucide="user" class="w-3.5 h-3.5"></i> Sign In
-            </button>
-          </div>
-          <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-text-secondary hover:text-cyan-accent transition-all duration-300" aria-label="Menu">
-            <i data-lucide="menu" class="w-6 h-6"></i>
+        <!-- User Profile / Auth Container -->
+        <div id="navbarUserContainer" class="flex items-center">
+          <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all flex items-center gap-1.5">
+            <i data-lucide="user" class="w-3.5 h-3.5"></i> Sign In
           </button>
         </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-nexus-900/90 border border-white/10 text-text-secondary hover:text-cyan-accent transition-all" aria-label="Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
       </div>
+
     </div>
 
     <!-- Mobile Menu Drawer -->
-    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-50 hidden">
-      <div id="mobile-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-      <div id="mobile-drawer" class="absolute right-0 top-0 h-full w-72 bg-nexus-850 border-l border-white/5 transform translate-x-full transition-transform duration-300 ease-out p-6">
-        <button id="mobile-close-btn" class="absolute top-5 right-5 p-2 text-text-secondary hover:text-cyan-accent" aria-label="Close menu">
-          <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-        <div class="mt-16 flex flex-col gap-6">
-          <a href="#products" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors">Gaming Gear</a>
-          <a href="#subscriptions" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors">Subscriptions</a>
-          <a href="#categories" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors">Categories</a>
-          <a href="/cart.html" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors flex items-center gap-2">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i> View Loadout
-          </a>
-          <a href="/user-dashboard.html" class="text-lg font-heading font-semibold text-text-primary hover:text-cyan-accent transition-colors flex items-center gap-2">
-            <i data-lucide="user" class="w-5 h-5"></i> My Gamer Dashboard
-          </a>
-          <a href="/admin/" target="_blank" class="text-lg font-heading font-semibold text-cyan-accent hover:underline flex items-center gap-2">
-            <i data-lucide="shield" class="w-5 h-5"></i> Admin Portal
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-50 hidden pointer-events-auto">
+      <div id="mobile-overlay" class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+      <div id="mobile-drawer" class="absolute right-0 top-0 h-full w-80 bg-nexus-950 border-l border-white/10 transform translate-x-full transition-transform duration-300 ease-out p-6 overflow-y-auto space-y-6">
+        
+        <div class="flex items-center justify-between border-b border-white/5 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="font-heading font-bold text-lg text-white">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+          </div>
+          <button id="mobile-close-btn" class="p-2 text-gray-400 hover:text-white" aria-label="Close menu">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Gamer XP Pill -->
+        <div class="p-3 rounded-2xl bg-nexus-900 border border-cyan-accent/20 space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono">
+            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+            <span class="user-xp-display text-gray-400">0 XP</span>
+          </div>
+          <div class="w-full h-1.5 rounded-full bg-nexus-950 overflow-hidden">
+            <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0"></div>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-sm font-mono">
+          <div class="text-[10px] text-cyan-accent uppercase tracking-widest font-bold">Play & Build</div>
+          <div class="space-y-2">
+            <a href="/arcade.html" class="flex items-center gap-2.5 p-2 rounded-xl bg-nexus-900/60 text-white hover:text-cyan-accent">
+              <i data-lucide="crosshair" class="w-4 h-4 text-cyan-accent"></i> Aim & Reflex Arcade
+            </a>
+            <a href="/loadout-builder.html" class="flex items-center gap-2.5 p-2 rounded-xl bg-nexus-900/60 text-white hover:text-cyan-accent">
+              <i data-lucide="cpu" class="w-4 h-4 text-magenta-accent"></i> 3D Loadout Studio
+            </a>
+            <a href="/rewards.html" class="flex items-center gap-2.5 p-2 rounded-xl bg-nexus-900/60 text-white hover:text-cyan-accent">
+              <i data-lucide="gift" class="w-4 h-4 text-amber-400"></i> Daily Rewards Vault
+            </a>
+            <a href="/sens-converter.html" class="flex items-center gap-2.5 p-2 rounded-xl bg-nexus-900/60 text-white hover:text-cyan-accent">
+              <i data-lucide="sliders" class="w-4 h-4 text-emerald-400"></i> Sensitivity Matrix
+            </a>
+            <a href="/lounge.html" class="flex items-center gap-2.5 p-2 rounded-xl bg-nexus-900/60 text-white hover:text-cyan-accent">
+              <i data-lucide="users" class="w-4 h-4 text-blue-400"></i> Squad Lounge & SFX
+            </a>
+          </div>
+
+          <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold pt-2 border-t border-white/5">Store & Community</div>
+          <div class="space-y-2">
+            <a href="#categories" class="flex items-center gap-2.5 p-2 text-gray-300 hover:text-white">
+              <i data-lucide="gamepad-2" class="w-4 h-4 text-cyan-accent"></i> 20 Game Top-Ups
+            </a>
+            <a href="#products" class="flex items-center gap-2.5 p-2 text-gray-300 hover:text-white">
+              <i data-lucide="package" class="w-4 h-4 text-cyan-accent"></i> Gaming Hardware
+            </a>
+            <a href="/tournaments.html" class="flex items-center gap-2.5 p-2 text-gray-300 hover:text-white">
+              <i data-lucide="trophy" class="w-4 h-4 text-gold-accent"></i> Tournaments & Scrims
+            </a>
+            <a href="/help.html" class="flex items-center gap-2.5 p-2 text-gray-300 hover:text-white">
+              <i data-lucide="help-circle" class="w-4 h-4 text-cyan-accent"></i> Help Center & FAQ
+            </a>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/5 space-y-2">
+          <a href="/admin/" target="_blank" class="btn-primary w-full !py-2.5 !rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+            <i data-lucide="shield" class="w-4 h-4"></i> Admin Portal
           </a>
         </div>
+
       </div>
     </div>
-  </nav>
+  </header>
 
   <!-- ===== SEARCH MODAL ===== -->
   <div id="search-modal" class="fixed inset-0 z-[60] hidden">
