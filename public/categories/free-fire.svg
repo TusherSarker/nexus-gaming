@@ -1,42 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
-  <defs>
-    <linearGradient id="ff-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#450a0a"/>
-      <stop offset="50%" stop-color="#1c1917"/>
-      <stop offset="100%" stop-color="#292524"/>
-    </linearGradient>
-    <linearGradient id="ff-flame" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F97316"/>
-      <stop offset="50%" stop-color="#EF4444"/>
-      <stop offset="100%" stop-color="#DC2626"/>
-    </linearGradient>
-    <linearGradient id="ff-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE047"/>
-      <stop offset="100%" stop-color="#F59E0B"/>
-    </linearGradient>
-    <filter id="ff-glow">
-      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#EF4444" flood-opacity="0.6"/>
-    </filter>
-  </defs>
-  <rect width="200" height="200" rx="36" fill="url(#ff-bg)"/>
-  <rect x="3" y="3" width="194" height="194" rx="33" fill="none" stroke="url(#ff-flame)" stroke-width="2" stroke-opacity="0.4"/>
-  
-  <!-- Burning Knife & Fire Crest -->
-  <g filter="url(#ff-glow)">
-    <!-- Fire Flame Aura -->
-    <path d="M100 28 C115 50 145 68 145 98 C145 125 125 142 100 145 C75 142 55 125 55 98 C55 68 85 50 100 28 Z" fill="url(#ff-flame)" opacity="0.25"/>
-    <path d="M100 45 C110 62 130 78 130 100 C130 118 115 132 100 134 C85 132 70 118 70 100 C70 78 90 62 100 45 Z" fill="url(#ff-flame)"/>
-    <!-- Inner Golden Core Flame -->
-    <path d="M100 65 C106 78 116 90 116 104 C116 116 108 124 100 126 C92 124 84 116 84 104 C84 90 94 78 100 65 Z" fill="url(#ff-gold)"/>
-    <!-- Dagger Silhouette -->
-    <polygon points="100,50 104,95 100,115 96,95" fill="#FFFFFF"/>
-    <rect x="92" y="115" width="16" height="4" rx="2" fill="#FBBF24"/>
-    <rect x="97" y="119" width="6" height="12" rx="1" fill="#78716c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" fill="none">
+  <!-- FREE text with white stencil aesthetic -->
+  <g fill="#ffffff">
+    <!-- F -->
+    <path d="M 30 30 L 110 30 L 110 65 L 70 65 L 70 90 L 105 90 L 105 125 L 70 125 L 70 170 L 30 170 Z" />
+    <!-- R -->
+    <path d="M 125 30 L 195 30 C 215 30 225 45 225 68 C 225 85 215 95 200 100 L 230 170 L 185 170 L 160 115 L 160 170 L 125 170 Z M 160 62 L 160 85 L 190 85 C 196 85 200 80 200 73 C 200 66 196 62 190 62 Z" />
+    <!-- E -->
+    <path d="M 240 30 L 315 30 L 315 65 L 275 65 L 275 85 L 310 85 L 310 115 L 275 115 L 275 135 L 315 135 L 315 170 L 240 170 Z" />
+    <!-- E -->
+    <path d="M 330 30 L 405 30 L 405 65 L 365 65 L 365 85 L 400 85 L 400 115 L 365 115 L 365 135 L 405 135 L 405 170 L 330 170 Z" />
+    <!-- F -->
+    <path d="M 435 30 L 515 30 L 515 65 L 475 65 L 475 90 L 510 90 L 510 125 L 475 125 L 475 170 L 435 170 Z" />
   </g>
   
-  <!-- FREE FIRE Text Banner -->
-  <g transform="translate(100, 166)">
-    <rect x="-65" y="-14" width="130" height="22" rx="6" fill="url(#ff-flame)" stroke="#FDE047" stroke-width="1.2"/>
-    <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="12" letter-spacing="2">FREE FIRE</text>
+  <!-- Survival Knife replacing 'I' in FIRE (Official Yellow/Orange Knife) -->
+  <g fill="#f59e0b" filter="drop-shadow(0 0 10px rgba(245,158,11,0.8))">
+    <!-- Blade Tip & Spine -->
+    <path d="M 538 10 C 538 10 545 40 550 80 L 550 145 L 530 145 L 530 50 C 530 30 538 10 538 10 Z" />
+    <!-- Serrations -->
+    <path d="M 524 55 L 530 60 L 524 65 L 530 70 L 524 75 L 530 80 L 524 85 L 530 90 L 524 95 L 530 100 Z" />
+    <!-- Guard -->
+    <rect x="522" y="145" width="34" height="8" rx="2" fill="#d97706" />
+    <!-- Handle & Pommel -->
+    <rect x="532" y="153" width="14" height="32" rx="3" fill="#f59e0b" />
+    <rect x="530" y="185" width="18" height="6" rx="2" fill="#d97706" />
   </g>
+  
+  <!-- R -->
+  <path d="M 570 30 L 640 30 C 660 30 670 45 670 68 C 670 85 660 95 645 100 L 675 170 L 630 170 L 605 115 L 605 170 L 570 170 Z M 605 62 L 605 85 L 635 85 C 641 85 645 80 645 73 C 645 66 641 62 635 62 Z" fill="#ffffff" />
+  <!-- E -->
+  <path d="M 685 30 L 760 30 L 760 65 L 720 65 L 720 85 L 755 85 L 755 115 L 720 115 L 720 135 L 760 135 L 760 170 L 685 170 Z" fill="#ffffff" />
 </svg>
