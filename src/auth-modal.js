@@ -385,10 +385,10 @@ export function updateNavbarUserUI() {
 
       container.innerHTML = `
         <div class="relative group">
-          <a href="/user-dashboard.html" class="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-full bg-nexus-800/90 border border-white/10 hover:border-cyan-accent/50 transition-all">
+          <a href="/user-dashboard.html" class="flex items-center gap-1.5 sm:gap-2.5 p-1 sm:pl-2 sm:pr-3 sm:py-1.5 rounded-full bg-nexus-800/90 border border-white/10 hover:border-cyan-accent/50 transition-all">
             <img src="${avatar}" alt="Avatar" class="w-7 h-7 rounded-full object-cover border border-cyan-accent" />
-            <span class="text-xs font-semibold text-white max-w-[100px] truncate">${(u.name || 'Gamer').split(' ')[0]}</span>
-            <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-cyan-accent transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <span class="hidden sm:inline text-xs font-semibold text-white max-w-[100px] truncate">${(u.name || 'Gamer').split(' ')[0]}</span>
+            <svg class="hidden sm:block w-3.5 h-3.5 text-gray-400 group-hover:text-cyan-accent transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </a>
 
           <!-- Dropdown Menu -->
@@ -421,8 +421,9 @@ export function updateNavbarUserUI() {
       `;
     } else {
       container.innerHTML = `
-        <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-all">
-          Sign In
+        <button onclick="window.nexusOpenAuthModal('login')" class="text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          <span class="hidden sm:inline">Sign In</span>
         </button>
       `;
     }

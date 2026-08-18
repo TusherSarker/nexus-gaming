@@ -18,41 +18,51 @@
 </head>
 <body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
 
-  <!-- ===== NAVBAR ===== -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <a href="/" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
-            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+  <!-- ===== REFINED FLOATING GLASS NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 pt-3 px-3 sm:px-6 transition-all duration-300 pointer-events-none">
+    <div class="max-w-7xl mx-auto rounded-2xl floating-nav-capsule px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between pointer-events-auto">
+      
+      <!-- Brand Logo & Crest -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-accent via-pink-500 to-amber-400 p-[1.5px] transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shrink-0">
+          <div class="w-full h-full bg-nexus-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-heading font-bold text-cyan-accent text-xl group-hover:scale-110 transition-transform">T</span>
           </div>
-          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </div>
+        <div class="hidden sm:flex flex-col">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-heading font-bold text-lg sm:text-xl tracking-wider text-white">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+            <span class="hidden sm:inline-block px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-[8px] font-mono text-emerald-400 font-bold">DELIVERY</span>
+          </div>
+          <span class="text-[9px] font-mono text-text-muted tracking-widest uppercase hidden sm:block">Instant Top-Up & Express Shipping</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        <a href="/#products" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all">All Gear</a>
+        <a href="/#categories" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all">Games</a>
+        <a href="/help.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all">Help Center</a>
+        <a href="/shipping.html" class="px-3 py-2 rounded-xl text-xs font-bold text-cyan-accent bg-cyan-accent/10">Shipping Info</a>
+        <a href="/contact.html" class="px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-white hover:bg-white/5 transition-all">Contact</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
+        <button id="search-btn" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-nexus-900/90 border border-white/10 text-text-secondary hover:text-cyan-accent transition-all text-xs font-mono" aria-label="Search">
+          <i data-lucide="search" class="w-4 h-4 text-cyan-accent"></i>
+        </button>
+        <a href="/cart.html" class="p-2 sm:p-2.5 rounded-xl bg-nexus-900/90 border border-white/10 hover:border-cyan-accent/40 text-cyan-accent transition-all relative" aria-label="Cart">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span id="cart-count" class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-magenta-accent text-white text-[9px] sm:text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
         </a>
-
-        <div class="hidden lg:flex items-center gap-8">
-          <a href="/#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">All Gear</a>
-          <a href="/#categories" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Games</a>
-          <a href="/#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">VIP Passes</a>
-          <a href="/help.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Help Center</a>
-          <a href="/shipping.html" class="text-sm font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5">Shipping Info</a>
-          <a href="/contact.html" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Contact</a>
-        </div>
-
-        <div class="flex items-center gap-4">
-          <button id="search-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Search">
-            <i data-lucide="search" class="w-5 h-5"></i>
-          </button>
-          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
-            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
-          </a>
-          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
-          </a>
-        </div>
+        <a href="/" class="p-2 rounded-xl bg-nexus-900/90 border border-white/10 text-text-secondary hover:text-cyan-accent transition-all" aria-label="Home">
+          <i data-lucide="home" class="w-4 h-4"></i>
+        </a>
       </div>
+
     </div>
-  </nav>
+  </header>
 
   <!-- ===== SEARCH MODAL ===== -->
   <div id="search-modal" class="fixed inset-0 z-[60] hidden">

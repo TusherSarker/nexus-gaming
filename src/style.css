@@ -226,6 +226,14 @@
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
   }
 
+  @media (max-width: 640px) {
+    .floating-nav-capsule {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      border-radius: 1rem;
+    }
+  }
+
   .floating-nav-capsule.nav-scrolled {
     background: rgba(8, 10, 15, 0.94);
     border-color: rgba(0, 240, 255, 0.22);
