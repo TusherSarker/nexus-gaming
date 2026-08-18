@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D RGB Loadout Lab & Battle Station Studio — Tusher Gaming</title>
+  <meta name="description" content="Build your ultimate gaming setup in 3D. Sync live RGB lighting, test mechanical keyboard switch sounds, calculate competitive FPS, and add the full loadout to cart in 1 click." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
+            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-6">
+          <a href="/arcade.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade Arena
+          </a>
+          <a href="/loadout-builder.html" class="text-xs font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5 flex items-center gap-1.5">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 3D Loadout Lab
+          </a>
+          <a href="/rewards.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="gift" class="w-3.5 h-3.5"></i> Daily Rewards
+          </a>
+          <a href="/sens-converter.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Sens Matrix
+          </a>
+          <a href="/lounge.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="users" class="w-3.5 h-3.5"></i> Squad Lounge
+          </a>
+        </div>
+
+        <!-- Right User Progress Bar & Cart -->
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-800/80 border border-white/10 text-xs font-mono">
+            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+            <div class="w-16 h-1.5 rounded-full bg-nexus-900 overflow-hidden">
+              <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
+            </div>
+            <span class="user-xp-display text-gray-400">0 XP</span>
+          </div>
+
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+
+          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN LOADOUT STUDIO ===== -->
+  <main class="flex-1 pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-10">
+
+    <!-- Header Banner -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent text-xs font-mono mb-2">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 3D Custom Battlestation Configurator
+        </div>
+        <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          3D RGB <span class="text-gradient-cyan">Loadout Lab</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-text-muted mt-1">
+          Customize your dream pro setup, test switch acoustics, sync real-time RGB chroma lighting, and 1-click buy.
+        </p>
+      </div>
+
+      <!-- Live RGB Theme Controller Bar -->
+      <div class="flex items-center gap-2 p-2 rounded-2xl bg-nexus-950 border border-white/10">
+        <span class="text-[11px] font-mono text-gray-400 pl-2 pr-1 font-bold">RGB SYNC:</span>
+        <button class="rgb-theme-btn active w-7 h-7 rounded-xl bg-cyan-400 border-2 border-white shadow-glow-cyan-sm transition-transform hover:scale-110" data-rgb="cyan" title="Cyber Cyan"></button>
+        <button class="rgb-theme-btn w-7 h-7 rounded-xl bg-pink-500 border border-white/20 transition-transform hover:scale-110" data-rgb="magenta" title="Neon Magenta"></button>
+        <button class="rgb-theme-btn w-7 h-7 rounded-xl bg-emerald-400 border border-white/20 transition-transform hover:scale-110" data-rgb="emerald" title="Toxic Emerald"></button>
+        <button class="rgb-theme-btn w-7 h-7 rounded-xl bg-amber-400 border border-white/20 transition-transform hover:scale-110" data-rgb="gold" title="Royal Gold"></button>
+        <button class="rgb-theme-btn w-7 h-7 rounded-xl bg-red-500 border border-white/20 transition-transform hover:scale-110" data-rgb="crimson" title="Crimson Red"></button>
+        <button class="rgb-theme-btn w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-400 via-pink-500 to-amber-400 border border-white/20 transition-transform hover:scale-110" data-rgb="rainbow" title="Rainbow Chroma Wave"></button>
+      </div>
+    </div>
+
+    <!-- Interactive Studio Workspace (2 Columns) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: 3D Interactive Virtual Desk Stage (Cols 1-7) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Virtual Desk Stage Canvas Container -->
+        <div id="battlestationStage" class="relative w-full h-[460px] sm:h-[500px] rounded-3xl bg-nexus-950 border border-cyan-accent/30 p-6 flex flex-col items-center justify-between overflow-hidden shadow-2xl transition-all duration-500 group">
+          
+          <!-- Background Ambient RGB Light Aura -->
+          <div id="ambientRGBGlow" class="absolute -top-20 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-cyan-accent/20 rounded-full blur-[100px] pointer-events-none transition-all duration-700"></div>
+
+          <!-- Top Desk Monitor Showcase -->
+          <div class="relative z-10 text-center w-full pt-2">
+            <div class="inline-block relative">
+              <img id="stageMonitorImg" src="/products/gaming_monitor.jpg" class="h-44 sm:h-52 object-contain mx-auto filter drop-shadow-[0_15px_30px_rgba(0,240,255,0.25)] transition-all duration-500 hover:scale-105" alt="Monitor">
+              <span id="stageMonitorBadge" class="absolute top-2 right-2 px-2 py-0.5 rounded bg-cyan-accent/20 border border-cyan-accent/40 text-cyan-accent text-[10px] font-mono font-bold">240Hz QD-OLED</span>
+            </div>
+          </div>
+
+          <!-- Bottom Desk Surface: Mat, Keyboard, Mouse, Headset -->
+          <div class="relative z-10 w-full max-w-lg mx-auto bg-nexus-900/90 border border-white/10 rounded-2xl p-4 flex items-center justify-around shadow-2xl backdrop-blur-md" id="deskSurfaceMat">
+            
+            <!-- Keyboard -->
+            <div class="text-center group/kb cursor-pointer" onclick="window.testSwitchSound()">
+              <img id="stageKeyboardImg" src="/products/gaming_keyboard.jpg" class="h-16 object-contain filter drop-shadow-md group-hover/kb:scale-110 transition-transform" alt="Keyboard">
+              <span class="text-[9px] font-mono text-cyan-accent block mt-1">Click to Test Key (🔊)</span>
+            </div>
+
+            <!-- Mouse -->
+            <div class="text-center group/mouse">
+              <img id="stageMouseImg" src="/products/gaming_mouse.jpg" class="h-14 object-contain filter drop-shadow-md group-hover/mouse:scale-110 transition-transform" alt="Mouse">
+              <span class="text-[9px] font-mono text-gray-400 block mt-1">49g 8KHz</span>
+            </div>
+
+            <!-- Headset -->
+            <div class="text-center group/headset">
+              <img id="stageHeadsetImg" src="/products/gaming_headset.jpg" class="h-16 object-contain filter drop-shadow-md group-hover/headset:scale-110 transition-transform" alt="Headset">
+              <span class="text-[9px] font-mono text-gray-400 block mt-1">7.1 Spatial</span>
+            </div>
+
+          </div>
+
+          <!-- Floating Info Pills -->
+          <div class="relative z-10 w-full flex items-center justify-between text-xs font-mono text-gray-400 pt-2 border-t border-white/5">
+            <span id="loadoutPresetName" class="text-cyan-accent font-bold">Custom Pro Esports Setup</span>
+            <span id="loadoutWeightRating">Ultra-Low Latency (~0.2ms)</span>
+          </div>
+
+        </div>
+
+        <!-- Mechanical Keyboard Switch Acoustics Soundboard -->
+        <div class="glass-card rounded-2xl p-5 border border-white/10 space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-lucide="volume-2" class="w-4 h-4 text-cyan-accent"></i>
+              <h3 class="font-heading font-bold text-white text-sm">Acoustic Switch Sound Simulator</h3>
+            </div>
+            <span class="text-[10px] font-mono text-gray-400">Synthesized Audio Engine</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <button class="switch-sound-btn p-2.5 rounded-xl bg-nexus-950 border border-cyan-accent/30 hover:border-cyan-accent text-left transition-all group" data-switch="hall">
+              <span class="text-xs font-bold text-cyan-accent block">Hall Effect</span>
+              <span class="text-[10px] text-gray-400 block">Magnetic Linear</span>
+            </button>
+            <button class="switch-sound-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-blue-400 text-left transition-all group" data-switch="blue">
+              <span class="text-xs font-bold text-blue-400 block">Blue Switch</span>
+              <span class="text-[10px] text-gray-400 block">Crisp Clicky</span>
+            </button>
+            <button class="switch-sound-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-red-400 text-left transition-all group" data-switch="red">
+              <span class="text-xs font-bold text-red-400 block">Red Switch</span>
+              <span class="text-[10px] text-gray-400 block">Smooth Thock</span>
+            </button>
+            <button class="switch-sound-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-amber-400 text-left transition-all group" data-switch="brown">
+              <span class="text-xs font-bold text-amber-400 block">Brown Switch</span>
+              <span class="text-[10px] text-gray-400 block">Tactile Silent</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Component Configurator & Synergy Scorecard (Cols 8-12) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Slot Selector Cards -->
+        <div class="glass-card rounded-3xl p-6 border border-white/10 space-y-4">
+          <div class="flex items-center justify-between border-b border-white/5 pb-3">
+            <h3 class="font-heading font-bold text-xl text-white">Equipped Loadout Items</h3>
+            <span class="text-xs font-mono text-cyan-accent" id="slotCountLabel">8 / 8 Slots Filled</span>
+          </div>
+
+          <div class="space-y-2.5 max-h-[320px] overflow-y-auto pr-1" id="slotListContainer">
+            <!-- Dynamically populated component slots -->
+          </div>
+
+          <!-- Total Price & 1-Click Loadout Purchase -->
+          <div class="pt-4 border-t border-white/10 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-text-muted font-mono uppercase block">Total Battle Station Price</span>
+                <span id="loadoutTotalPrice" class="font-heading font-bold text-3xl text-cyan-accent">$2,318.94</span>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">✓ Free VIP Shipping</span>
+            </div>
+
+            <button id="addFullLoadoutBtn" class="btn-primary w-full !py-3.5 !rounded-2xl text-sm font-bold flex items-center justify-center gap-2 shadow-glow-cyan-md">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add Complete Setup to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Esports Estimated FPS Benchmark -->
+        <div class="glass-card rounded-3xl p-6 border border-white/10 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-heading font-bold text-lg text-white">Estimated Esports Performance</h3>
+            <span class="text-[10px] font-mono text-emerald-400">1440p / 240Hz Ultra</span>
+          </div>
+
+          <div class="space-y-2 text-xs font-mono">
+            <div class="p-2.5 rounded-xl bg-nexus-950 border border-white/5 flex justify-between items-center">
+              <span class="text-gray-300">PUBG Mobile (90/120 FPS Emulated)</span>
+              <strong class="text-emerald-400">120 FPS Solid</strong>
+            </div>
+            <div class="p-2.5 rounded-xl bg-nexus-950 border border-white/5 flex justify-between items-center">
+              <span class="text-gray-300">Valorant (Pro Competitive)</span>
+              <strong class="text-cyan-accent">480+ FPS</strong>
+            </div>
+            <div class="p-2.5 rounded-xl bg-nexus-950 border border-white/5 flex justify-between items-center">
+              <span class="text-gray-300">Free Fire MAX</span>
+              <strong class="text-emerald-400">90 FPS Locked</strong>
+            </div>
+            <div class="p-2.5 rounded-xl bg-nexus-950 border border-white/5 flex justify-between items-center">
+              <span class="text-gray-300">CS2 (Competitive Low Latency)</span>
+              <strong class="text-cyan-accent">340 FPS</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-sm">&copy; 2026 Tusher Gaming 3D Loadout Studio. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+          <a href="/arcade.html" class="text-text-muted hover:text-cyan-accent transition-colors">Arcade</a>
+          <a href="/loadout-builder.html" class="text-cyan-accent font-semibold">3D Loadout Lab</a>
+          <a href="/rewards.html" class="text-text-muted hover:text-cyan-accent transition-colors">Rewards Vault</a>
+          <a href="/sens-converter.html" class="text-text-muted hover:text-cyan-accent transition-colors">Sens Matrix</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/loadout-builder.js"></script>
+</body>
+</html>

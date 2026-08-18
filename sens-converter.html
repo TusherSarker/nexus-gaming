@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Sensitivity Matrix & Crosshair Studio — Tusher Gaming</title>
+  <meta name="description" content="Convert mouse DPI and sensitivity between PUBG Mobile, Free Fire, Valorant, CS2, and Apex Legends. Design custom reticles with live shooting range recoil previews." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
+            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-6">
+          <a href="/arcade.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade Arena
+          </a>
+          <a href="/loadout-builder.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 3D Loadout Lab
+          </a>
+          <a href="/rewards.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="gift" class="w-3.5 h-3.5"></i> Daily Rewards
+          </a>
+          <a href="/sens-converter.html" class="text-xs font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5 flex items-center gap-1.5">
+            <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Sens Matrix
+          </a>
+          <a href="/lounge.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="users" class="w-3.5 h-3.5"></i> Squad Lounge
+          </a>
+        </div>
+
+        <!-- Right User Progress Bar & Cart -->
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-800/80 border border-white/10 text-xs font-mono">
+            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+            <div class="w-16 h-1.5 rounded-full bg-nexus-900 overflow-hidden">
+              <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
+            </div>
+            <span class="user-xp-display text-gray-400">0 XP</span>
+          </div>
+
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+
+          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN SENSITIVITY MATRIX ===== -->
+  <main class="flex-1 pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12">
+
+    <!-- Header Banner -->
+    <div class="text-center relative py-10 px-6 rounded-3xl glass-card border border-white/10 overflow-hidden shadow-2xl">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-accent/15 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent text-xs font-mono mb-3">
+        <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Cross-Game Sensitivity & Crosshair Suite
+      </div>
+      <h1 class="font-heading text-3xl sm:text-5xl font-bold text-white tracking-tight mb-2">
+        Esports <span class="text-gradient-cyan">Sensitivity Matrix</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-text-muted max-w-xl mx-auto">
+        Keep your muscle memory intact. Convert sensitivities with exact 360° cm/rev distance across 8 games and design custom crosshairs.
+      </p>
+    </div>
+
+    <!-- Quick Pro Player Presets -->
+    <div class="glass-card rounded-2xl p-4 sm:p-6 border border-white/10 space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="font-heading font-bold text-white text-sm flex items-center gap-2">
+          <i data-lucide="star" class="w-4 h-4 text-gold-accent"></i> Instant Pro Player Presets
+        </h3>
+        <span class="text-[10px] font-mono text-cyan-accent">1-Click Load</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+        <button class="pro-preset-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-cyan-accent text-left transition-all" data-pro="mortal">
+          <span class="text-xs font-bold text-white block">Mortal (PUBG)</span>
+          <span class="text-[10px] text-gray-400 block">4-Finger Gyroscope</span>
+        </button>
+        <button class="pro-preset-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-amber-400 text-left transition-all" data-pro="nobru">
+          <span class="text-xs font-bold text-white block">Nobru (Free Fire)</span>
+          <span class="text-[10px] text-gray-400 block">850 DPI Drag Head</span>
+        </button>
+        <button class="pro-preset-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-cyan-accent text-left transition-all" data-pro="tenz">
+          <span class="text-xs font-bold text-white block">TenZ (Valorant)</span>
+          <span class="text-[10px] text-gray-400 block">800 DPI • 0.30 Sens</span>
+        </button>
+        <button class="pro-preset-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-magenta-accent text-left transition-all" data-pro="scout">
+          <span class="text-xs font-bold text-white block">ScoutOP (PUBG)</span>
+          <span class="text-[10px] text-gray-400 block">Full Gyro Aggressive</span>
+        </button>
+        <button class="pro-preset-btn p-2.5 rounded-xl bg-nexus-950 border border-white/5 hover:border-emerald-400 text-left transition-all" data-pro="s1mple">
+          <span class="text-xs font-bold text-white block">s1mple (CS2)</span>
+          <span class="text-[10px] text-gray-400 block">400 DPI • 3.09 Sens</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2 Column Layout: Converter Engine & Interactive Crosshair Studio -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Column 1: Sensitivity Converter Matrix (Cols 1-6) -->
+      <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+        <div>
+          <h2 class="font-heading font-bold text-2xl text-white">Cross-Game Sens Converter</h2>
+          <p class="text-xs text-text-muted mt-0.5">Calculates exact 360° rotational physical distance</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-400 mb-1">Source Game</label>
+            <select id="sourceGame" class="w-full p-3 rounded-xl bg-nexus-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+              <option value="valorant">Valorant</option>
+              <option value="cs2">Counter-Strike 2 (CS2)</option>
+              <option value="pubg_mobile">PUBG Mobile (Camera)</option>
+              <option value="pubg_gyro">PUBG Mobile (Gyroscope)</option>
+              <option value="free_fire">Free Fire (General)</option>
+              <option value="apex">Apex Legends</option>
+              <option value="cod_mobile">Call of Duty: Mobile</option>
+              <option value="overwatch">Overwatch 2</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-400 mb-1">Source In-Game Sens</label>
+            <input type="number" id="sourceSens" step="0.01" value="0.30" class="w-full p-3 rounded-xl bg-nexus-950 border border-white/10 text-white text-sm font-mono focus:outline-none focus:border-cyan-accent">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-400 mb-1">Mouse / Screen DPI</label>
+            <input type="number" id="sourceDPI" value="800" class="w-full p-3 rounded-xl bg-nexus-950 border border-white/10 text-white text-sm font-mono focus:outline-none focus:border-cyan-accent">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono uppercase text-gray-400 mb-1">Target Game</label>
+            <select id="targetGame" class="w-full p-3 rounded-xl bg-nexus-950 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-accent">
+              <option value="pubg_mobile">PUBG Mobile (Camera)</option>
+              <option value="pubg_gyro">PUBG Mobile (Gyroscope)</option>
+              <option value="free_fire">Free Fire (General)</option>
+              <option value="valorant">Valorant</option>
+              <option value="cs2">Counter-Strike 2 (CS2)</option>
+              <option value="apex">Apex Legends</option>
+              <option value="cod_mobile">Call of Duty: Mobile</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Calculated Target Sens Output Card -->
+        <div class="p-5 rounded-2xl bg-nexus-950 border border-cyan-accent/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-gray-400 uppercase">Converted Target Sensitivity:</span>
+            <span class="px-2 py-0.5 rounded bg-cyan-accent/15 text-cyan-accent text-[10px] font-mono font-bold">1:1 Muscle Memory</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span id="convertedSensOutput" class="font-heading font-bold text-4xl text-cyan-accent">95%</span>
+            <button id="copySensBtn" class="btn-primary !px-3 !py-1.5 !text-xs font-bold">Copy Sens</button>
+          </div>
+          <div class="flex justify-between text-[11px] font-mono text-gray-400 pt-2 border-t border-white/5">
+            <span>360° Physical Distance:</span>
+            <strong id="cmRevDistance" class="text-white">54.5 cm / 360°</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Column 2: Interactive Crosshair Studio (Cols 7-12) -->
+      <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+        <div>
+          <h2 class="font-heading font-bold text-2xl text-white">Interactive Crosshair Studio</h2>
+          <p class="text-xs text-text-muted mt-0.5">Customize reticle dimensions and test live firing recoil</p>
+        </div>
+
+        <!-- Live Crosshair Canvas Backdrop (Shooting Target) -->
+        <div class="relative w-full h-48 rounded-2xl bg-nexus-950 border border-cyan-accent/30 overflow-hidden flex items-center justify-center cursor-crosshair group select-none" id="crosshairBackdrop">
+          <!-- Canvas -->
+          <canvas id="crosshairCanvas" width="300" height="200" class="w-full h-full block"></canvas>
+          <span class="absolute bottom-2 right-2 text-[9px] font-mono text-gray-500">Click to Simulate Recoil</span>
+        </div>
+
+        <!-- Crosshair Controls -->
+        <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+          <div>
+            <label class="block text-gray-400 mb-1">Color Theme</label>
+            <select id="chColor" class="w-full p-2.5 rounded-xl bg-nexus-950 border border-white/10 text-white text-xs">
+              <option value="#00f0ff">Cyan (#00f0ff)</option>
+              <option value="#22c55e">Green (#22c55e)</option>
+              <option value="#ff2d78">Magenta (#ff2d78)</option>
+              <option value="#ffd700">Yellow/Gold (#ffd700)</option>
+              <option value="#ffffff">White (#ffffff)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-gray-400 mb-1">Length: <span id="chLengthVal">6</span>px</label>
+            <input type="range" id="chLength" min="2" max="20" value="6" class="w-full accent-cyan-accent">
+          </div>
+
+          <div>
+            <label class="block text-gray-400 mb-1">Thickness: <span id="chThickVal">2</span>px</label>
+            <input type="range" id="chThickness" min="1" max="6" value="2" class="w-full accent-cyan-accent">
+          </div>
+
+          <div>
+            <label class="block text-gray-400 mb-1">Center Gap: <span id="chGapVal">3</span>px</label>
+            <input type="range" id="chGap" min="0" max="15" value="3" class="w-full accent-cyan-accent">
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button id="copyCrosshairCodeBtn" class="btn-primary w-full !py-3 !rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+            <i data-lucide="copy" class="w-4 h-4"></i> Copy Reticle Code String
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-sm">&copy; 2026 Tusher Gaming Esports Suite. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+          <a href="/arcade.html" class="text-text-muted hover:text-cyan-accent transition-colors">Arcade</a>
+          <a href="/loadout-builder.html" class="text-text-muted hover:text-cyan-accent transition-colors">3D Loadout Lab</a>
+          <a href="/rewards.html" class="text-text-muted hover:text-cyan-accent transition-colors">Rewards Vault</a>
+          <a href="/sens-converter.html" class="text-cyan-accent font-semibold">Sens Matrix</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/sens-converter.js"></script>
+</body>
+</html>

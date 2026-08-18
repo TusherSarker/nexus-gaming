@@ -2,6 +2,7 @@ import './style.css';
 import { addToCart, getCartCount, registerProduct, PRODUCTS } from './cart-store.js';
 import { initAuthModal, updateNavbarUserUI } from './auth-modal.js';
 import { initLightbox, openLightbox } from './lightbox.js';
+import { progression } from './xp-engine.js';
 
 // State
 let isAnnualBilling = false;
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
+  progression.updateUI();
   initAuthModal();
   updateNavbarUserUI();
   initLightbox();
@@ -523,6 +525,13 @@ const SEARCHABLE_DATABASE = [
   { id: 'c-2', title: 'Pro Esports Setups & Sensitivity Codes', category: 'Community & Content', type: 'page', url: '/pro-setups.html', image: null, icon: 'crosshair', price: 'Verified Sens', badge: 'Mortal & TenZ', keywords: ['pro setups', 'sensitivity', 'sens', 'gyroscope', 'hud', '4-finger claw', 'mortal', 'nobru', 'tenz', 'dpi'] },
   { id: 'c-3', title: 'Community Tournaments & Scrims', category: 'Community & Content', type: 'page', url: '/tournaments.html', image: null, icon: 'trophy', price: '100K BDT Pools', badge: 'Registration Open', keywords: ['tournaments', 'scrims', 'esports cup', 'championship', 'squad showdown', 'clash squad', 'prize pool', 'register'] },
   { id: 'c-4', title: 'Affiliate & Creator Partner Program', category: 'Community & Content', type: 'page', url: '/affiliate.html', image: null, icon: 'gift', price: '10-15% Commission', badge: 'Creator Code', keywords: ['affiliate', 'creator', 'creator code', 'partner', 'streamer', 'commission', 'payout', 'monetize'] },
+
+  // 6. Interactive Gaming Hubs & Games
+  { id: 'i-1', title: 'Esports Aim & Reflex Arcade (GridShot Mini-Game)', category: 'Interactive Hubs', type: 'page', url: '/arcade.html', image: null, icon: 'crosshair', price: 'Win 10% Coupons', badge: '5 Game Modes', keywords: ['arcade', 'aim trainer', 'gridshot', 'reflex', 'reaction time', 'game', 'mini game', 'speed clicker', 'target', 'discount code', 'voucher'] },
+  { id: 'i-2', title: '3D RGB Loadout Lab & Battlestation Studio', category: 'Interactive Hubs', type: 'page', url: '/loadout-builder.html', image: null, icon: 'cpu', price: 'Custom Rig Builder', badge: 'Live RGB Sync', keywords: ['loadout', 'builder', 'battlestation', 'rgb', 'setup', 'switch sound', 'switch tester', 'desk setup', 'fps calculator', 'rig'] },
+  { id: 'i-3', title: 'Daily Cyber Crate & Mystery Wheel Rewards Vault', category: 'Interactive Hubs', type: 'page', url: '/rewards.html', image: null, icon: 'gift', price: 'Free Daily Drops', badge: 'Spin to Win', keywords: ['rewards', 'daily crate', 'unboxing', 'mystery box', 'spin wheel', 'lucky wheel', 'streak', 'free uc', 'diamonds', 'loot'] },
+  { id: 'i-4', title: 'Pro Sensitivity Matrix & Crosshair Studio', category: 'Interactive Hubs', type: 'page', url: '/sens-converter.html', image: null, icon: 'sliders', price: '8-Game Matrix', badge: 'Crosshair Designer', keywords: ['sensitivity', 'sens converter', 'crosshair', 'reticle', 'dpi', 'cm 360', 'gyro', 'mortal sens', 'tenz sens', 'aim'] },
+  { id: 'i-5', title: 'Live Esports Squad Lounge & Soundboard', category: 'Interactive Hubs', type: 'page', url: '/lounge.html', image: null, icon: 'users', price: 'Find Teammates', badge: '12 Hype SFX', keywords: ['lounge', 'squad', 'scrims', 'soundboard', 'teammates', 'voice lines', 'room id', 'recruitment', 'chat'] },
 ];
 
 function initSearchModal() {

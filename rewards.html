@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Rewards Vault & Cyber Crate — Tusher Gaming</title>
+  <meta name="description" content="Open daily mystery crates, spin the cyber wheel, and maintain your 7-day login streak to win exclusive 10%-20% discount vouchers and free bonus gaming currency." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-nexus-900 text-text-primary font-body min-h-screen flex flex-col antialiased selection:bg-cyan-accent/30 selection:text-white">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-strong shadow-card border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-accent flex items-center justify-center transition-all duration-300 group-hover:shadow-glow-cyan-sm shadow-md shadow-cyan-accent/20">
+            <span class="font-heading font-bold text-nexus-900 text-xl">T</span>
+          </div>
+          <span class="font-heading font-bold text-xl tracking-wide">TUSHER<span class="text-cyan-accent">GAMING</span></span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-6">
+          <a href="/arcade.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade Arena
+          </a>
+          <a href="/loadout-builder.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> 3D Loadout Lab
+          </a>
+          <a href="/rewards.html" class="text-xs font-bold text-cyan-accent tracking-wide uppercase border-b border-cyan-accent/50 pb-0.5 flex items-center gap-1.5">
+            <i data-lucide="gift" class="w-3.5 h-3.5"></i> Daily Rewards
+          </a>
+          <a href="/sens-converter.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Sens Matrix
+          </a>
+          <a href="/lounge.html" class="text-xs font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1.5">
+            <i data-lucide="users" class="w-3.5 h-3.5"></i> Squad Lounge
+          </a>
+        </div>
+
+        <!-- Right User Progress Bar & Cart -->
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-800/80 border border-white/10 text-xs font-mono">
+            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+            <div class="w-16 h-1.5 rounded-full bg-nexus-900 overflow-hidden">
+              <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
+            </div>
+            <span class="user-xp-display text-gray-400">0 XP</span>
+          </div>
+
+          <a href="/cart.html" class="p-2 rounded-lg text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300 relative" aria-label="Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-count" class="absolute -top-1 -right-1 w-5 h-5 bg-magenta-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          </a>
+
+          <a href="/" class="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-nexus-800 border border-white/10 text-xs font-semibold text-text-secondary hover:text-white hover:border-cyan-accent/40 transition-all items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-cyan-accent"></i> Back Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN REWARDS VAULT ===== -->
+  <main class="flex-1 pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12">
+
+    <!-- Header Banner -->
+    <div class="text-center relative py-10 px-6 rounded-3xl glass-card border border-white/10 overflow-hidden shadow-2xl">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/15 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono mb-3">
+        <i data-lucide="gift" class="w-3.5 h-3.5"></i> Daily Loyalty & Mystery Vault
+      </div>
+      <h1 class="font-heading text-3xl sm:text-5xl font-bold text-white tracking-tight mb-2">
+        Daily Cyber <span class="text-gold-accent">Rewards Vault</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-text-muted max-w-xl mx-auto">
+        Check in every 24 hours, unbox mystery cyber crates, and spin the wheel to win store discounts and gaming currency!
+      </p>
+    </div>
+
+    <!-- 7-Day Consecutive Streak Ladder -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
+        <div>
+          <h2 class="font-heading font-bold text-2xl text-white">7-Day Login Streak</h2>
+          <p class="text-xs text-text-muted">Maintain your daily streak to unlock the Legendary Day 7 Mystery Vault</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-xl bg-nexus-950 border border-amber-500/30 text-amber-400 font-bold">
+          <i data-lucide="flame" class="w-4 h-4 text-amber-400"></i> Current Streak: <span id="streakCountText">1 Day</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3" id="streakDaysContainer">
+        <!-- 7 Days Grid dynamically populated -->
+      </div>
+    </div>
+
+    <!-- 2 Interactive Modules: 3D Mystery Crate & Cyber Spin Wheel -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Module 1: 3D Mystery Crate Unboxing (Cols 1-6) -->
+      <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6 flex flex-col justify-between min-h-[460px]">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-cyan-accent uppercase tracking-wider">Free Daily Crate</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold" id="crateStatusBadge">Ready to Open</span>
+          </div>
+          <h3 class="font-heading font-bold text-2xl text-white mt-1">Cyber Drop Crate</h3>
+          <p class="text-xs text-text-muted mt-0.5">Contains store discount vouchers, bonus UC, or VIP trials</p>
+        </div>
+
+        <!-- 3D Crate Visual Canvas / Container -->
+        <div class="relative py-8 flex items-center justify-center" id="crateAnimationWrapper">
+          <div id="crate3DBox" class="w-32 h-32 rounded-3xl bg-gradient-to-br from-cyan-accent/20 via-nexus-950 to-magenta-accent/20 border-2 border-cyan-accent flex items-center justify-center text-6xl shadow-glow-cyan-md transition-all duration-500 cursor-pointer hover:scale-105 hover:rotate-3 select-none">
+            🎁
+          </div>
+          <div id="crateAura" class="absolute inset-0 bg-cyan-accent/20 rounded-full blur-[80px] pointer-events-none opacity-0 transition-opacity duration-500"></div>
+        </div>
+
+        <!-- Unboxing Trigger Button -->
+        <button id="openCrateBtn" class="btn-primary w-full !py-3.5 !rounded-2xl text-sm font-bold flex items-center justify-center gap-2 shadow-glow-cyan-sm">
+          <i data-lucide="unlock" class="w-4 h-4"></i> Unbox Mystery Crate (FREE)
+        </button>
+      </div>
+
+      <!-- Module 2: Physics Cyber Spin Wheel (Cols 7-12) -->
+      <div class="lg:col-span-6 glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6 flex flex-col justify-between min-h-[460px]">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-magenta-accent uppercase tracking-wider">Spin to Win</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-accent/10 text-cyan-accent font-bold" id="spinsLeftBadge">1 Spin Available</span>
+          </div>
+          <h3 class="font-heading font-bold text-2xl text-white mt-1">Cyber Lucky Wheel</h3>
+          <p class="text-xs text-text-muted mt-0.5">8 Reward sectors with guaranteed discount drops</p>
+        </div>
+
+        <!-- Spin Wheel Canvas Container -->
+        <div class="relative flex items-center justify-center py-2">
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+            <canvas id="wheelCanvas" width="300" height="300" class="w-full h-full block rounded-full"></canvas>
+            
+            <!-- Center Needle Pointer -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-cyan-accent z-20 filter drop-shadow-md"></div>
+
+            <!-- Center Spin Pivot -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-nexus-950 border-2 border-cyan-accent flex items-center justify-center text-white font-bold font-mono text-xs z-10 shadow-lg">
+              TG
+            </div>
+          </div>
+        </div>
+
+        <!-- Spin Trigger Button -->
+        <button id="spinWheelBtn" class="btn-primary w-full !py-3.5 !rounded-2xl text-sm font-bold flex items-center justify-center gap-2 shadow-glow-cyan-sm">
+          <i data-lucide="disc" class="w-4 h-4"></i> Spin the Wheel
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Active Loot Bag & Claimed Vouchers Wallet -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+      <div class="flex items-center justify-between border-b border-white/5 pb-4">
+        <div>
+          <h3 class="font-heading font-bold text-2xl text-white">Your Loot Bag & Active Vouchers</h3>
+          <p class="text-xs text-text-muted">Coupons won from Daily Crates and the Cyber Wheel ready to use</p>
+        </div>
+        <span class="text-xs font-mono text-cyan-accent font-bold" id="lootCountLabel">0 Vouchers Saved</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="lootBagContainer">
+        <!-- Dynamically populated loot vouchers -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 bg-nexus-950 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-text-muted text-sm">&copy; 2026 Tusher Gaming Rewards Vault. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+          <a href="/arcade.html" class="text-text-muted hover:text-cyan-accent transition-colors">Arcade</a>
+          <a href="/loadout-builder.html" class="text-text-muted hover:text-cyan-accent transition-colors">3D Loadout Lab</a>
+          <a href="/rewards.html" class="text-cyan-accent font-semibold">Rewards Vault</a>
+          <a href="/sens-converter.html" class="text-text-muted hover:text-cyan-accent transition-colors">Sens Matrix</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/rewards.js"></script>
+</body>
+</html>

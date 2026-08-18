@@ -31,18 +31,36 @@
         </a>
 
         <!-- Desktop Nav Links -->
-        <div class="hidden lg:flex items-center gap-8">
-          <a href="#products" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Gaming Gear</a>
-          <a href="#subscriptions" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Subscriptions</a>
-          <a href="#categories" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Categories</a>
-          <a href="#community" class="text-sm font-medium text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Community</a>
-          <a href="/admin/" target="_blank" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all duration-300 tracking-wider uppercase flex items-center gap-1.5">
-            <i data-lucide="shield" class="w-3.5 h-3.5"></i> Admin Portal
+        <div class="hidden lg:flex items-center gap-6">
+          <a href="#products" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Gaming Gear</a>
+          <a href="#categories" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Games</a>
+          <a href="/arcade.html" class="text-xs font-bold text-cyan-accent hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1">
+            <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Arcade
+          </a>
+          <a href="/loadout-builder.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1">
+            <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Loadout Lab
+          </a>
+          <a href="/rewards.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase flex items-center gap-1">
+            <i data-lucide="gift" class="w-3.5 h-3.5"></i> Rewards
+          </a>
+          <a href="/sens-converter.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Sens Matrix</a>
+          <a href="/lounge.html" class="text-xs font-semibold text-text-secondary hover:text-cyan-accent transition-colors duration-300 tracking-wide uppercase">Squad Lounge</a>
+          <a href="/admin/" target="_blank" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-cyan-accent/10 text-cyan-accent border border-cyan-accent/30 hover:bg-cyan-accent hover:text-nexus-900 transition-all uppercase flex items-center gap-1">
+            <i data-lucide="shield" class="w-3 h-3"></i> Admin
           </a>
         </div>
 
         <!-- Right Actions -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3">
+          <!-- Gamer XP Pill -->
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-nexus-800/80 border border-white/10 text-xs font-mono">
+            <span class="user-rank-display text-cyan-accent font-bold">Lv.1 Recruit</span>
+            <div class="w-14 h-1.5 rounded-full bg-nexus-900 overflow-hidden">
+              <div class="user-xp-progress h-full bg-gradient-to-r from-cyan-accent to-magenta-accent w-0 transition-all duration-500"></div>
+            </div>
+            <span class="user-xp-display text-gray-400">0 XP</span>
+          </div>
+
           <!-- Search -->
           <button id="search-btn" class="p-2 rounded-lg text-text-secondary hover:text-cyan-accent hover:bg-nexus-700/50 transition-all duration-300" aria-label="Search">
             <i data-lucide="search" class="w-5 h-5"></i>
@@ -742,6 +760,105 @@
         </a>
       </div>
 
+  <!-- ===== INTERACTIVE ESPORTS ARENA & GAMING HUBS ===== -->
+  <section id="interactive-hubs" class="py-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-accent/10 border border-cyan-accent/30 text-cyan-accent text-xs font-mono mb-3">
+          <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i> Interactive Gaming & Training Hub
+        </div>
+        <h2 class="section-title mb-3">Train, Build & Win <span class="text-gradient-cyan">Rewards</span></h2>
+        <p class="section-subtitle mx-auto">
+          Play browser aim mini-games to unlock real store discounts, design your dream 3D RGB battle station, and convert sensitivity with pro precision.
+        </p>
+      </div>
+
+      <!-- 4 Interactive Feature Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Hub 1: Aim Arcade -->
+        <a href="/arcade.html" class="glass-card rounded-3xl p-6 border border-white/10 hover:border-cyan-accent/50 transition-all flex flex-col justify-between group space-y-6 hover:-translate-y-1 shadow-xl">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-accent/15 border border-cyan-accent/30 text-cyan-accent flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🎯
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] font-mono uppercase text-cyan-accent font-bold">5 Game Modes</span>
+              <h3 class="font-heading font-bold text-xl text-white group-hover:text-cyan-accent transition-colors">Aim & Reflex Arcade</h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                Test your reaction latency & precision in GridShot. Score 50K+ to unlock a 10% coupon!
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-bold text-cyan-accent font-mono pt-3 border-t border-white/5">
+            <span>Play & Win Discounts</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </a>
+
+        <!-- Hub 2: 3D Loadout Lab -->
+        <a href="/loadout-builder.html" class="glass-card rounded-3xl p-6 border border-white/10 hover:border-magenta-accent/50 transition-all flex flex-col justify-between group space-y-6 hover:-translate-y-1 shadow-xl">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-magenta-accent/15 border border-magenta-accent/30 text-magenta-accent flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              ⚡
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] font-mono uppercase text-magenta-accent font-bold">Live RGB Sync</span>
+              <h3 class="font-heading font-bold text-xl text-white group-hover:text-magenta-accent transition-colors">3D Loadout Studio</h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                Build custom battle stations, test switch acoustic sounds, and calculate competitive FPS.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-bold text-magenta-accent font-mono pt-3 border-t border-white/5">
+            <span>Launch 3D Studio</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </a>
+
+        <!-- Hub 3: Daily Rewards -->
+        <a href="/rewards.html" class="glass-card rounded-3xl p-6 border border-white/10 hover:border-amber-500/50 transition-all flex flex-col justify-between group space-y-6 hover:-translate-y-1 shadow-xl">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🎁
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] font-mono uppercase text-amber-400 font-bold">Daily Free Drop</span>
+              <h3 class="font-heading font-bold text-xl text-white group-hover:text-amber-400 transition-colors">Daily Cyber Crate</h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                Unbox mystery crates, spin the cyber lucky wheel, and climb the 7-day login streak.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-bold text-amber-400 font-mono pt-3 border-t border-white/5">
+            <span>Unbox Rewards</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </a>
+
+        <!-- Hub 4: Sensitivity Matrix -->
+        <a href="/sens-converter.html" class="glass-card rounded-3xl p-6 border border-white/10 hover:border-emerald-500/50 transition-all flex flex-col justify-between group space-y-6 hover:-translate-y-1 shadow-xl">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🎛️
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] font-mono uppercase text-emerald-400 font-bold">8-Game Matrix</span>
+              <h3 class="font-heading font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">Pro Sens Converter</h3>
+              <p class="text-xs text-text-muted leading-relaxed">
+                Convert 360° cm/rev between PUBG, Free Fire, Valorant, and CS2 with live crosshair studio.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs font-bold text-emerald-400 font-mono pt-3 border-t border-white/5">
+            <span>Convert Sensitivity</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </a>
+
+      </div>
     </div>
   </section>
 
@@ -1025,6 +1142,18 @@
             <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Mice</a></li>
             <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Headsets</a></li>
             <li><a href="#" class="text-text-muted text-sm hover:text-cyan-accent transition-colors">Monitors</a></li>
+          </ul>
+        </div>
+
+        <!-- Interactive Hubs -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-cyan-accent mb-5">Play & Build</h4>
+          <ul class="space-y-3">
+            <li><a href="/arcade.html" class="text-text-muted text-sm hover:text-cyan-accent transition-colors flex items-center gap-1.5"><i data-lucide="crosshair" class="w-3.5 h-3.5 text-cyan-accent"></i> Aim Arcade</a></li>
+            <li><a href="/loadout-builder.html" class="text-text-muted text-sm hover:text-cyan-accent transition-colors flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-magenta-accent"></i> 3D Loadout Lab</a></li>
+            <li><a href="/rewards.html" class="text-text-muted text-sm hover:text-cyan-accent transition-colors flex items-center gap-1.5"><i data-lucide="gift" class="w-3.5 h-3.5 text-amber-400"></i> Daily Rewards</a></li>
+            <li><a href="/sens-converter.html" class="text-text-muted text-sm hover:text-cyan-accent transition-colors flex items-center gap-1.5"><i data-lucide="sliders" class="w-3.5 h-3.5 text-emerald-400"></i> Sens Matrix</a></li>
+            <li><a href="/lounge.html" class="text-text-muted text-sm hover:text-cyan-accent transition-colors flex items-center gap-1.5"><i data-lucide="users" class="w-3.5 h-3.5 text-blue-400"></i> Squad Lounge</a></li>
           </ul>
         </div>
 
