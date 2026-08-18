@@ -390,48 +390,48 @@
         </div>
 
         <!-- Right: Single 3D Floating Hero with Glassmorphism & Stars (7 cols) -->
-        <div class="lg:col-span-7 relative flex flex-col items-center justify-center pt-6 lg:pt-0">
+        <div class="lg:col-span-7 relative flex flex-col items-center justify-center pt-6 lg:pt-0 w-full max-w-full overflow-hidden">
           
           <!-- Ambient Dusky Pink & Gold Energy Spheres -->
-          <div class="absolute w-[480px] h-[480px] sm:w-[680px] sm:h-[680px] rounded-full bg-cyan-accent/15 blur-[120px] pointer-events-none animate-pulse"></div>
-          <div class="absolute -bottom-10 -right-10 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-magenta-accent/12 blur-[110px] pointer-events-none"></div>
+          <div class="absolute w-72 h-72 sm:w-[480px] sm:h-[480px] lg:w-[680px] lg:h-[680px] rounded-full bg-cyan-accent/15 blur-[90px] sm:blur-[120px] pointer-events-none animate-pulse"></div>
+          <div class="absolute -bottom-10 -right-10 w-60 h-60 sm:w-96 sm:h-96 rounded-full bg-magenta-accent/12 blur-[90px] sm:blur-[110px] pointer-events-none"></div>
 
           <!-- Glassmorphism 3D Showcase Portal Container -->
-          <div class="relative w-full max-w-[540px] sm:max-w-[650px] lg:max-w-[720px] aspect-[4/5] sm:aspect-square flex items-center justify-center">
+          <div class="relative w-full max-w-[320px] xs:max-w-[360px] sm:max-w-[540px] lg:max-w-[650px] aspect-[4/5] sm:aspect-square flex items-center justify-center">
             
             <!-- Glassmorphism Portal Backdrop Ring & Plate -->
-            <div class="absolute inset-4 sm:inset-6 rounded-[2.5rem] glass-portal pointer-events-none z-0 border border-white/15">
+            <div class="absolute inset-2 sm:inset-6 rounded-[2rem] sm:rounded-[2.5rem] glass-portal pointer-events-none z-0 border border-white/15">
               <!-- Internal Frosted Glow Radial Highlights -->
-              <div class="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-cyan-accent/20 blur-2xl"></div>
-              <div class="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-magenta-accent/20 blur-2xl"></div>
+              <div class="absolute -top-8 -left-8 sm:-top-12 sm:-left-12 w-36 sm:w-48 h-36 sm:h-48 rounded-full bg-cyan-accent/20 blur-2xl"></div>
+              <div class="absolute -bottom-8 -right-8 sm:-bottom-12 sm:-right-12 w-36 sm:w-48 h-36 sm:h-48 rounded-full bg-magenta-accent/20 blur-2xl"></div>
               <!-- Grid Matrix Accent Texture -->
-              <div class="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+              <div class="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
             </div>
 
             <!-- Floating 3D Star Object 1 (Top Left - Glowing 4-Point Star in Glass Capsule) -->
-            <div class="absolute top-6 left-2 sm:left-6 z-20 glass-chip px-3.5 py-1.5 rounded-2xl flex items-center gap-2 animate-float shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl">
-              <span class="text-base text-cyan-accent animate-sparkle drop-shadow-[0_0_8px_rgba(212,127,151,0.9)]">✦</span>
-              <span class="text-xs font-mono font-bold text-white tracking-wider">Mythic Vault</span>
+            <div class="absolute top-3 sm:top-6 left-1 sm:left-6 z-20 glass-chip px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-2xl flex items-center gap-1.5 sm:gap-2 animate-float shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl">
+              <span class="text-sm sm:text-base text-cyan-accent animate-sparkle drop-shadow-[0_0_8px_rgba(212,127,151,0.9)]">✦</span>
+              <span class="text-[10px] sm:text-xs font-mono font-bold text-white tracking-wider">Mythic Vault</span>
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
             </div>
 
             <!-- Floating 3D Star Object 2 (Top Right - Golden Star Rating in Glass Capsule) -->
-            <div class="absolute top-8 right-2 sm:right-6 z-20 glass-chip px-3.5 py-1.5 rounded-2xl flex items-center gap-2 animate-float shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl" style="animation-delay: 1.8s;">
-              <span class="text-base text-gold-accent animate-twinkle drop-shadow-[0_0_10px_rgba(245,158,11,0.9)]">★</span>
-              <span class="text-xs font-mono font-bold text-gray-200">5.0 Instant Delivery</span>
+            <div class="absolute top-4 sm:top-8 right-1 sm:right-6 z-20 glass-chip px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-2xl flex items-center gap-1.5 sm:gap-2 animate-float shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl" style="animation-delay: 1.8s;">
+              <span class="text-sm sm:text-base text-gold-accent animate-twinkle drop-shadow-[0_0_10px_rgba(245,158,11,0.9)]">★</span>
+              <span class="text-[10px] sm:text-xs font-mono font-bold text-gray-200">5.0 Instant</span>
             </div>
 
             <!-- Floating 3D Star Sparkle 3 (Mid-Left Floating Star Node) -->
-            <div class="absolute top-1/2 -left-2 sm:left-2 -translate-y-1/2 z-15 pointer-events-none animate-twinkle" style="animation-delay: 0.8s;">
-              <div class="w-8 h-8 rounded-full bg-white/5 border border-white/20 backdrop-blur-md flex items-center justify-center shadow-lg">
-                <span class="text-lg text-cyan-accent animate-spin" style="animation-duration: 12s;">✦</span>
+            <div class="hidden xs:flex absolute top-1/2 -left-2 sm:left-2 -translate-y-1/2 z-15 pointer-events-none animate-twinkle" style="animation-delay: 0.8s;">
+              <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 border border-white/20 backdrop-blur-md flex items-center justify-center shadow-lg">
+                <span class="text-sm sm:text-lg text-cyan-accent animate-spin" style="animation-duration: 12s;">✦</span>
               </div>
             </div>
 
             <!-- Floating 3D Star Object 4 (Mid-Right - Verified Protection Glass Pill) -->
-            <div class="absolute bottom-20 right-0 sm:right-2 z-20 glass-chip px-3.5 py-1.5 rounded-2xl flex items-center gap-2 animate-float-slow shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl" style="animation-delay: 2.4s;">
-              <span class="text-sm text-cyan-accent animate-sparkle">✦</span>
-              <span class="text-[11px] font-mono font-bold text-cyan-300">100% Anti-Ban UC</span>
+            <div class="absolute bottom-16 sm:bottom-20 right-0 sm:right-2 z-20 glass-chip px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-2xl flex items-center gap-1.5 sm:gap-2 animate-float-slow shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl" style="animation-delay: 2.4s;">
+              <span class="text-xs sm:text-sm text-cyan-accent animate-sparkle">✦</span>
+              <span class="text-[10px] sm:text-[11px] font-mono font-bold text-cyan-300">100% Anti-Ban</span>
             </div>
 
             <!-- Ambient Star Dust Sparkles -->
@@ -441,14 +441,14 @@
             <div class="absolute bottom-16 right-1/3 text-xs text-white/50 animate-twinkle pointer-events-none" style="animation-delay: 0.5s;">★</div>
 
             <!-- Center Stage: The Single Huge 3D Floating Character (Animated & Cycling) -->
-            <div class="relative z-10 w-[340px] sm:w-[500px] lg:w-[600px] xl:w-[680px] h-[420px] sm:h-[580px] lg:h-[680px] xl:h-[750px] flex items-center justify-center">
+            <div class="relative z-10 w-full max-w-[280px] xs:max-w-[340px] sm:max-w-[500px] lg:max-w-[620px] h-[340px] xs:h-[420px] sm:h-[580px] lg:h-[680px] flex items-center justify-center">
               <img id="heroMainCharacterImg" src="/characters/pubg-transparent.png" alt="Featured 3D Game Character" class="w-full h-full object-contain animate-float filter drop-shadow-[0_30px_45px_rgba(0,0,0,0.9)] transition-all duration-500">
               
               <!-- Floating Live Telemetry Glassmorphism HUD Chip -->
-              <div id="heroCharTelemetry" class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-5 py-2.5 rounded-2xl glass-chip border border-cyan-accent/50 backdrop-blur-2xl shadow-2xl flex items-center gap-3 z-30 pointer-events-none">
-                <span class="w-2.5 h-2.5 rounded-full bg-cyan-accent animate-ping"></span>
-                <span id="heroCharTag" class="text-xs sm:text-sm font-mono font-bold text-white tracking-wide">PUBG Mobile • Level 3 Assault</span>
-                <span id="heroCharBadge" class="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold font-mono border border-emerald-500/30">100% Ban-Proof UC</span>
+              <div id="heroCharTelemetry" class="absolute bottom-1 sm:bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl glass-chip border border-cyan-accent/50 backdrop-blur-2xl shadow-2xl flex items-center gap-2 sm:gap-3 z-30 pointer-events-none max-w-[92%] overflow-hidden">
+                <span class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-cyan-accent animate-ping shrink-0"></span>
+                <span id="heroCharTag" class="text-[11px] sm:text-sm font-mono font-bold text-white tracking-wide truncate">PUBG Mobile</span>
+                <span id="heroCharBadge" class="text-[9px] sm:text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold font-mono border border-emerald-500/30 shrink-0">100% Ban-Proof</span>
               </div>
             </div>
 
@@ -975,6 +975,9 @@
         </a>
       </div>
 
+    </div>
+  </section>
+
   <!-- ===== INTERACTIVE ESPORTS ARENA & GAMING HUBS ===== -->
   <section id="interactive-hubs" class="py-20 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -1078,9 +1081,9 @@
   </section>
 
   <!-- ===== SUBSCRIPTION PLANS ===== -->
-  <section id="subscriptions" class="py-24 relative overflow-hidden">
+  <section id="subscriptions" class="py-24 relative overflow-hidden w-full max-w-full">
     <!-- Background glow -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-accent/3 rounded-full blur-[150px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] sm:h-[600px] bg-cyan-accent/3 rounded-full blur-[150px] pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
@@ -1307,9 +1310,9 @@
   </section>
 
   <!-- ===== NEWSLETTER CTA ===== -->
-  <section id="community" class="py-24 relative overflow-hidden">
+  <section id="community" class="py-24 relative overflow-hidden w-full max-w-full">
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-accent/[0.02] to-transparent"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-accent/[0.03] rounded-full blur-[120px]"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-cyan-accent/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
 
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
       <div class="glass-strong rounded-3xl p-10 md:p-16">
