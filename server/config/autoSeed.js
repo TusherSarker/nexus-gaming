@@ -22,87 +22,86 @@ export async function autoSeedDatabase() {
     await Product.deleteMany({});
     await Order.deleteMany({}); // No dummy orders — starts at $0 / 0 orders!
 
-    const userCount = await User.countDocuments();
-    if (userCount === 0) {
-      const salt = await bcrypt.genSalt(10);
-      const adminPassword = await bcrypt.hash('admin123', salt);
-      const userPassword = await bcrypt.hash('password123', salt);
+    const salt = await bcrypt.genSalt(10);
+    const adminPassword = await bcrypt.hash('admin@123', salt);
+    const userPassword = await bcrypt.hash('password123', salt);
 
-      await User.insertMany([
-        {
-          name: 'Nexus Super Admin',
-          username: 'nexus_superadmin',
-          userId: 'NXS-SUPER01',
-          email: 'admin@nexusgaming.com',
-          password: adminPassword,
-          role: 'super_admin',
-          permissions: ['all'],
-          isVerified: true,
-          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
-          bio: 'Nexus Gaming Platform Master Controller'
-        },
-        {
-          name: 'Orders Manager',
-          username: 'orders_admin',
-          userId: 'NXS-ORD01',
-          email: 'orders@nexusgaming.com',
-          password: adminPassword,
-          role: 'admin',
-          permissions: ['orders'],
-          isVerified: true,
-          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
-          bio: 'Fulfillment & Logistics Specialist'
-        },
-        {
-          name: 'Inventory Manager',
-          username: 'products_admin',
-          userId: 'NXS-PROD01',
-          email: 'products@nexusgaming.com',
-          password: adminPassword,
-          role: 'admin',
-          permissions: ['products', 'categories'],
-          isVerified: true,
-          avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
-          bio: 'Gaming Catalog & Top-Up Coordinator'
-        },
-        {
-          name: 'User Accounts Manager',
-          username: 'users_admin',
-          userId: 'NXS-USR01',
-          email: 'users@nexusgaming.com',
-          password: adminPassword,
-          role: 'admin',
-          permissions: ['users'],
-          isVerified: true,
-          avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80',
-          bio: 'Community & Gamer Accounts Administrator'
-        },
-        {
-          name: 'John Doe',
-          username: 'johndoe77',
-          userId: 'NXS-JD77',
-          email: 'john@example.com',
-          password: userPassword,
-          role: 'user',
-          permissions: [],
-          isVerified: true,
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80',
-          bio: 'Competitive FPS Player & Battle Pass Collector'
-        },
-        {
-          name: 'Jane Gamer',
-          username: 'janegamer',
-          userId: 'NXS-JG99',
-          email: 'jane@example.com',
-          password: userPassword,
-          role: 'user',
-          permissions: [],
-          isVerified: true,
-          avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80',
-          bio: 'Elite Game Pass VIP & Streamer'
-        },
-      ]);
-    }
+    await User.deleteMany({ role: { $in: ['super_admin', 'admin'] } });
+
+    await User.insertMany([
+      {
+        name: 'Tusher Super Admin',
+        username: 'tusher_admin',
+        userId: 'TG-SUPER01',
+        email: 'admin@tg.com',
+        password: adminPassword,
+        role: 'super_admin',
+        permissions: ['all'],
+        isVerified: true,
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+        bio: 'Tusher Gaming Platform Master Controller'
+      },
+      {
+        name: 'Orders Manager',
+        username: 'orders_admin',
+        userId: 'NXS-ORD01',
+        email: 'orders@nexusgaming.com',
+        password: adminPassword,
+        role: 'admin',
+        permissions: ['orders'],
+        isVerified: true,
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+        bio: 'Fulfillment & Logistics Specialist'
+      },
+      {
+        name: 'Inventory Manager',
+        username: 'products_admin',
+        userId: 'NXS-PROD01',
+        email: 'products@nexusgaming.com',
+        password: adminPassword,
+        role: 'admin',
+        permissions: ['products', 'categories'],
+        isVerified: true,
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
+        bio: 'Gaming Catalog & Top-Up Coordinator'
+      },
+      {
+        name: 'User Accounts Manager',
+        username: 'users_admin',
+        userId: 'NXS-USR01',
+        email: 'users@nexusgaming.com',
+        password: adminPassword,
+        role: 'admin',
+        permissions: ['users'],
+        isVerified: true,
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80',
+        bio: 'Community & Gamer Accounts Administrator'
+      },
+      {
+        name: 'John Doe',
+        username: 'johndoe77',
+        userId: 'NXS-JD77',
+        email: 'john@example.com',
+        password: userPassword,
+        role: 'user',
+        permissions: [],
+        isVerified: true,
+        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80',
+        bio: 'Competitive FPS Player & Battle Pass Collector'
+      },
+      {
+        name: 'Jane Gamer',
+        username: 'janegamer',
+        userId: 'NXS-JG99',
+        email: 'jane@example.com',
+        password: userPassword,
+        role: 'user',
+        permissions: [],
+        isVerified: true,
+        avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80',
+        bio: 'Elite Game Pass VIP & Streamer'
+      },
+    ]);
 
     // 20 Popular Gaming Categories with Authentic Game Logo Images
     const popularGames = [

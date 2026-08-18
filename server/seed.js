@@ -24,22 +24,22 @@ const seedData = async () => {
     await Cart.deleteMany();
 
     const salt = await bcrypt.genSalt(10);
-    const adminPassword = await bcrypt.hash('admin123', salt);
+    const adminPassword = await bcrypt.hash('admin@123', salt);
     const userPassword = await bcrypt.hash('password123', salt);
 
     console.log('👤 Seeding Granular RBAC Admin & User Accounts...');
     await User.insertMany([
       {
-        name: 'Nexus Super Admin',
-        username: 'nexus_superadmin',
-        userId: 'NXS-SUPER01',
-        email: 'admin@nexusgaming.com',
+        name: 'Tusher Super Admin',
+        username: 'tusher_admin',
+        userId: 'TG-SUPER01',
+        email: 'admin@tg.com',
         password: adminPassword,
         role: 'super_admin',
         permissions: ['all'],
         isVerified: true,
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
-        bio: 'Nexus Gaming Platform Master Controller'
+        bio: 'Tusher Gaming Platform Master Controller'
       },
       {
         name: 'Orders Manager',
