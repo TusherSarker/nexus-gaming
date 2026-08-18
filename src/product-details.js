@@ -107,6 +107,8 @@ const CATEGORY_SHOWCASE_PROFILES = {
 document.addEventListener('DOMContentLoaded', async () => {
   if (window.lucide) lucide.createIcons();
 
+  initNavbar();
+  initSearchModal();
   initAuthModal();
   updateNavbarUserUI();
   initLightbox();
@@ -120,6 +122,102 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadProductData();
   initPhysicsScrollytellingEngine();
 });
+
+// Smart Navbar: Auto-hide on scroll down, re-reveal on scroll up
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  let lastScroll = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > 80) {
+      if (currentScroll > lastScroll && currentScroll - lastScroll > 6) {
+        // Scrolling down -> hide navbar smoothly
+        navbar.style.transform = 'translateY(-100%)';
+      } else if (lastScroll - currentScroll > 6) {
+        // Scrolling up -> show navbar
+        navbar.style.transform = 'translateY(0)';
+      }
+    } else {
+      navbar.style.transform = 'translateY(0)';
+    }
+
+    lastScroll = currentScroll;
+  }, { passive: true });
+}
+
+// Search Modal in Product Details
+function initSearchModal() {
+  const searchBtn = document.getElementById('search-btn');
+  const searchModal = document.getElementById('search-modal');
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  if (!searchBtn || !searchModal) return;
+
+  function openSearch() {
+    searchModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => searchInput && searchInput.focus(), 100);
+  }
+
+  function closeSearch() {
+    searchModal.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (searchInput) searchInput.value = '';
+    if (searchResults) searchResults.classList.add('hidden');
+  }
+
+  searchBtn.addEventListener('click', openSearch);
+  if (searchOverlay) searchOverlay.addEventListener('click', closeSearch);
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchModal.classList.contains('hidden') ? openSearch() : closeSearch();
+    }
+    if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+      closeSearch();
+    }
+  });
+
+  if (searchInput && searchResults) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (!q) {
+        searchResults.classList.add('hidden');
+        searchResults.innerHTML = '';
+        return;
+      }
+
+      const matches = Object.values(PRODUCTS).filter(p => 
+        !p.isSubscription && (p.name.toLowerCase().includes(q) || (p.category && p.category.toLowerCase().includes(q)))
+      );
+
+      if (matches.length === 0) {
+        searchResults.innerHTML = `<div class="p-4 text-center text-sm text-gray-400">No items found matching "${q}"</div>`;
+      } else {
+        searchResults.innerHTML = matches.map(p => `
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-nexus-900/80 hover:bg-white/5 border border-white/5 transition-colors cursor-pointer group" onclick="window.location.href='/product-details.html?id=${p.id}'">
+            <div class="flex items-center gap-3">
+              <img src="${p.image}" class="w-9 h-9 object-contain rounded-lg bg-nexus-800 p-1 border border-white/10" alt="${p.name}">
+              <div>
+                <h4 class="font-heading font-bold text-white text-sm leading-tight group-hover:text-cyan-accent transition-colors">${p.name}</h4>
+                <p class="text-[11px] text-cyan-accent font-mono uppercase">${p.category} • $${Math.round(p.price)}</p>
+              </div>
+            </div>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-gray-500 group-hover:text-cyan-accent"></i>
+          </div>
+        `).join('');
+      }
+
+      searchResults.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    });
+  }
+}
 
 // Update cart counter in top navbar
 function updateCartBadge() {
