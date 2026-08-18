@@ -156,45 +156,66 @@
           </div>
         </div>
 
-        <!-- Right: 3D Floating Characters Constellation (7 cols) -->
+        <!-- Right: Single 3D Floating Hero with Glassmorphism & Stars (7 cols) -->
         <div class="lg:col-span-7 relative flex flex-col items-center justify-center pt-6 lg:pt-0">
           
-          <!-- Ambient Dusky Pink & Gold Energy Spheres (Enlarged) -->
+          <!-- Ambient Dusky Pink & Gold Energy Spheres -->
           <div class="absolute w-[480px] h-[480px] sm:w-[680px] sm:h-[680px] rounded-full bg-cyan-accent/15 blur-[120px] pointer-events-none animate-pulse"></div>
-          <div class="absolute -bottom-10 -right-10 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-magenta-accent/10 blur-[110px] pointer-events-none"></div>
+          <div class="absolute -bottom-10 -right-10 w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-magenta-accent/12 blur-[110px] pointer-events-none"></div>
 
-          <!-- 3D Floating Scene Container (Enlarged) -->
-          <div class="relative w-full max-w-[560px] sm:max-w-[680px] lg:max-w-[760px] aspect-[4/5] sm:aspect-square flex items-center justify-center">
+          <!-- Glassmorphism 3D Showcase Portal Container -->
+          <div class="relative w-full max-w-[540px] sm:max-w-[650px] lg:max-w-[720px] aspect-[4/5] sm:aspect-square flex items-center justify-center">
             
-            <!-- Satellite Floating Character 1: Cyber Soldier (Top Left - Big) -->
-            <div id="satelliteChar1" class="absolute -top-4 -left-6 sm:-left-12 w-32 sm:w-44 lg:w-56 opacity-50 animate-float-slow transform -rotate-12 z-10 filter drop-shadow-2xl pointer-events-none">
-              <img src="/characters/cyber-soldier-transparent.png" alt="Cyber Soldier 3D" class="w-full h-full object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.75)]">
+            <!-- Glassmorphism Portal Backdrop Ring & Plate -->
+            <div class="absolute inset-4 sm:inset-6 rounded-[2.5rem] glass-portal pointer-events-none z-0 border border-white/15">
+              <!-- Internal Frosted Glow Radial Highlights -->
+              <div class="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-cyan-accent/20 blur-2xl"></div>
+              <div class="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-magenta-accent/20 blur-2xl"></div>
+              <!-- Grid Matrix Accent Texture -->
+              <div class="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
             </div>
 
-            <!-- Satellite Floating Character 2: COD Ghost (Top Right - Big) -->
-            <div id="satelliteChar2" class="absolute -top-6 -right-6 sm:-right-12 w-32 sm:w-44 lg:w-56 opacity-50 animate-float transform rotate-12 z-10 filter drop-shadow-2xl pointer-events-none" style="animation-delay: 1.5s;">
-              <img src="/characters/cod-ghost-transparent.png" alt="COD Ghost 3D" class="w-full h-full object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.75)]">
+            <!-- Floating 3D Star Object 1 (Top Left - Glowing 4-Point Star in Glass Capsule) -->
+            <div class="absolute top-6 left-2 sm:left-6 z-20 glass-chip px-3.5 py-1.5 rounded-2xl flex items-center gap-2 animate-float shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl">
+              <span class="text-base text-cyan-accent animate-sparkle drop-shadow-[0_0_8px_rgba(212,127,151,0.9)]">✦</span>
+              <span class="text-xs font-mono font-bold text-white tracking-wider">Mythic Vault</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
             </div>
 
-            <!-- Satellite Floating Character 3: Barbarian King (Bottom Left - Big) -->
-            <div id="satelliteChar3" class="absolute bottom-10 -left-8 sm:-left-14 w-32 sm:w-44 lg:w-56 opacity-50 animate-float-slow transform -rotate-6 z-10 filter drop-shadow-2xl pointer-events-none" style="animation-delay: 2.8s;">
-              <img src="/characters/clash-barbarian-transparent.png" alt="Barbarian King 3D" class="w-full h-full object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.75)]">
+            <!-- Floating 3D Star Object 2 (Top Right - Golden Star Rating in Glass Capsule) -->
+            <div class="absolute top-8 right-2 sm:right-6 z-20 glass-chip px-3.5 py-1.5 rounded-2xl flex items-center gap-2 animate-float shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl" style="animation-delay: 1.8s;">
+              <span class="text-base text-gold-accent animate-twinkle drop-shadow-[0_0_10px_rgba(245,158,11,0.9)]">★</span>
+              <span class="text-xs font-mono font-bold text-gray-200">5.0 Instant Delivery</span>
             </div>
 
-            <!-- Satellite Floating Character 4: Shadow Assassin (Bottom Right - Big) -->
-            <div id="satelliteChar4" class="absolute bottom-8 -right-8 sm:-right-14 w-32 sm:w-44 lg:w-56 opacity-50 animate-float transform rotate-6 z-10 filter drop-shadow-2xl pointer-events-none" style="animation-delay: 2.0s;">
-              <img src="/characters/shadow-assassin-transparent.png" alt="Shadow Assassin 3D" class="w-full h-full object-contain filter drop-shadow-[0_20px_25px_rgba(0,0,0,0.75)]">
+            <!-- Floating 3D Star Sparkle 3 (Mid-Left Floating Star Node) -->
+            <div class="absolute top-1/2 -left-2 sm:left-2 -translate-y-1/2 z-15 pointer-events-none animate-twinkle" style="animation-delay: 0.8s;">
+              <div class="w-8 h-8 rounded-full bg-white/5 border border-white/20 backdrop-blur-md flex items-center justify-center shadow-lg">
+                <span class="text-lg text-cyan-accent animate-spin" style="animation-duration: 12s;">✦</span>
+              </div>
             </div>
 
-            <!-- Center Stage: Main 3D Floating Character (Extra Large) -->
-            <div class="relative z-20 w-[340px] sm:w-[480px] lg:w-[580px] xl:w-[640px] h-[400px] sm:h-[540px] lg:h-[640px] xl:h-[700px] flex items-center justify-center">
-              <img id="heroMainCharacterImg" src="/characters/pubg-transparent.png" alt="PUBG Mobile 3D Character" class="w-full h-full object-contain animate-float filter drop-shadow-[0_30px_45px_rgba(0,0,0,0.9)] transition-all duration-500">
+            <!-- Floating 3D Star Object 4 (Mid-Right - Verified Protection Glass Pill) -->
+            <div class="absolute bottom-20 right-0 sm:right-2 z-20 glass-chip px-3.5 py-1.5 rounded-2xl flex items-center gap-2 animate-float-slow shadow-xl pointer-events-none border border-white/20 backdrop-blur-xl" style="animation-delay: 2.4s;">
+              <span class="text-sm text-cyan-accent animate-sparkle">✦</span>
+              <span class="text-[11px] font-mono font-bold text-cyan-300">100% Anti-Ban UC</span>
+            </div>
+
+            <!-- Ambient Star Dust Sparkles -->
+            <div class="absolute top-24 left-1/4 text-xs text-white/60 animate-sparkle pointer-events-none">✦</div>
+            <div class="absolute bottom-28 left-16 text-sm text-cyan-accent/80 animate-twinkle pointer-events-none" style="animation-delay: 1.2s;">✦</div>
+            <div class="absolute top-20 right-1/4 text-xs text-magenta-accent/70 animate-sparkle pointer-events-none" style="animation-delay: 2.1s;">✦</div>
+            <div class="absolute bottom-16 right-1/3 text-xs text-white/50 animate-twinkle pointer-events-none" style="animation-delay: 0.5s;">★</div>
+
+            <!-- Center Stage: The Single Huge 3D Floating Character (Animated & Cycling) -->
+            <div class="relative z-10 w-[340px] sm:w-[500px] lg:w-[600px] xl:w-[680px] h-[420px] sm:h-[580px] lg:h-[680px] xl:h-[750px] flex items-center justify-center">
+              <img id="heroMainCharacterImg" src="/characters/pubg-transparent.png" alt="Featured 3D Game Character" class="w-full h-full object-contain animate-float filter drop-shadow-[0_30px_45px_rgba(0,0,0,0.9)] transition-all duration-500">
               
-              <!-- Floating Live Telemetry Chip -->
-              <div id="heroCharTelemetry" class="absolute bottom-1 sm:bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 rounded-2xl bg-nexus-900/90 border border-cyan-accent/40 backdrop-blur-xl shadow-2xl flex items-center gap-2.5 z-30 pointer-events-none">
+              <!-- Floating Live Telemetry Glassmorphism HUD Chip -->
+              <div id="heroCharTelemetry" class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-5 py-2.5 rounded-2xl glass-chip border border-cyan-accent/50 backdrop-blur-2xl shadow-2xl flex items-center gap-3 z-30 pointer-events-none">
                 <span class="w-2.5 h-2.5 rounded-full bg-cyan-accent animate-ping"></span>
-                <span id="heroCharTag" class="text-xs font-mono font-bold text-white tracking-wide">PUBG Mobile • Level 3 Assault</span>
-                <span id="heroCharBadge" class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold font-mono">100% Ban-Proof UC</span>
+                <span id="heroCharTag" class="text-xs sm:text-sm font-mono font-bold text-white tracking-wide">PUBG Mobile • Level 3 Assault</span>
+                <span id="heroCharBadge" class="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold font-mono border border-emerald-500/30">100% Ban-Proof UC</span>
               </div>
             </div>
 

@@ -83,7 +83,6 @@ function initHeroCharacters() {
   const mainImg = document.getElementById('heroMainCharacterImg');
   const tagEl = document.getElementById('heroCharTag');
   const badgeEl = document.getElementById('heroCharBadge');
-  const pills = document.querySelectorAll('.hero-char-btn');
   if (!mainImg) return;
 
   function switchHeroCharacter(index) {
@@ -92,7 +91,7 @@ function initHeroCharacters() {
     const char = HERO_CHARACTERS[index];
 
     mainImg.style.opacity = '0';
-    mainImg.style.transform = 'scale(0.95) translateY(6px)';
+    mainImg.style.transform = 'scale(0.92) translateY(8px)';
 
     setTimeout(() => {
       mainImg.src = char.src;
@@ -101,7 +100,7 @@ function initHeroCharacters() {
       if (badgeEl) badgeEl.textContent = char.badge;
       mainImg.style.opacity = '1';
       mainImg.style.transform = 'scale(1) translateY(0)';
-    }, 250);
+    }, 180);
   }
 
   function startAutoHeroRotation() {
@@ -109,7 +108,7 @@ function initHeroCharacters() {
     heroCharAutoTimer = setInterval(() => {
       currentHeroCharIdx = (currentHeroCharIdx + 1) % HERO_CHARACTERS.length;
       switchHeroCharacter(currentHeroCharIdx);
-    }, 5500);
+    }, 2800);
   }
 
   startAutoHeroRotation();
